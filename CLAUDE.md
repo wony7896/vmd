@@ -7,6 +7,7 @@ A5(148×210mm) 전단지를 브랜드 규정에 맞게 제작한다.
 
 | 필요한 것 | 읽을 문서 |
 |---|---|
+| **지금 어디까지 왔나 · 남은 일** (처음 이어받을 때) | [이어받기.md](이어받기.md) |
 | 컬러 HEX · 배경별 조합 · 서체 규정 · 그리드 | [wiki/brand.md](wiki/brand.md) |
 | 로고 파일 고르기 · 크기 · 여백 | [wiki/assets-logo.md](wiki/assets-logo.md) |
 | 블록 조합 · 판형 · 레이아웃 제약 | [wiki/template.md](wiki/template.md) |
@@ -135,4 +136,5 @@ template/                      원본 가이드 PDF
 studio/  flyer-studio.html     제작 도구
 studio/asset/            190  후보 그래픽 160px 축소본 — build-graphics.py 생성물
 대조결과.md                     공식 목록 대조 기록 · 미결 항목
+이어받기.md                     진행 상황 · 남은 일 · 되짚을 판단
 ```
