@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<title>font test</title>
+<style>
+@font-face{font-family:"SKT Sans Display";font-weight:300;src:url("brand guide/font/web/SKTSansDisplay-ExtraLight.woff2") format("woff2")}
+@font-face{font-family:"SKT Sans Display";font-weight:400;src:url("brand guide/font/web/SKTSansDisplay-Regular.woff2") format("woff2")}
+@font-face{font-family:"SKT Sans Display";font-weight:700;src:url("brand guide/font/web/SKTSansDisplay-Bold.woff2") format("woff2")}
+@font-face{font-family:"SKT Sans Text";font-weight:400;src:url("brand guide/font/web/SKTSansText-Regular.woff2") format("woff2")}
+@font-face{font-family:"SKT Sans Text";font-weight:700;src:url("brand guide/font/web/SKTSansText-Bold.woff2") format("woff2")}
+body{background:#fff;margin:0;padding:16px;font-size:26px}
+.d{font-family:"SKT Sans Display",serif}.t{font-family:"SKT Sans Text",serif}
+.x{font-family:serif}
+</style>
+<div class="d" style="font-weight:300">제목체 300 — 인터넷 가입하고 상품권 받자</div>
+<div class="d" style="font-weight:400">제목체 400 — 인터넷 가입하고 상품권 받자</div>
+<div class="d" style="font-weight:700">제목체 700 — 인터넷 가입하고 상품권 받자</div>
+<div class="t" style="font-weight:400">본문체 400 — 기가 와이파이 500Mbps 제공</div>
+<div class="t" style="font-weight:700">본문체 700 — 기가 와이파이 500Mbps 제공</div>
+<div class="x">대조용 serif — 인터넷 가입하고 상품권 받자</div>
+<div id="r" style="font-size:18px;color:#c00;margin-top:12px"></div>
+<script>
+document.fonts.ready.then(()=>{
+  const w=[300,400,700].map(x=>document.fonts.check(`${x} 26px "SKT Sans Display"`));
+  const t=[400,700].map(x=>document.fonts.check(`${x} 26px "SKT Sans Text"`));
+  document.getElementById('r').textContent =
+    `로드됨: Display ${w.filter(Boolean).length}/3, Text ${t.filter(Boolean).length}/2 · 총 ${document.fonts.size} face`;
+});
+</script>

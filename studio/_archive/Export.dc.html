@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; }
+    .root {
+      width: 1440px; height: 900px; background: #f5f5f7; color: #1d1d1f;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { color: #0066cc; }
+    .gnav { height: 44px; background: #000000; color: #ffffff; flex: none;
+      display: flex; align-items: center; gap: 28px; padding: 0 40px; font-size: 12px; letter-spacing: -0.12px; }
+    .gnav .brand { font-weight: 600; letter-spacing: 0.4px; }
+    .gnav .dim { color: #cccccc; }
+    .sp { flex-grow: 1; }
+    .subnav { height: 52px; flex: none; background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; padding: 0 40px; gap: 16px; }
+    .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .meta { font-size: 14px; letter-spacing: -0.224px; color: #7a7a7a; }
+
+    .wrap { flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 48px; padding: 0 40px; }
+    .card { width: 680px; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px;
+      padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+    .seg { display: flex; gap: 8px; }
+    .segbtn { flex-grow: 1; border-radius: 9999px; padding: 11px 18px; font-size: 14px;
+      letter-spacing: -0.224px; font-family: inherit; cursor: pointer; text-align: center; }
+    .segbtn:active { transform: scale(0.97); }
+    .rows { display: flex; flex-direction: column; }
+    .row { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-top: 1px solid #f0f0f0; }
+    .rk { width: 116px; flex: none; font-size: 14px; letter-spacing: -0.224px; color: #7a7a7a; }
+    .rv { font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #1d1d1f; }
+    .checks { display: flex; flex-direction: column; gap: 8px; background: #fafafc;
+      border-radius: 11px; padding: 14px; }
+    .pill.ghost { background: transparent; color: #0066cc; border: 1px solid #0066cc;
+      padding: 9px 20px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px; }
+    .chk { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; line-height: 1.43;
+      letter-spacing: -0.224px; color: #333333; }
+    .pill { background: #0066cc; color: #ffffff; border: none; border-radius: 9999px;
+      padding: 14px 28px; font-size: 18px; font-weight: 300; letter-spacing: 0; font-family: inherit; cursor: pointer; }
+    .pill:active { transform: scale(0.95); }
+    .side { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+
+    /* 재단선 3 mm — 미리보기 축척 1.892 px/mm 이므로 사방 6 px */
+    .sheet { position: relative; width: 292px; height: 412px; }
+    .mark { position: absolute; background: #cbcdd2; }
+    .flyer { position: absolute; left: 6px; top: 6px; width: 280px; height: 400px;
+      background: #ffffff; overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0; }
+    .fhead { height: 28px; flex: none; display: flex; align-items: center; padding: 0 17px; }
+    .fchip { font-size: 6px; letter-spacing: -0.06px; font-weight: 600; color: #000028;
+      border: 1px solid #000028; border-radius: 9999px; padding: 2px 5px; }
+    .fblk { display: flex; padding: 13px 17px; gap: 9px; overflow: hidden; }
+    .ffoot { height: 29px; flex: none; display: flex; align-items: center; padding: 0 17px; gap: 5px;
+      border-top: 1px solid #E2E4E6; }
+    .stepbar { height: 64px; flex: none; background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px); border-top: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .steps { display: flex; align-items: center; gap: 10px; }
+    .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #7a7a7a; }
+    .stp.on { color: #1d1d1f; font-weight: 600; }
+    .stp.done { color: #0066cc; }
+    .sep { color: #cbcdd2; font-size: 12px; }
+    .stpbtn { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px;
+      background: transparent; border: none; padding: 5px 3px; font-family: inherit; cursor: pointer; }
+    .stpbtn:active { transform: scale(0.97); }
+    .barnote { font-size: 12px; letter-spacing: -0.12px; color: #7a7a7a; }
+    .cap { font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #7a7a7a; text-align: center; max-width: 320px; }
+  </style>
+</helmet>
+
+<div class="root">
+
+  <div class="gnav">
+    <span class="brand">SK broadband</span>
+    <span class="dim">전단지 스튜디오</span>
+    <span class="dim">블록 라이브러리</span>
+    <span class="dim">브랜드 가이드</span>
+    <span class="sp"></span>
+    <span class="dim">우리정보통신점</span>
+  </div>
+
+  <div class="subnav">
+    <span class="title">PDF 만들기</span>
+    <span class="meta">입주 특가 전단지 · 우리정보통신점</span>
+    <span class="sp"></span>
+    <span class="meta">출력 전 확인 4항목</span>
+  </div>
+
+  <div class="wrap">
+
+    <div class="card">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <h1 style="margin: 0; font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -0.374px; color: #1d1d1f;">인쇄용 PDF로 내보내기</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #333333;">{{intro}}</p>
+      </div>
+
+      <div class="seg">
+        <sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+          <button class="segbtn" onClick="{{ m.pick }}" style="background: {{m.bg}}; color: {{m.fg}}; border: {{m.border}}">{{m.label}}</button>
+        </sc-for>
+      </div>
+
+      <div class="rows">
+        <sc-for list="{{specs}}" as="s" hint-placeholder-count="6">
+          <div class="row">
+            <span class="rk">{{s.k}}</span>
+            <span class="rv">{{s.v}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="checks">
+        <sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+          <span class="chk">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#0066cc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex: none;"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg>
+            {{c.t}}
+          </span>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <button class="pill">{{cta}}</button>
+        <span style="font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #7a7a7a;">편집 가능한 원본(.ai)은 제공하지 않습니다.<br>내용을 바꾸려면 여기서 다시 만드세요 — 재제작 비용은 0입니다.</span>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="sheet">
+        <div class="mark" style="left: 0; top: 6px; width: 9px; height: 1px;"></div>
+        <div class="mark" style="left: 6px; top: 0; width: 1px; height: 9px;"></div>
+        <div class="mark" style="right: 0; top: 6px; width: 9px; height: 1px;"></div>
+        <div class="mark" style="right: 6px; top: 0; width: 1px; height: 9px;"></div>
+        <div class="mark" style="left: 0; bottom: 6px; width: 9px; height: 1px;"></div>
+        <div class="mark" style="left: 6px; bottom: 0; width: 1px; height: 9px;"></div>
+        <div class="mark" style="right: 0; bottom: 6px; width: 9px; height: 1px;"></div>
+        <div class="mark" style="right: 6px; bottom: 0; width: 1px; height: 9px;"></div>
+
+        <div class="flyer">
+          <div class="fhead">
+            <img src="logo_black.png" alt="SK broadband" style="width: 61px;">
+            <span class="sp"></span>
+            <span class="fchip">공식 인증 대리점</span>
+          </div>
+
+          <div class="fblk" style="flex-grow: 2; background: #000028; color: #ffffff;">
+            <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; min-width: 0;">
+              <div style="white-space: pre-line; font-size: 16px; font-weight: 700; line-height: 1.24; letter-spacing: -0.45px; color: #ffffff;">입주 축하
+통신 요금 할인 혜택</div>
+              <div style="white-space: pre-line; font-size: 7px; line-height: 1.55; letter-spacing: -0.07px; color: #CBCDD2;">입주 박람회보다 더 좋은 상품과
+가격으로 안내해 드립니다</div>
+            </div>
+            <div style="width: 79px; flex: none; display: flex; align-items: flex-end; justify-content: center;">
+              <img src="icon_apt.png" alt="APT" style="max-width: 100%; max-height: 114px;">
+            </div>
+          </div>
+
+          <div class="fblk" style="flex-grow: 1; background: #E9EEFF; flex-direction: column; gap: 5px;">
+            <div style="display: flex; align-items: flex-end; gap: 8px;">
+              <div style="display: flex; flex-direction: column; gap: 3px; flex-grow: 1; min-width: 0;">
+                <div style="font-size: 6px; letter-spacing: -0.06px; color: #5B5D62;">기가 인터넷(1G) + B tv All+</div>
+                <div style="display: flex; align-items: baseline; gap: 5px;">
+                  <span style="font-size: 6px; letter-spacing: -0.06px; color: #5B5D62; text-decoration: line-through;">월 69,850원</span>
+                  <span style="font-size: 12px; font-weight: 700; letter-spacing: -0.3px; color: #3617CE;">월 40,150원</span>
+                  <span style="font-size: 6px; font-weight: 700; letter-spacing: -0.06px; color: #ffffff; background: #3617CE; border-radius: 9999px; padding: 1px 5px;">42% 할인</span>
+                </div>
+              </div>
+              <img src="icon_coin.png" alt="Coin" style="height: 32px;">
+            </div>
+            <div style="font-size: 6px; letter-spacing: -0.06px; color: #808288;">*부가세 포함, 3년 약정, 요금가족결합 기준</div>
+          </div>
+
+          <div class="fblk" style="flex-grow: 1; background: #F5F5F6; align-items: center;">
+            <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0;">
+              <div style="font-size: 9px; font-weight: 600; letter-spacing: -0.2px; color: #000000;">사은품도 놓치지 마세요</div>
+              <div style="font-size: 7px; line-height: 1.5; letter-spacing: -0.07px; color: #5B5D62;">3년간 요금 할인 · 현금 지원 · 삼성 TV 또는 가전제품</div>
+              <div style="font-size: 6px; letter-spacing: -0.06px; color: #808288;">*상품 중 택 1 · 가입 상품에 따라 변동 가능</div>
+            </div>
+            <img src="icon_giftbox.png" alt="Gift Box" style="height: 48px;">
+          </div>
+
+          <div class="ffoot">
+            <span style="font-size: 6px; font-weight: 600; letter-spacing: -0.06px; color: #5B5D62;">우리정보통신점</span>
+            <span class="sp"></span>
+            <span style="font-size: 6px; font-weight: 600; letter-spacing: -0.06px; color: #5B5D62;">가입 상담 및 문의</span>
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: -0.15px; color: #000000;">010-1234-5678</span>
+          </div>
+        </div>
+      </div>
+      <span class="cap">재단선 포함 154 × 216 mm. 배경과 이미지는 재단선 끝까지 채워집니다.</span>
+    </div>
+
+  </div>
+
+  <div class="stepbar">
+    <div class="steps">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <button class="stpbtn" onClick="{{ s.pick }}" style="color: {{s.color}}; font-weight: {{s.weight}}">
+          <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#0066cc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg></sc-if>
+          {{s.label}}
+        </button>
+        <sc-if value="{{s.sep}}" hint-placeholder-val="{{true}}"><span class="sep">›</span></sc-if>
+      </sc-for>
+    </div>
+    <span class="sp"></span>
+    <span class="barnote">마지막 단계입니다 — 내려받으면 내 전단지 목록에 저장됩니다</span>
+    <button class="pill ghost" onClick="{{ goPrev }}">이전</button>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900},"onGoto":{"editor":null,"tsType":"(step: number) => void"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'print' };
+  }
+
+  // 단계바 — Flow.dc.html 안에서는 onGoto 로 실제 전환, 낱장으로 볼 때는 동작 없음
+  stepItems(current, firstLabel) {
+    const labels = [firstLabel || '1 유형 선택', '2 블록 고르기', '3 내용 편집', '4 PDF 만들기'];
+    const goto = this.props.onGoto;
+    return labels.map((label, i) => {
+      const n = i + 1;
+      return {
+        label: label,
+        done: n < current,
+        sep: n < 4,
+        color: n === current ? '#1d1d1f' : (n < current ? '#0066cc' : '#7a7a7a'),
+        weight: n === current ? '600' : '400',
+        pick: goto ? () => goto(n) : () => {}
+      };
+    });
+  }
+  goTo(n) {
+    const goto = this.props.onGoto;
+    return goto ? () => goto(n) : () => {};
+  }
+
+  renderVals() {
+    const mode = this.state.mode;
+    const chip = (on) => ({
+      bg: on ? '#0066cc' : '#ffffff',
+      fg: on ? '#ffffff' : '#0066cc',
+      border: on ? '1px solid #0066cc' : '1px solid #e0e0e0'
+    });
+    const modes = [
+      { id: 'print', label: '인쇄소 입고용' },
+      { id: 'screen', label: '화면 공유용' }
+    ].map((m) => ({
+      label: m.label, ...chip(mode === m.id),
+      pick: () => this.setState({ mode: m.id })
+    }));
+
+    const printSpecs = [
+      { k: '판형', v: 'A5 · 148 × 210 mm (세로)' },
+      { k: '재단 여백', v: '사방 3 mm 포함 — 출력 대지 154 × 216 mm, 크롭마크 포함' },
+      { k: '이미지', v: '벡터 유지. 3D 아이콘은 원본 해상도 그대로 임베딩' },
+      { k: '컬러', v: '가이드 정의 CMYK 값을 직접 지정 (자동 변환 없음)' },
+      { k: '서체', v: 'SKT Sans 제목체 · 본문체 임베딩' },
+      { k: '파일명', v: '우리정보통신점_입주특가_A5_인쇄용.pdf' }
+    ];
+    const screenSpecs = [
+      { k: '판형', v: 'A5 · 148 × 210 mm (세로)' },
+      { k: '재단 여백', v: '없음 — 재단선 제거, 마감 크기로 잘라 출력' },
+      { k: '이미지', v: '벡터 유지. 용량 축소를 위해 이미지 72 dpi 재압축' },
+      { k: '컬러', v: 'sRGB' },
+      { k: '서체', v: 'SKT Sans 제목체 · 본문체 임베딩' },
+      { k: '파일명', v: '우리정보통신점_입주특가_A5_공유용.pdf' }
+    ];
+
+    return {
+      steps: this.stepItems(4),
+      goPrev: this.goTo(3),
+      modes,
+      intro: mode === 'print'
+        ? '인쇄소에 그대로 넘길 수 있는 파일입니다. 재단선과 브랜드 가이드 정의 CMYK 값이 함께 들어갑니다.'
+        : '카톡 · 메일로 바로 보낼 수 있는 가벼운 파일입니다. 인쇄 입고에는 인쇄소 입고용을 쓰세요.',
+      specs: mode === 'print' ? printSpecs : screenSpecs,
+      checks: [
+        { t: '제목 2줄 · 본문 2줄 — 사이즈별 최대 줄 수 안에 들어옵니다' },
+        { t: '가장 작은 글자 9 pt — 1/4 블록 최소 7 pt 규정 안입니다' },
+        { t: '로고는 상단 한 곳, 32 mm · 여백 1.1X 확보' },
+        { t: '쓰인 색 6가지 모두 가이드 팔레트 값 · 서체는 SKT Sans 두 종뿐' }
+      ],
+      cta: mode === 'print' ? '인쇄용 PDF 내려받기' : '공유용 PDF 내려받기'
+    };
+  }
+}
+</script>
+</body>
+</html>

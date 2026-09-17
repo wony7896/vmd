@@ -1,0 +1,9 @@
+# 원본 에셋 — GitHub 파일 크기 한도(100MB)를 넘어 로컬에만 둔다.
+# wiki/*.md 와 studio/asset/ 의 축소본이 이 폴더들을 대신 가리킨다.
+brand guide/
+template/
+
+# 생성물 · 시스템 파일
+__pycache__/
+*.pyc
+.DS_Store

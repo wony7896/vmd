@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; }
+    .root {
+      width: 1440px; height: 900px; background: #ffffff; color: #1d1d1f;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { color: #0066cc; }
+    .gnav { height: 44px; background: #000000; color: #ffffff; flex: none;
+      display: flex; align-items: center; gap: 28px; padding: 0 40px; font-size: 12px; letter-spacing: -0.12px; }
+    .gnav .brand { font-weight: 600; letter-spacing: 0.4px; }
+    .gnav .dim { color: #cccccc; }
+    .sp { flex-grow: 1; }
+    .subnav { height: 52px; flex: none; background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; padding: 0 40px; gap: 16px; }
+    .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .meta { font-size: 14px; letter-spacing: -0.224px; color: #7a7a7a; }
+    .pill { background: #0066cc; color: #ffffff; border: none; border-radius: 9999px;
+      padding: 7px 18px; font-size: 14px; letter-spacing: -0.224px; font-family: inherit; cursor: pointer; }
+    .pill:active { transform: scale(0.95); }
+
+    .head { padding: 32px 40px 0; display: flex; flex-direction: column; gap: 12px; }
+    .filters { padding: 24px 40px 0; display: flex; flex-direction: column; gap: 10px; }
+    .chiprow { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .chip { border-radius: 9999px; padding: 9px 16px; font-size: 14px; letter-spacing: -0.224px;
+      background: #ffffff; color: #1d1d1f; font-family: inherit; cursor: pointer; }
+    .chip:active { transform: scale(0.95); }
+    .rowlabel { font-size: 12px; letter-spacing: -0.12px; color: #7a7a7a; width: 62px; flex: none; }
+
+    .grid { padding: 24px 40px 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+    .card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px; padding: 14px;
+      display: flex; flex-direction: column; gap: 10px; font-family: inherit; color: inherit;
+      text-align: left; cursor: pointer; }
+    .card:active { transform: scale(0.99); }
+    .thumb { border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 96px; }
+    .band { flex-grow: 1; }
+    .cname { font-size: 14px; font-weight: 600; line-height: 1.29; letter-spacing: -0.224px; }
+    .ccat { font-size: 12px; letter-spacing: -0.12px; color: #7a7a7a; }
+    .tagrow { display: flex; align-items: center; gap: 6px; }
+    .tag { font-size: 10px; line-height: 1.3; letter-spacing: -0.08px; font-weight: 600;
+      padding: 3px 7px; border-radius: 5px; background: #f5f5f7; color: #333333; }
+    .stepbar { height: 64px; flex: none; background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px); border-top: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .steps { display: flex; align-items: center; gap: 10px; }
+    .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #7a7a7a; }
+    .stp.on { color: #1d1d1f; font-weight: 600; }
+    .stp.done { color: #0066cc; }
+    .sep { color: #cbcdd2; font-size: 12px; }
+    .stpbtn { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px;
+      background: transparent; border: none; padding: 5px 3px; font-family: inherit; cursor: pointer; }
+    .stpbtn:active { transform: scale(0.97); }
+    .barnote { font-size: 12px; letter-spacing: -0.12px; color: #7a7a7a; }
+    .stepbar { margin-top: auto; }
+    .pill.ghost { background: transparent; color: #0066cc; border: 1px solid #0066cc; }
+    .countline { font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #7a7a7a; }
+  </style>
+</helmet>
+
+<div class="root">
+
+  <div class="gnav">
+    <span class="brand">SK broadband</span>
+    <span class="dim">전단지 스튜디오</span>
+    <span class="dim">블록 라이브러리</span>
+    <span class="dim">브랜드 가이드</span>
+    <span class="sp"></span>
+    <span class="dim">우리정보통신점</span>
+  </div>
+
+  <div class="subnav">
+    <span class="title">블록 라이브러리</span>
+    <span class="meta">BX팀이 만든 템플릿 74종</span>
+    <span class="sp"></span>
+    <span class="meta">최종 갱신 25-12</span>
+    <button class="pill">전단지에 추가</button>
+  </div>
+
+  <div class="head">
+    <h1 style="margin: 0; font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: -0.4px; color: #1d1d1f;">쓸 수 있는 건 여기 있는 것뿐입니다.</h1>
+    <p style="margin: 0; font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #333333; max-width: 760px;">새 레이아웃을 그리는 기능은 없습니다. 전단지는 이 목록에서 고른 블록을 쌓아 만듭니다. 목록의 추가 · 수정은 BX팀 권한입니다.</p>
+  </div>
+
+  <div class="filters">
+    <div class="chiprow">
+      <span class="rowlabel">사이즈</span>
+      <sc-for list="{{sizes}}" as="s" hint-placeholder-count="4">
+        <button class="chip" onClick="{{ s.pick }}" style="background: {{s.bg}}; color: {{s.fg}}; border: {{s.border}}">{{s.label}}</button>
+      </sc-for>
+    </div>
+    <div class="chiprow">
+      <span class="rowlabel">카테고리</span>
+      <sc-for list="{{cats}}" as="c" hint-placeholder-count="7">
+        <button class="chip" onClick="{{ c.pick }}" style="background: {{c.bg}}; color: {{c.fg}}; border: {{c.border}}">{{c.label}}</button>
+      </sc-for>
+      <span class="sp"></span>
+      <span class="countline"><strong style="color: #1d1d1f; font-weight: 600;">{{shown}}</strong> · {{tail}}</span>
+    </div>
+  </div>
+
+  <sc-if value="{{isEmpty}}" hint-placeholder-val="{{false}}">
+    <div style="padding: 48px 40px 0; font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #7a7a7a;">이 사이즈에는 해당 카테고리 블록이 없습니다. 예를 들어 시즈널은 전면 · 1/2에서만 고를 수 있습니다.</div>
+  </sc-if>
+
+  <div class="grid">
+    <sc-for list="{{items}}" as="it" hint-placeholder-count="10">
+      <button class="card">
+        <div class="thumb">
+          <sc-for list="{{it.bands}}" as="bd" hint-placeholder-count="2">
+            <div class="band" style="background: {{bd.fill}}; flex-grow: {{bd.grow}}; border-bottom: {{bd.rule}}"></div>
+          </sc-for>
+        </div>
+        <span style="display: flex; flex-direction: column; gap: 4px;">
+          <span class="cname">{{it.name}}</span>
+          <span class="ccat">{{it.cat}}</span>
+        </span>
+        <span class="tagrow">
+          <span class="tag">{{it.size}}</span>
+          <sc-if value="{{it.swapped}}" hint-placeholder-val="{{false}}">
+            <span class="tag" style="background: #fafafc; color: #0066cc; border: 1px solid #e0e0e0;">v1.1 치환</span>
+          </sc-if>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div class="stepbar">
+    <div class="steps">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <button class="stpbtn" onClick="{{ s.pick }}" style="color: {{s.color}}; font-weight: {{s.weight}}">
+          <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#0066cc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg></sc-if>
+          {{s.label}}
+        </button>
+        <sc-if value="{{s.sep}}" hint-placeholder-val="{{true}}"><span class="sep">›</span></sc-if>
+      </sc-for>
+    </div>
+    <span class="sp"></span>
+    <span class="barnote">고른 블록 3개</span>
+    <button class="pill ghost" onClick="{{ goPrev }}">이전</button>
+    <button class="pill" onClick="{{ goNext }}">다음 — 내용 편집</button>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900},"onGoto":{"editor":null,"tsType":"(step: number) => void"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { size: 'full', cat: 'all' };
+  }
+
+  catalog() {
+    const navy = '#000028', blue = '#3617CE', gray = '#E2E4E6', sgray = '#F5F5F6';
+    const sb6 = '#E9EEFF', sb5 = '#D2DBFF', white = '#FFFFFF';
+    const orange = '#EB7B44', yellow = '#F1C661', cyan = '#57B6FF', green = '#54D189';
+    const hair = '1px solid #E2E4E6';
+
+    const band = (fill, grow, rule) => ({ fill, grow, rule: rule || 'none' });
+
+    const price = [
+      ['단일 할인', [band(white, 1, hair), band(sgray, 1.4)]],
+      ['통신 요금 할인', [band(navy, 1.2), band(white, 1)]],
+      ['인터넷+IPTV 결합 1종', [band(sb6, 1.4), band(white, 1, hair)]],
+      ['인터넷+IPTV 결합 3종', [band(navy, 1), band(sb5, 0.5), band(sb5, 0.5)]],
+      ['휴대폰 4회선 축소', [band(blue, 1.3), band(white, 1)]],
+      ['휴대폰 4회선 상세', [band(blue, 1), band(gray, 1.3)]],
+      ['휴대폰 5회선 상세', [band(navy, 1), band(gray, 1.5)]]
+    ];
+    const gift = [
+      ['사은품 단독 강조 (그래픽)', [band(navy, 1.6), band(white, 1, hair)]],
+      ['사은품 단독 강조 (실사)', [band(gray, 1.6), band(navy, 0.8)]]
+    ];
+    const product = [
+      ['셋톱박스', [band(white, 1, hair), band(gray, 1.5)]],
+      ['셋톱박스 상품 비교', [band(gray, 1), band(white, 1, hair), band(white, 1)]],
+      ['윙즈', [band(navy, 1.8), band(white, 0.7, hair)]]
+    ];
+    const message = [
+      ['이사', [band(blue, 1.7), band(white, 0.8, hair)]],
+      ['인터넷', [band(blue, 1.4), band(gray, 1)]],
+      ['IPTV', [band(blue, 1.2), band(navy, 1.2)]]
+    ];
+    const seasonal = [
+      ['지역특가', [band(gray, 1.6), band(navy, 0.8)], false],
+      ['가정의 달', [band(orange, 1.7), band(navy, 0.7)], true],
+      ['여름', [band(white, 1), band(cyan, 1.4)], false],
+      ['추석', [band(orange, 1.7), band(gray, 0.7)], true],
+      ['크리스마스', [band(green, 1.6), band(navy, 0.8)], true],
+      ['설날', [band(blue, 1.7), band(navy, 0.7)], true],
+      ['키즈', [band(yellow, 1.6), band(navy, 0.8)], true],
+      ['시니어', [band(orange, 1.6), band(navy, 0.8)], true]
+    ];
+    const extra = [
+      ['서부본부 전단 (QR)', [band(blue, 1.5), band(white, 1, hair)]],
+      ['유통망 요청 추가 유형 2', [band(navy, 1), band(white, 1, hair), band(navy, 0.6)]]
+    ];
+
+    const mk = (rows, cat) => rows.map((r) => ({ name: r[0], cat, bands: r[1], swapped: !!r[2] }));
+
+    return {
+      full: [].concat(
+        mk(price, '1. 요금 안내'), mk(gift, '2. 사은품'), mk(product, '3. 요금 안내 + 상품'),
+        mk(message, '4. 메세지 소구형'), mk(seasonal, '5. 시즈널'), mk(extra, '6–7. 본부 · 유통망 요청')
+      ),
+      half: [].concat(
+        mk(price, '1. 요금 안내'), mk(gift, '2. 사은품'), mk(product, '3. 요금 안내 + 상품'),
+        mk(message, '4. 메세지 소구형'), mk(seasonal, '5. 시즈널')
+      ),
+      third: [].concat(
+        mk(price.slice(0, 5), '1. 요금 안내'), mk(gift, '2. 사은품'),
+        mk(product, '3. 요금 안내 + 상품'), mk(message, '4. 메세지 소구형')
+      ),
+      quarter: [].concat(
+        mk(price.slice(0, 5), '1. 요금 안내'), mk(gift, '2. 사은품'),
+        mk(product, '3. 요금 안내 + 상품'), mk(message, '4. 메세지 소구형')
+      )
+    };
+  }
+
+
+  // 단계바 — Flow.dc.html 안에서는 onGoto 로 실제 전환, 낱장으로 볼 때는 동작 없음
+  stepItems(current, firstLabel) {
+    const labels = [firstLabel || '1 유형 선택', '2 블록 고르기', '3 내용 편집', '4 PDF 만들기'];
+    const goto = this.props.onGoto;
+    return labels.map((label, i) => {
+      const n = i + 1;
+      return {
+        label: label,
+        done: n < current,
+        sep: n < 4,
+        color: n === current ? '#1d1d1f' : (n < current ? '#0066cc' : '#7a7a7a'),
+        weight: n === current ? '600' : '400',
+        pick: goto ? () => goto(n) : () => {}
+      };
+    });
+  }
+  goTo(n) {
+    const goto = this.props.onGoto;
+    return goto ? () => goto(n) : () => {};
+  }
+
+  renderVals() {
+    const st = this.state;
+    const cat = this.catalog();
+    const sizeDefs = [
+      { id: 'full', label: '전면', badge: '전면' },
+      { id: 'half', label: '1/2', badge: '1/2' },
+      { id: 'third', label: '1/3', badge: '1/3' },
+      { id: 'quarter', label: '1/4', badge: '1/4' }
+    ];
+    const chip = (on) => ({
+      bg: on ? '#0066cc' : '#ffffff',
+      fg: on ? '#ffffff' : '#1d1d1f',
+      border: on ? '1px solid #0066cc' : '1px solid #e0e0e0'
+    });
+
+    const sizes = sizeDefs.map((s) => ({
+      label: s.label, ...chip(st.size === s.id),
+      pick: () => this.setState({ size: s.id })
+    }));
+
+    const catDefs = [
+      { id: 'all', label: '전체' },
+      { id: '1. 요금 안내', label: '요금 안내' },
+      { id: '2. 사은품', label: '사은품' },
+      { id: '3. 요금 안내 + 상품', label: '요금 안내 + 상품' },
+      { id: '4. 메세지 소구형', label: '메세지 소구형' },
+      { id: '5. 시즈널', label: '시즈널' },
+      { id: '6–7. 본부 · 유통망 요청', label: '본부 · 유통망 요청' }
+    ];
+    const cats = catDefs.map((c) => ({
+      label: c.label, ...chip(st.cat === c.id),
+      pick: () => this.setState({ cat: c.id })
+    }));
+
+    const all = cat[st.size] || [];
+    const filtered = st.cat === 'all' ? all : all.filter((i) => i.cat === st.cat);
+    const badge = sizeDefs.filter((s) => s.id === st.size)[0].badge;
+    const items = filtered.slice(0, 10).map((i) => ({ ...i, size: badge + ' 사이즈' }));
+    const rest = filtered.length - items.length;
+
+    return {
+      steps: this.stepItems(2),
+      goPrev: this.goTo(1),
+      goNext: this.goTo(3),
+      sizes, cats, items,
+      isEmpty: filtered.length === 0,
+      shown: badge + ' 사이즈 · ' + filtered.length + '종',
+      tail: filtered.length === 0
+        ? '이 사이즈에는 해당 카테고리 블록이 없습니다'
+        : (rest > 0 ? filtered.length + '종 중 앞의 10종' : '전체 표시')
+    };
+  }
+}
+</script>
+</body>
+</html>

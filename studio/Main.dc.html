@@ -1,0 +1,3027 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    /* SKT Sans 서브셋 2종 — wiki/subset-font.py 가 만든다 (KS X 1001 2,350자)
+       웨이트 범위를 넓게 잡아 브라우저가 가짜 볼드를 만들지 않게 한다.
+       template.md 3 — 제목은 제목체(Display) Bold, 본문은 본문체(Text) SemiBold.
+       studio/ 원본은 상대경로를 두고, 번들에는 sync-studio 가 data: URI 로 바꿔 넣는다 */
+    @font-face { font-family: "SKT Sans Display"; font-weight: 100 900; font-display: block;
+      src: url("font_display_bold.woff2") format("woff2"); }
+    @font-face { font-family: "SKT Sans Text"; font-weight: 100 900; font-display: block;
+      src: url("font_text_semibold.woff2") format("woff2"); }
+    body { margin: 0; }
+
+    /* >>> 생성 구간 — wiki/build-graphics.py 가 쓴다. 손으로 고치지 않는다
+       그림은 여기 CSS 변수로만 들어온다. 이유는 wiki/build-graphics.py 머리말 */
+    :root { --g-g001: url("asset/g001.png"); }
+    :root { --g-g002: url("asset/g002.png"); }
+    :root { --g-g003: url("asset/g003.png"); }
+    :root { --g-g004: url("asset/g004.png"); }
+    :root { --g-g005: url("asset/g005.png"); }
+    :root { --g-g006: url("asset/g006.png"); }
+    :root { --g-g007: url("asset/g007.png"); }
+    :root { --g-g008: url("asset/g008.png"); }
+    :root { --g-g009: url("asset/g009.png"); }
+    :root { --g-g010: url("asset/g010.png"); }
+    :root { --g-g011: url("asset/g011.png"); }
+    :root { --g-g012: url("asset/g012.png"); }
+    :root { --g-g013: url("asset/g013.png"); }
+    :root { --g-g014: url("asset/g014.png"); }
+    :root { --g-g015: url("asset/g015.png"); }
+    :root { --g-g016: url("asset/g016.png"); }
+    :root { --g-g017: url("asset/g017.png"); }
+    :root { --g-g018: url("asset/g018.png"); }
+    :root { --g-g019: url("asset/g019.png"); }
+    :root { --g-g020: url("asset/g020.png"); }
+    :root { --g-g021: url("asset/g021.png"); }
+    :root { --g-g022: url("asset/g022.png"); }
+    :root { --g-g023: url("asset/g023.png"); }
+    :root { --g-g024: url("asset/g024.png"); }
+    :root { --g-g025: url("asset/g025.png"); }
+    :root { --g-g026: url("asset/g026.png"); }
+    :root { --g-g027: url("asset/g027.png"); }
+    :root { --g-g028: url("asset/g028.png"); }
+    :root { --g-g029: url("asset/g029.png"); }
+    :root { --g-g030: url("asset/g030.png"); }
+    :root { --g-g031: url("asset/g031.png"); }
+    :root { --g-g032: url("asset/g032.png"); }
+    :root { --g-g033: url("asset/g033.png"); }
+    :root { --g-g034: url("asset/g034.png"); }
+    :root { --g-g035: url("asset/g035.png"); }
+    :root { --g-g036: url("asset/g036.png"); }
+    :root { --g-g037: url("asset/g037.png"); }
+    :root { --g-g038: url("asset/g038.png"); }
+    :root { --g-g039: url("asset/g039.png"); }
+    :root { --g-g040: url("asset/g040.png"); }
+    :root { --g-g041: url("asset/g041.png"); }
+    :root { --g-g042: url("asset/g042.png"); }
+    :root { --g-g043: url("asset/g043.png"); }
+    :root { --g-g044: url("asset/g044.png"); }
+    :root { --g-g045: url("asset/g045.png"); }
+    :root { --g-g046: url("asset/g046.png"); }
+    :root { --g-g047: url("asset/g047.png"); }
+    :root { --g-g048: url("asset/g048.png"); }
+    :root { --g-g049: url("asset/g049.png"); }
+    :root { --g-g050: url("asset/g050.png"); }
+    :root { --g-g051: url("asset/g051.png"); }
+    :root { --g-g052: url("asset/g052.png"); }
+    :root { --g-g053: url("asset/g053.png"); }
+    :root { --g-g054: url("asset/g054.png"); }
+    :root { --g-g055: url("asset/g055.png"); }
+    :root { --g-g056: url("asset/g056.png"); }
+    :root { --g-g057: url("asset/g057.png"); }
+    :root { --g-g058: url("asset/g058.png"); }
+    :root { --g-g059: url("asset/g059.png"); }
+    :root { --g-g060: url("asset/g060.png"); }
+    :root { --g-g061: url("asset/g061.png"); }
+    :root { --g-g062: url("asset/g062.png"); }
+    :root { --g-g063: url("asset/g063.png"); }
+    :root { --g-g064: url("asset/g064.png"); }
+    :root { --g-g065: url("asset/g065.png"); }
+    :root { --g-g066: url("asset/g066.png"); }
+    :root { --g-g067: url("asset/g067.png"); }
+    :root { --g-g068: url("asset/g068.png"); }
+    :root { --g-g069: url("asset/g069.png"); }
+    :root { --g-g070: url("asset/g070.png"); }
+    :root { --g-g071: url("asset/g071.png"); }
+    :root { --g-g072: url("asset/g072.png"); }
+    :root { --g-g073: url("asset/g073.png"); }
+    :root { --g-g074: url("asset/g074.png"); }
+    :root { --g-g075: url("asset/g075.png"); }
+    :root { --g-g076: url("asset/g076.png"); }
+    :root { --g-g077: url("asset/g077.png"); }
+    :root { --g-g078: url("asset/g078.png"); }
+    :root { --g-g079: url("asset/g079.png"); }
+    :root { --g-g080: url("asset/g080.png"); }
+    :root { --g-g081: url("asset/g081.png"); }
+    :root { --g-g082: url("asset/g082.png"); }
+    :root { --g-g083: url("asset/g083.png"); }
+    :root { --g-g084: url("asset/g084.png"); }
+    :root { --g-g085: url("asset/g085.png"); }
+    :root { --g-g086: url("asset/g086.png"); }
+    :root { --g-g087: url("asset/g087.png"); }
+    :root { --g-g088: url("asset/g088.png"); }
+    :root { --g-g089: url("asset/g089.png"); }
+    :root { --g-g090: url("asset/g090.png"); }
+    :root { --g-g091: url("asset/g091.png"); }
+    :root { --g-g092: url("asset/g092.png"); }
+    :root { --g-g093: url("asset/g093.png"); }
+    :root { --g-g094: url("asset/g094.png"); }
+    :root { --g-g095: url("asset/g095.png"); }
+    :root { --g-g096: url("asset/g096.png"); }
+    :root { --g-g097: url("asset/g097.png"); }
+    :root { --g-g098: url("asset/g098.png"); }
+    :root { --g-g099: url("asset/g099.png"); }
+    :root { --g-g100: url("asset/g100.png"); }
+    :root { --g-g101: url("asset/g101.png"); }
+    :root { --g-g102: url("asset/g102.png"); }
+    :root { --g-g103: url("asset/g103.png"); }
+    :root { --g-g104: url("asset/g104.png"); }
+    :root { --g-g105: url("asset/g105.png"); }
+    :root { --g-g106: url("asset/g106.png"); }
+    :root { --g-g107: url("asset/g107.png"); }
+    :root { --g-g108: url("asset/g108.png"); }
+    :root { --g-g109: url("asset/g109.png"); }
+    :root { --g-g110: url("asset/g110.png"); }
+    :root { --g-g111: url("asset/g111.png"); }
+    :root { --g-g112: url("asset/g112.png"); }
+    :root { --g-g113: url("asset/g113.png"); }
+    :root { --g-g114: url("asset/g114.png"); }
+    :root { --g-g115: url("asset/g115.png"); }
+    :root { --g-g116: url("asset/g116.png"); }
+    :root { --g-g117: url("asset/g117.png"); }
+    :root { --g-g118: url("asset/g118.png"); }
+    :root { --g-g119: url("asset/g119.png"); }
+    :root { --g-g120: url("asset/g120.png"); }
+    :root { --g-g121: url("asset/g121.png"); }
+    :root { --g-g122: url("asset/g122.png"); }
+    :root { --g-g123: url("asset/g123.png"); }
+    :root { --g-g124: url("asset/g124.png"); }
+    :root { --g-g125: url("asset/g125.png"); }
+    :root { --g-g126: url("asset/g126.png"); }
+    :root { --g-g127: url("asset/g127.png"); }
+    :root { --g-g128: url("asset/g128.png"); }
+    :root { --g-g129: url("asset/g129.png"); }
+    :root { --g-g130: url("asset/g130.png"); }
+    :root { --g-g131: url("asset/g131.png"); }
+    :root { --g-g132: url("asset/g132.png"); }
+    :root { --g-g133: url("asset/g133.png"); }
+    :root { --g-g134: url("asset/g134.png"); }
+    :root { --g-g135: url("asset/g135.png"); }
+    :root { --g-g136: url("asset/g136.png"); }
+    :root { --g-g137: url("asset/g137.png"); }
+    :root { --g-g138: url("asset/g138.png"); }
+    :root { --g-g139: url("asset/g139.png"); }
+    :root { --g-g140: url("asset/g140.png"); }
+    :root { --g-g141: url("asset/g141.png"); }
+    :root { --g-g142: url("asset/g142.png"); }
+    :root { --g-g143: url("asset/g143.png"); }
+    :root { --g-g144: url("asset/g144.png"); }
+    :root { --g-g145: url("asset/g145.png"); }
+    :root { --g-g146: url("asset/g146.png"); }
+    :root { --g-g147: url("asset/g147.png"); }
+    :root { --g-g148: url("asset/g148.png"); }
+    :root { --g-g149: url("asset/g149.png"); }
+    :root { --g-g150: url("asset/g150.png"); }
+    :root { --g-g151: url("asset/g151.png"); }
+    :root { --g-g152: url("asset/g152.png"); }
+    :root { --g-g153: url("asset/g153.png"); }
+    :root { --g-g154: url("asset/g154.png"); }
+    :root { --g-g155: url("asset/g155.png"); }
+    :root { --g-g156: url("asset/g156.png"); }
+    :root { --g-g157: url("asset/g157.png"); }
+    :root { --g-g158: url("asset/g158.png"); }
+    :root { --g-g159: url("asset/g159.png"); }
+    :root { --g-g160: url("asset/g160.png"); }
+    :root { --g-g161: url("asset/g161.png"); }
+    :root { --g-g162: url("asset/g162.png"); }
+    :root { --g-g163: url("asset/g163.png"); }
+    :root { --g-g164: url("asset/g164.png"); }
+    :root { --g-g165: url("asset/g165.png"); }
+    :root { --g-g166: url("asset/g166.png"); }
+    :root { --g-g167: url("asset/g167.png"); }
+    :root { --g-g168: url("asset/g168.png"); }
+    :root { --g-g169: url("asset/g169.png"); }
+    :root { --g-g170: url("asset/g170.png"); }
+    :root { --g-g171: url("asset/g171.png"); }
+    :root { --g-g172: url("asset/g172.png"); }
+    :root { --g-g173: url("asset/g173.png"); }
+    :root { --g-g174: url("asset/g174.png"); }
+    :root { --g-g175: url("asset/g175.png"); }
+    :root { --g-g176: url("asset/g176.png"); }
+    :root { --g-g177: url("asset/g177.png"); }
+    :root { --g-g178: url("asset/g178.png"); }
+    :root { --g-g179: url("asset/g179.png"); }
+    :root { --g-g180: url("asset/g180.png"); }
+    :root { --g-g181: url("asset/g181.png"); }
+    :root { --g-g182: url("asset/g182.png"); }
+    :root { --g-g183: url("asset/g183.png"); }
+    :root { --g-g184: url("asset/g184.png"); }
+    :root { --g-g185: url("asset/g185.png"); }
+    :root { --g-g186: url("asset/g186.png"); }
+    :root { --g-g187: url("asset/g187.png"); }
+    :root { --g-g188: url("asset/g188.png"); }
+    :root { --g-g189: url("asset/g189.png"); }
+    :root { --g-g190: url("asset/g190.png"); }
+    /* <<< 생성 구간 */
+
+    /* 도구 크롬의 색 — 바탕과 글자는 무채색, 채워진 주 버튼만 B Blue.
+       색이 칠해진 곳이 곧 '지금 누를 곳' 이어서, 화면에서 파란 면은 늘 하나뿐이다.
+       그 밖에 유채색을 띠는 것은 전단지 미리보기와 브랜드 스와치뿐이다 —
+       도구가 색을 더 쓰면 원고의 색과 경쟁하고, 대리점이 "이 파랑도 인쇄되나" 를 묻게 된다.
+       회색 값은 brand.md 1.4 Sub Gray 램프에서 그대로 가져왔다 — 도구와 원고가 같은 회색을 쓴다.
+
+         #3617CE  B Blue      채워진 주 버튼(.pill)만. 선택 · 활성 상태에는 쓰지 않는다
+
+         #1F2021  Sub Gray 1  본문 · 현재 단계 · 주 버튼 면 · 선택 테두리
+         #37393B  Sub Gray 2  보조 본문 · 지난 단계
+         #808288  Sub Gray 4  캡션 · 비활성 내비
+         #A0A3A8  Sub Gray 5  남은 단계
+         #CBCDD2  Sub Gray 6  점선칸 · 보조 버튼 테두리 · 재단선
+         #E2E4E6  B Gray      테두리 · 구분선
+         #EDEEEF              더 옅은 구분선
+         #F5F5F6  Sub Gray 7  띠 바탕 · 태그
+         #FAFAFA              작업대 바탕
+         #A63244              검증 경고 — 규정 위반을 알리는 자리에만
+
+       왼쪽 레일이 화면 이동을 맡는다 — 어느 단계에 있든 스튜디오 · 가이드가
+       같은 자리에 있고, 아래 단계바는 제작 흐름(1→3)만 책임진다.
+
+       면은 평평하다 — 간유리(backdrop-filter)·큰 곡률·짙은 그림자를 쓰지 않는다.
+       상태는 채도가 아니라 명도와 굵기로 가른다. 모서리는 6px(버튼·입력란) ·
+       8px(줄·상자) · 10px(카드) 세 단계뿐이고, 알약 모양은 원고 안의 배지에만 남는다. */
+
+    /* 4개 화면(제작 3단계 + 가이드)을 한 아트보드에 겹쳐 두고 단계바가 교체한다.
+       display 로 숨기므로 화면을 오가도 입력값·선택이 그대로 남는다.
+       화면별 CSS 는 .pane1~.pane4 로 격리되어 클래스 이름이 겹쳐도 섞이지 않는다. */
+    .flowroot { position: relative; width: 1440px; height: 900px; overflow: hidden; background: #ffffff; }
+    .pane { position: absolute; left: 88px; top: 0; width: 1352px; height: 900px; }
+
+    /* 왼쪽 레일 — 4개 화면이 함께 쓴다. 어느 화면에 있든 목적지 둘이 같은 자리에 있다.
+       화면마다 상단 내비를 다시 그리던 것을 한 자리로 모았다 */
+    .railnav { position: absolute; left: 0; top: 0; width: 88px; height: 900px; z-index: 6;
+      box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E2E4E6;
+      display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 16px 0 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+    /* 레일 머리의 마크는 가이드 수록 BI 파일 그대로다 — 글자를 흉내 내 그리지 않는다.
+       화면 최소 크기 16px 규정(brand.md 2.3) 위로 충분히 크게 둔다 */
+    .railnav .mark { height: 30px; width: auto; margin-bottom: 16px; flex: none; }
+    .railnav .rnav { width: 72px; border: none; border-radius: 8px; padding: 9px 0 7px; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      font-family: inherit; font-size: 11px; line-height: 1.3; letter-spacing: -0.11px; }
+    .railnav .rnav:active { transform: scale(0.96); }
+    .railnav .sp { flex-grow: 1; }
+    .railnav .who { width: 34px; height: 34px; border-radius: 9999px; background: #F5F5F6;
+      border: 1px solid #E2E4E6; color: #37393B; flex: none;
+      display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; }
+    .railnav .whoname { margin-top: 7px; max-width: 76px; font-size: 10px; letter-spacing: -0.1px;
+      color: #808288; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* ---- 1단계 · Start.dc.html ---- */
+    .pane1 .root {
+      width: 1352px; height: 900px; background: #ffffff; color: #1F2021;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden; }
+    .pane1 a { color: #1F2021; text-decoration: none; }
+    .pane1 a:hover { color: #1F2021; }
+    .pane1 .subnav {
+      height: 52px; flex: none; background: #FFFFFF; border-bottom: 1px solid #E2E4E6;
+      display: flex; align-items: center; padding: 0 40px; gap: 24px; }
+    .pane1 .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .pane1 .subnav .sp { flex-grow: 1; }
+    .pane1 .navlink { font-size: 14px; letter-spacing: -0.224px; color: #1F2021; }
+    .pane1 .pill {
+      background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
+      padding: 11px 22px; font-size: 17px; letter-spacing: -0.374px; font-family: inherit;
+      cursor: pointer; }
+    .pane1 .pill:active { transform: scale(0.95); }
+    .pane1 .pill.sm { padding: 7px 16px; font-size: 14px; letter-spacing: -0.224px; }
+    .pane1 .pill.ghost { background: transparent; color: #1F2021; border: 1px solid #CBCDD2; }
+    .pane1 .hero { padding: 56px 40px 0; display: flex; justify-content: center; }
+    .pane1 .stack { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; max-width: 900px; }
+    .pane1 .ctas { display: flex; gap: 12px; }
+    .pane1 .types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 40px 40px 0; }
+    .pane1 .tcard {
+      background: #ffffff; border: 1px solid #E2E4E6; border-radius: 10px; padding: 24px;
+      display: flex; flex-direction: column; gap: 17px; cursor: pointer; text-align: left;
+      font-family: inherit; color: inherit; }
+    .pane1 .tcard:active { transform: scale(0.99); }
+    .pane1 .diagram { height: 132px; background: #F5F5F6; border-radius: 6px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+    .pane1 .seg { flex-grow: 1; border-radius: 2px; }
+    .pane1 .tname { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; }
+    .pane1 .tdesc { font-size: 14px; line-height: 1.43; letter-spacing: -0.224px; color: #808288; }
+    .pane1 .trow { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .pane1 .dot { width: 20px; height: 20px; border-radius: 9999px; border: 1px solid #CBCDD2; flex: none; }
+    .pane1 .stepbar { height: 64px; flex: none; background: #FFFFFF; border-top: 1px solid #E2E4E6;
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .pane1 .steps { display: flex; align-items: center; gap: 10px; }
+    .pane1 .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #A0A3A8; }
+    .pane1 .stp.on { color: #1F2021; font-weight: 600; }
+    .pane1 .stp.done { color: #37393B; }
+    .pane1 .sep { color: #CBCDD2; font-size: 12px; }
+    .pane1 .stpbtn { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px;
+      background: transparent; border: none; padding: 5px 3px; font-family: inherit; cursor: pointer; }
+    .pane1 .stpbtn:active { transform: scale(0.97); }
+    .pane1 .barnote { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane1 .stepbar { margin-top: auto; }
+
+    /* ---- 2단계 · 블록 담고 편집 (Blocks + Main) ----
+       고르기와 편집이 한 화면이다. 칸은 넷 —
+         페이지 구성 244 · 라이브러리 330 · 작업대 438 · 블록 편집 340 = 1352
+       작업대 몫 438 은 400px 시트가 좌우 19px 를 두고 앉는 폭이다. 시트를 줄이면
+       줄 수 계산(flyerMetrics · measureLines)이 전부 흔들려서 시트는 손대지 않는다 */
+    .pane2 .root {
+      width: 1352px; height: 900px; background: #FAFAFA; color: #1F2021;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden; }
+    .pane2 a { color: #1F2021; text-decoration: none; }
+    .pane2 a:hover { color: #1F2021; }
+    .pane2 .sp { flex-grow: 1; }
+    .pane2 .subnav { height: 52px; flex: none; background: #FFFFFF; border-bottom: 1px solid #E2E4E6;
+      display: flex; align-items: center; padding: 0 24px; gap: 16px; }
+    .pane2 .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .pane2 .meta { font-size: 14px; letter-spacing: -0.224px; color: #808288; }
+    .pane2 .pill { background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
+      padding: 7px 18px; font-size: 14px; letter-spacing: -0.224px; font-family: inherit; cursor: pointer; }
+    .pane2 .pill:active { transform: scale(0.95); }
+    .pane2 .pill.ghost { background: transparent; color: #1F2021; border: 1px solid #CBCDD2; }
+    .pane2 .body { flex-grow: 1; display: flex; min-height: 0; }
+    .pane2 .rail { width: 244px; flex: none; background: #ffffff; border-right: 1px solid #E2E4E6;
+      display: flex; flex-direction: column; }
+    .pane2 .rail.right { width: 340px; border-right: none; border-left: 1px solid #E2E4E6; }
+    .pane2 .railhead { padding: 20px 20px 12px; display: flex; align-items: center; gap: 8px; }
+    .pane2 .railtitle { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; }
+    /* 후보를 다 펴면 내용이 패널보다 길어진다 — 패널이 굴러야 아래 줄이 잘리지 않는다.
+       칸마다 flex: none 을 줘서 줄어들지 않게 한다 (.field) */
+    .pane2 .railbody { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 8px;
+      flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+    .pane2 .blockrow { display: flex; align-items: flex-start; gap: 12px; padding: 12px;
+      border: 1px solid #E2E4E6; border-radius: 8px; background: #ffffff; cursor: pointer;
+      font-family: inherit; color: inherit; text-align: left; }
+    .pane2 .blockrow:active { transform: scale(0.99); }
+    .pane2 .badge { font-size: 10px; line-height: 1.3; letter-spacing: -0.08px; font-weight: 600;
+      padding: 4px 7px; border-radius: 4px; background: #F5F5F6; color: #37393B; flex: none; }
+    .pane2 .bname { font-size: 14px; font-weight: 600; letter-spacing: -0.224px; }
+    .pane2 .bcat { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane2 .delbtn { background: transparent; border: none; padding: 4px; margin: -4px -4px 0 0;
+      cursor: pointer; flex: none; border-radius: 4px; }
+    .pane2 .delbtn:active { transform: scale(0.9); }
+    /* 순서 · 빼기는 패널 머리에 있다 — 고른 블록 하나에만 걸리므로 줄마다 놓지 않는다 */
+    .pane2 .railhead .delbtn { margin: 0; }
+    .pane2 .addbtn { margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px; border: 1px dashed #CBCDD2; border-radius: 8px; background: #FAFAFA;
+      color: #1F2021; font-size: 14px; letter-spacing: -0.224px; font-family: inherit; cursor: pointer; }
+    .pane2 .addbtn:active { transform: scale(0.99); }
+    .pane2 .railnote { margin-top: auto; padding: 16px 20px; border-top: 1px solid #EDEEEF;
+      font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #808288; }
+    /* 블록 라이브러리 칸 — 따로 있던 '블록 고르기' 화면을 접어 넣은 자리다.
+       330px 안에서 카드가 두 줄로 서고, 카드 폭 144px 는 썸네일이 아직 판형으로
+       읽히는 하한이다. 그 아래로는 띠가 뭉개져 카드가 이름표만 남는다 */
+    .pane2 .lib { width: 330px; flex: none; background: #ffffff; border-right: 1px solid #E2E4E6;
+      display: flex; flex-direction: column; min-height: 0; }
+    .pane2 .libhead { padding: 20px 20px 12px; display: flex; align-items: baseline; gap: 8px; }
+    .pane2 .libmeta { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane2 .libnote { font-size: 11px; line-height: 1.45; letter-spacing: -0.11px; color: #808288; }
+    .pane2 .libsearch { margin: 0 20px; display: flex; align-items: center; gap: 8px;
+      border: 1px solid #CBCDD2; border-radius: 8px; padding: 8px 10px; }
+    .pane2 .libsearch:focus-within { border-color: #1F2021; }
+    .pane2 .libinput { flex-grow: 1; min-width: 0; border: none; outline: none; background: transparent;
+      padding: 0; font-family: inherit; font-size: 13px; letter-spacing: -0.13px; color: #1F2021; }
+    .pane2 .libclear { border: none; background: transparent; padding: 0 2px; cursor: pointer;
+      font-family: inherit; font-size: 11px; color: #808288; }
+    .pane2 .libfilters { padding: 12px 20px 10px; display: flex; flex-direction: column; gap: 7px; }
+    .pane2 .librow { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pane2 .libchip { border-radius: 6px; padding: 5px 10px; font-size: 12px; letter-spacing: -0.12px;
+      background: #ffffff; color: #1F2021; font-family: inherit; cursor: pointer; }
+    .pane2 .libchip:active { transform: scale(0.95); }
+    .pane2 .libconfirm { margin: 0 20px 10px; background: #FDF6F7; border: 1px solid #E6C3C9;
+      border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+    /* 그리드가 아니라 칸이 구른다 — 쪽 넘김이 늘 바닥에 붙어 있어야 몇 쪽인지가 안 사라진다 */
+    .pane2 .libbody { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 0 20px 16px; }
+    .pane2 .libgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .pane2 .libcard { background: #ffffff; border: 1px solid #E2E4E6; border-radius: 8px; padding: 9px;
+      display: flex; flex-direction: column; gap: 5px; font-family: inherit; color: inherit;
+      text-align: left; cursor: pointer; }
+    .pane2 .libcard:active { transform: scale(0.98); }
+    .pane2 .libthumb { border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; height: 62px; }
+    .pane2 .libband { flex-grow: 1; }
+    .pane2 .libname { font-size: 12px; font-weight: 600; line-height: 1.3; letter-spacing: -0.12px; }
+    .pane2 .libcat { font-size: 10px; line-height: 1.3; letter-spacing: -0.08px; color: #808288; }
+    .pane2 .libtags { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .pane2 .libtag { font-size: 9px; line-height: 1.3; letter-spacing: -0.07px; font-weight: 600;
+      padding: 2px 5px; border-radius: 3px; background: #F5F5F6; color: #37393B; }
+    .pane2 .libempty { padding: 20px 4px; text-align: center; font-size: 12px; line-height: 1.5;
+      letter-spacing: -0.12px; color: #808288; }
+    .pane2 .libfoot { border-top: 1px solid #EDEEEF; padding: 10px 20px; display: flex;
+      align-items: center; gap: 6px; }
+    .pane2 .libpg { border: 1px solid #E2E4E6; background: #ffffff; border-radius: 4px; padding: 1px 6px;
+      font-family: inherit; font-size: 11px; line-height: 15px; color: #1F2021; }
+    .pane2 .libpg:active { transform: scale(0.94); }
+
+    .pane2 .stage { flex-grow: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 20px; min-width: 0; }
+    .pane2 .flyer { width: 400px; height: 568px; background: #ffffff; overflow: hidden;
+      display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.06);
+      font-family: "SKT Sans Text", -apple-system, BlinkMacSystemFont, system-ui,
+        "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+    .flyer .t { font-family: "SKT Sans Display", "SKT Sans Text", sans-serif; }
+    .pane2 .fhead { height: 40px; flex: none; background: #ffffff; display: flex; align-items: center;
+      padding: 0 24px; gap: 8px; }
+    .pane2 .fchip { font-size: 8px; letter-spacing: -0.08px; font-weight: 600; color: #000028;
+      border: 1px solid #000028; border-radius: 9999px; padding: 3px 7px; }
+    .pane2 .fblk { position: relative; display: flex; padding: 19px 24px; gap: 12px; cursor: pointer; overflow: hidden; }
+    .pane2 .ffoot { height: 42px; flex: none; display: flex; align-items: center; padding: 0 24px; gap: 8px;
+      background: #ffffff; border-top: 1px solid #E2E4E6; }
+    .pane2 .stepbar { height: 64px; flex: none; background: #FFFFFF; border-top: 1px solid #E2E4E6;
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .pane2 .steps { display: flex; align-items: center; gap: 10px; }
+    .pane2 .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #A0A3A8; }
+    .pane2 .stp.on { color: #1F2021; font-weight: 600; }
+    .pane2 .stp.done { color: #37393B; }
+    .pane2 .sep { color: #CBCDD2; font-size: 12px; }
+    .pane2 .stpbtn { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px;
+      background: transparent; border: none; padding: 5px 3px; font-family: inherit; cursor: pointer; }
+    .pane2 .stpbtn:active { transform: scale(0.97); }
+    .pane2 .barnote { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane2 .zoom { display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane2 .field { display: flex; flex-direction: column; gap: 6px; flex: none; }
+    .pane2 .flabel { display: flex; align-items: center; gap: 6px; font-size: 12px; letter-spacing: -0.12px; color: #37393B; }
+    .pane2 .fcount { margin-left: auto; font-size: 10px; letter-spacing: -0.08px; color: #808288; }
+    .pane2 .input, .pane2 .area { width: 100%; box-sizing: border-box; border: 1px solid #E2E4E6; border-radius: 6px;
+      padding: 10px 12px; font-size: 14px; line-height: 1.43; letter-spacing: -0.224px;
+      font-family: inherit; color: #1F2021; background: #ffffff; resize: none; }
+    .pane2 .area { height: 62px; }
+    .pane2 .input:focus, .pane2 .area:focus { outline: 2px solid #1F2021; border-color: #1F2021; }
+    .pane2 .swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+    .pane2 .sw { height: 40px; border-radius: 6px; cursor: pointer; padding: 0; }
+    .pane2 .sw:active { transform: scale(0.95); }
+    /* 요금 블록만 입력 칸이 다섯이다. 세로로 쌓으면 그래픽·배경이 패널 밖으로 밀려서
+       (789px > 칸 616px) 금액 세 칸을 한 줄로 접어 두 줄을 회수한다.
+       칸이 95px 로 좁아지니 좌우 여백을 8px 로 줄여 여섯 자리 금액이 잘리지 않게 한다 */
+    .pane2 .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .pane2 .trio .input { padding-left: 8px; padding-right: 8px; }
+    /* 그래픽 후보 — 한 줄 5칸. 추천은 두 줄(없음 + 9개)에 들어가고,
+       '후보 전체 보기'로 펴면 그대로 길어진다. 패널이 구르지, 그리드가 구르지 않는다 */
+    /* 마지막 쪽이 한 줄이어도 두 줄 높이를 지킨다 — 쪽을 넘길 때마다 패널이 출렁이지 않게 */
+    .pane2 .assets { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
+      min-height: 104px; align-content: start; }
+    /* 쪽 넘김은 칸 이름줄에 얹는다 — 아래에 줄을 더 쓰면 배경 팔레트가 다시 패널 밖으로 밀린다 */
+    .pane2 .pg { border: 1px solid #E2E4E6; background: #ffffff; border-radius: 4px; padding: 0 5px;
+      font-family: inherit; font-size: 11px; line-height: 13px; color: #1F2021; }
+    .pane2 .pg:active { transform: scale(0.94); }
+    .pane2 .asset { height: 48px; border-radius: 6px; border: 1px solid #E2E4E6; background: #FAFAFA;
+      display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 6px; }
+    .pane2 .asset:active { transform: scale(0.95); }
+    /* 그림은 CSS 변수로 들어온다 — 런타임이 동적 src 를 풀어 주지 않는다 (build-graphics.py) */
+    .pane2 .thumb { width: 100%; height: 100%; background-size: contain;
+      background-repeat: no-repeat; background-position: center; }
+    .pane2 .nogfx { font-size: 11px; letter-spacing: -0.11px; color: #808288; }
+    .pane2 .locked { border-top: 1px solid #EDEEEF; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .pane2 .lockrow { display: flex; align-items: flex-start; gap: 10px; }
+    .pane2 .lockcap { font-size: 12px; line-height: 1.4; letter-spacing: -0.12px; color: #808288; }
+    .pane2 .lockname { font-size: 12px; font-weight: 600; letter-spacing: -0.12px; color: #1F2021; }
+
+    /* ---- 4단계 · Export.dc.html ---- */
+    .pane3 .root {
+      width: 1352px; height: 900px; background: #FAFAFA; color: #1F2021;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden; }
+    .pane3 a { color: #1F2021; text-decoration: none; }
+    .pane3 a:hover { color: #1F2021; }
+    .pane3 .sp { flex-grow: 1; }
+    .pane3 .subnav { height: 52px; flex: none; background: #FFFFFF; border-bottom: 1px solid #E2E4E6;
+      display: flex; align-items: center; padding: 0 40px; gap: 16px; }
+    .pane3 .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .pane3 .meta { font-size: 14px; letter-spacing: -0.224px; color: #808288; }
+    .pane3 .wrap { flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 48px; padding: 0 40px; }
+    .pane3 .card { width: 680px; background: #ffffff; border: 1px solid #E2E4E6; border-radius: 10px;
+      padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+    .pane3 .seg { display: flex; gap: 8px; }
+    .pane3 .segbtn { flex-grow: 1; border-radius: 6px; padding: 11px 18px; font-size: 14px;
+      letter-spacing: -0.224px; font-family: inherit; cursor: pointer; text-align: center; }
+    .pane3 .segbtn:active { transform: scale(0.97); }
+    .pane3 .rows { display: flex; flex-direction: column; }
+    .pane3 .row { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-top: 1px solid #EDEEEF; }
+    .pane3 .rk { width: 116px; flex: none; font-size: 14px; letter-spacing: -0.224px; color: #808288; }
+    .pane3 .rv { font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #1F2021; }
+    .pane3 .checks { display: flex; flex-direction: column; gap: 8px; background: #FAFAFA;
+      border-radius: 8px; padding: 14px; }
+    .pane3 .pill.ghost { background: transparent; color: #1F2021; border: 1px solid #CBCDD2;
+      padding: 9px 20px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px; }
+    .pane3 .chk { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; line-height: 1.43;
+      letter-spacing: -0.224px; color: #37393B; }
+    .pane3 .pill { background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
+      padding: 14px 28px; font-size: 18px; font-weight: 300; letter-spacing: 0; font-family: inherit; cursor: pointer; }
+    .pane3 .pill:active { transform: scale(0.95); }
+    .pane3 .side { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    .pane3 .sheet { position: relative; width: 292px; height: 412px; }
+    .pane3 .mark { position: absolute; background: #CBCDD2; }
+    .pane3 .flyer { position: absolute; left: 6px; top: 6px; width: 280px; height: 400px;
+      font-family: "SKT Sans Text", -apple-system, BlinkMacSystemFont, system-ui,
+        "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: #ffffff; overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.06); }
+    .pane3 .fhead { height: 28px; flex: none; display: flex; align-items: center; padding: 0 17px; }
+    .pane3 .fchip { font-size: 6px; letter-spacing: -0.06px; font-weight: 600; color: #000028;
+      border: 1px solid #000028; border-radius: 9999px; padding: 2px 5px; }
+    .pane3 .fblk { display: flex; padding: 13px 17px; gap: 9px; overflow: hidden; }
+    .pane3 .ffoot { height: 29px; flex: none; display: flex; align-items: center; padding: 0 17px; gap: 5px;
+      border-top: 1px solid #E2E4E6; }
+    .pane3 .stepbar { height: 64px; flex: none; background: #FFFFFF; border-top: 1px solid #E2E4E6;
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .pane3 .steps { display: flex; align-items: center; gap: 10px; }
+    .pane3 .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #A0A3A8; }
+    .pane3 .stp.on { color: #1F2021; font-weight: 600; }
+    .pane3 .stp.done { color: #37393B; }
+    .pane3 .sep { color: #CBCDD2; font-size: 12px; }
+    .pane3 .stpbtn { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px;
+      background: transparent; border: none; padding: 5px 3px; font-family: inherit; cursor: pointer; }
+    .pane3 .stpbtn:active { transform: scale(0.97); }
+    .pane3 .barnote { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane3 .cap { font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #808288; text-align: center; max-width: 320px; }
+
+    /* 단계바는 화면 내용 높이와 무관하게 항상 아래쪽 64px 에 고정한다.
+       (앞서 내용이 900px 를 넘으면 flex 흐름에서 밀려 잘려 나갔다) */
+    .pane .root { position: relative; box-sizing: border-box; padding-bottom: 64px; }
+    .pane .stepbar { position: absolute; left: 0; right: 0; bottom: 0; margin-top: 0; z-index: 5; }
+    .pane .stepbar .sp { flex-grow: 1; }
+
+    .pane4 .root {
+      width: 1352px; height: 900px; background: #FFFFFF; color: #1F2021;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden; }
+    .pane4 a { color: #1F2021; text-decoration: none; }
+    .pane4 a:hover { color: #1F2021; }
+    .pane4 .sp { flex-grow: 1; }
+    .pane4 .tile { padding: 56px 40px 48px; display: flex; flex-direction: column; gap: 40px; }
+    .pane4 .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+    .pane4 .card { display: flex; flex-direction: column; gap: 17px; }
+    .pane4 .cardhead { display: flex; align-items: center; gap: 10px; }
+    .pane4 .cardname { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; color: #1F2021; }
+    .pane4 .list { display: flex; flex-direction: column; gap: 7px; }
+    .pane4 .listcap { font-size: 10px; line-height: 1.3; letter-spacing: -0.08px; font-weight: 600;
+      text-transform: uppercase; color: #808288; }
+    .pane4 .li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.43;
+      letter-spacing: -0.224px; }
+    .pane4 .li .ic { flex: none; margin-top: 3px; }
+    .pane4 .strip { margin-top: auto; background: #F5F5F6; color: #1F2021; border-top: 1px solid #E2E4E6; padding: 28px 40px;
+      display: flex; flex-direction: column; gap: 17px; }
+    .pane4 .sws { display: flex; gap: 8px; }
+    .pane4 .sw { flex-grow: 1; height: 52px; border-radius: 6px; cursor: pointer; padding: 0; }
+    .pane4 .sw:active { transform: scale(0.97); }
+    .pane4 .detail { display: flex; align-items: baseline; gap: 28px; }
+    .pane4 .dname { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; }
+    .pane4 .dval { font-size: 14px; letter-spacing: -0.224px; color: #37393B; }
+    .pane4 .dkey { font-size: 10px; letter-spacing: -0.08px; color: #808288; margin-right: 6px; }
+    .pane4 .stepbar { height: 64px; flex: none; background: #FFFFFF; border-top: 1px solid #E2E4E6;
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .pane4 .steps { display: flex; align-items: center; gap: 10px; }
+    .pane4 .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #A0A3A8; }
+    .pane4 .stp.on { color: #1F2021; font-weight: 600; }
+    .pane4 .stp.done { color: #37393B; }
+    .pane4 .sep { color: #CBCDD2; font-size: 12px; }
+    .pane4 .barnote { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
+    .pane4 .pill { background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
+      padding: 7px 18px; font-size: 14px; letter-spacing: -0.224px; font-family: inherit; cursor: pointer; }
+    .pane4 .pill:active { transform: scale(0.95); }
+  </style>
+</helmet>
+
+<div class="flowroot">
+
+  <!-- 왼쪽 레일 — 4개 화면이 함께 쓴다. 어느 화면에 있든 목적지 둘이 같은 자리에 있다 -->
+  <div class="railnav">
+    <img class="mark" src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B">
+    <button class="rnav" onClick="{{ goStudio }}" style="background: {{navStudioBg}}; color: {{navStudioC}}; font-weight: {{navStudioW}}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="12" height="15" rx="1.6"/><path d="M7 7h6M7 10.5h6M7 14h3.5"/></svg>
+      스튜디오
+    </button>
+    <button class="rnav" onClick="{{ goGuide }}" style="background: {{navGuideBg}}; color: {{navGuideC}}; font-weight: {{navGuideW}}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.6C8.6 4.2 6.6 3.5 4 3.5v11c2.6 0 4.6 .7 6 2.1 1.4-1.4 3.4-2.1 6-2.1v-11c-2.6 0-4.6 .7-6 2.1z"/><path d="M10 5.6v11"/></svg>
+      가이드
+    </button>
+    <span class="sp"></span>
+    <div class="who">{{storeInitial}}</div>
+    <span class="whoname">{{store}}</span>
+  </div>
+  <div class="pane pane1" style="display: {{d1}}">
+  <div class="root">
+
+    <div class="subnav">
+      <span class="title">새 전단지</span>
+      <span class="navlink">A5 · 148 × 210 mm</span>
+      <span class="sp"></span>
+      <span class="navlink" style="color: #808288;">저장 기능 없음 — 창을 닫으면 사라집니다</span>
+    </div>
+
+    <div class="hero">
+      <div class="stack">
+        <h1 style="margin: 0; font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px; color: #1F2021;">요청하지 말고,<br>직접 만드세요.</h1>
+        <p style="margin: 0; font-size: 28px; font-weight: 400; line-height: 1.14; letter-spacing: 0.196px; color: #1F2021; max-width: 720px;">본사에 맡기던 전단지를 대리점이 직접 만듭니다. 고를 수 있는 건 전부 브랜드 가이드 안의 값뿐입니다.</p>
+      </div>
+    </div>
+
+    <div class="types">
+      <sc-for list="{{types}}" as="t" hint-placeholder-count="3">
+        <button class="tcard" onClick="{{ t.pick }}" style="border: {{t.border}}">
+          <div class="diagram">
+            <sc-for list="{{t.segs}}" as="s" hint-placeholder-count="4">
+              <div class="seg" style="background: {{s.fill}}; flex-grow: {{s.grow}}; border-bottom: {{s.rule}}"></div>
+            </sc-for>
+          </div>
+          <div class="trow">
+            <span class="tname">{{t.name}}</span>
+            <span class="dot" style="border: {{t.dotBorder}}; background: {{t.dotFill}}"></span>
+          </div>
+          <span class="tdesc">{{t.desc}}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div class="stepbar">
+      <div class="steps">
+        <sc-for list="{{steps1}}" as="s" hint-placeholder-count="3">
+          <button class="stpbtn" onClick="{{ s.pick }}" style="color: {{s.color}}; font-weight: {{s.weight}}">
+            <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#37393B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg></sc-if>
+            {{s.label}}
+          </button>
+          <sc-if value="{{s.sep}}" hint-placeholder-val="{{true}}"><span class="sep">›</span></sc-if>
+        </sc-for>
+      </div>
+      <span class="sp"></span>
+      <span class="barnote">로고 · 지점명 · 연락처는 유형과 관계없이 고정으로 들어갑니다</span>
+      <button class="pill" onClick="{{ next1 }}">다음 — 블록 담고 편집</button>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="pane pane2" style="display: {{d2}}">
+    <div class="root">
+
+      <div class="subnav" style="display: {{chromeD}}">
+        <span class="title">{{docTitle}}</span>
+        <span class="meta">A5 · 148 × 210 mm · {{typeMeta}}</span>
+        <span class="sp"></span>
+        <span class="meta">저장되지 않습니다</span>
+        <button class="pill ghost" onClick="{{ openPreview }}">전체 화면 미리보기</button>
+      </div>
+
+      <div class="body">
+
+        <!-- 왼쪽: 페이지 구성 -->
+        <div class="rail" style="display: {{railD}}">
+          <div class="railhead">
+            <span class="railtitle">페이지 구성</span>
+            <span class="sp"></span>
+            <span class="meta" style="font-size: 12px;">{{blockCount}}</span>
+          </div>
+          <div class="railbody">
+            <sc-for list="{{blocks}}" as="b" hint-placeholder-count="3">
+              <div class="blockrow" onClick="{{ b.pick }}" style="border: {{b.rowBorder}}; background: {{b.rowBg}}; cursor: pointer;">
+                <span class="badge" style="background: {{b.badgeBg}}; color: {{b.badgeFg}}">{{b.size}}</span>
+                <span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0;">
+                  <span class="bname">{{b.name}}</span>
+                  <span class="bcat">{{b.cat}}</span>
+                </span>
+              </div>
+            </sc-for>
+
+            <div style="margin-top: 10px; padding-top: 12px; border-top: 1px solid #EDEEEF; display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 10px; font-weight: 600; letter-spacing: -0.08px; color: #808288;">고정 영역</span>
+              <button class="blockrow" onClick="{{ pickF }}" style="border: {{fRowBorder}}; background: {{fRowBg}}">
+                <span class="badge" style="background: {{fBadgeBg}}; color: {{fBadgeFg}}">고정</span>
+                <span style="display: flex; flex-direction: column; gap: 2px;">
+                  <span class="bname">지점명 · 연락처</span>
+                  <span class="bcat">모든 전단지 하단에 들어갑니다</span>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="railnote">
+            한 장은 <strong style="color: #1F2021; font-weight: 600;">12칸</strong>입니다 — 전면 12 · 1/2 6 · 1/3 4 · 1/4 3칸(A5 실측 기준). 남은 칸에 안 맞는 블록은 라이브러리에서 눌리지 않습니다.
+          </div>
+        </div>
+
+        <!-- 가운데 왼쪽: 블록 라이브러리 — 따로 있던 '블록 고르기' 화면을 이 칸으로 접어 넣었다.
+             고르는 자리와 고쳐 보는 자리가 한 화면에 있어야 담아 보고 아니면 바로 뺀다.
+             카드를 누르면 담기고(그 블록이 선택되어 오른쪽이 따라 바뀐다) 담긴 카드를 누르면 빠진다 -->
+        <div class="lib" style="display: {{railD}}">
+          <div class="libhead">
+            <span class="railtitle">블록 라이브러리</span>
+            <span class="sp"></span>
+            <span class="libmeta">{{shown}}</span>
+          </div>
+
+          <div class="libsearch">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="#808288" stroke-width="1.6" stroke-linecap="round" style="flex: none;"><circle cx="8.8" cy="8.8" r="5.6"/><path d="M13 13l4 4"/></svg>
+            <input class="libinput" value="{{q}}" onChange="{{ setQ }}" placeholder="이사 · 사은품 · 셋톱박스 · 크리스마스">
+            <sc-if value="{{hasQ}}" hint-placeholder-val="{{false}}">
+              <button class="libclear" onClick="{{ clearQ }}" title="검색어 지우기">✕</button>
+            </sc-if>
+          </div>
+
+          <div class="libfilters">
+            <div class="librow">
+              <sc-for list="{{sizes}}" as="s" hint-placeholder-count="4">
+                <button class="libchip" onClick="{{ s.pick }}" style="background: {{s.bg}}; color: {{s.fg}}; border: {{s.border}}">{{s.label}}</button>
+              </sc-for>
+            </div>
+            <div class="librow">
+              <sc-for list="{{cats}}" as="c" hint-placeholder-count="7">
+                <button class="libchip" onClick="{{ c.pick }}" style="background: {{c.bg}}; color: {{c.fg}}; border: {{c.border}}">{{c.label}}</button>
+              </sc-for>
+            </div>
+            <span class="libnote" style="color: {{sizeNoteC}}">{{sizeNote}}</span>
+          </div>
+
+          <sc-if value="{{confirmOn}}" hint-placeholder-val="{{false}}">
+            <div class="libconfirm">
+              <span style="font-size: 12px; line-height: 1.43; letter-spacing: -0.12px; color: #A63244;">{{confirmText}}</span>
+              <span style="display: flex; gap: 6px;">
+                <button class="libchip" onClick="{{ confirmCancel }}" style="background: #ffffff; color: #1F2021; border: 1px solid #E2E4E6;">취소</button>
+                <button class="libchip" onClick="{{ confirmGo }}" style="background: #A63244; color: #ffffff; border: 1px solid #A63244;">계속 — 모두 빼기</button>
+              </span>
+            </div>
+          </sc-if>
+
+          <div class="libbody">
+            <sc-if value="{{isEmpty}}" hint-placeholder-val="{{false}}">
+              <div class="libempty">{{emptyText}}</div>
+            </sc-if>
+            <div class="libgrid">
+              <sc-for list="{{items}}" as="it" hint-placeholder-count="10">
+                <button class="libcard" onClick="{{ it.pick }}" style="border: {{it.border}}; opacity: {{it.opacity}}; cursor: {{it.cursor}}">
+                  <span class="libthumb">
+                    <sc-for list="{{it.bands}}" as="bd" hint-placeholder-count="2">
+                      <span class="libband" style="background: {{bd.fill}}; flex-grow: {{bd.grow}}; border-bottom: {{bd.rule}}"></span>
+                    </sc-for>
+                  </span>
+                  <span class="libname">{{it.name}}</span>
+                  <span class="libcat">{{it.cat}}</span>
+                  <span class="libtags">
+                    <span class="libtag">{{it.size}}</span>
+                    <sc-if value="{{it.picked}}" hint-placeholder-val="{{false}}">
+                      <span class="libtag" style="background: #1F2021; color: #ffffff;">담김</span>
+                    </sc-if>
+                    <sc-if value="{{it.blocked}}" hint-placeholder-val="{{false}}">
+                      <span class="libtag" style="background: #ffffff; color: #808288; border: 1px solid #E2E4E6;">칸 부족</span>
+                    </sc-if>
+                    <sc-if value="{{it.swapped}}" hint-placeholder-val="{{false}}">
+                      <span class="libtag" style="background: #FAFAFA; color: #1F2021; border: 1px solid #E2E4E6;">v1.1</span>
+                    </sc-if>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div class="libfoot">
+            <sc-if value="{{hasPager}}" hint-placeholder-val="{{true}}">
+              <button class="libpg" onClick="{{ pagePrev }}" title="이전 쪽" style="opacity: {{prevOpacity}}; cursor: {{prevCursor}};">‹</button>
+              <span class="libnote" style="min-width: 34px; text-align: center;">{{pagerLabel}}</span>
+              <button class="libpg" onClick="{{ pageNext }}" title="다음 쪽" style="opacity: {{nextOpacity}}; cursor: {{nextCursor}};">›</button>
+            </sc-if>
+            <span class="sp"></span>
+            <span class="libnote">{{tail}}</span>
+          </div>
+        </div>
+
+        <!-- 가운데: 미리보기 -->
+        <div class="stage">
+          <div class="flyer" style="zoom: {{flyerZoom}}">
+
+            <div class="fhead">
+              <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 36px;">
+              <span class="sp"></span>
+              <span class="fchip">공식 인증 대리점</span>
+              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="height: 24px;">
+            </div>
+
+            <sc-for list="{{blockViews}}" as="bk" hint-placeholder-count="3">
+              <sc-if value="{{bk.hasTitle}}" hint-placeholder-val="{{false}}">
+                <div class="t" data-pt="head" style="flex: none; height: {{bk.barH}}; background: #3617CE; color: #ffffff; display: flex; align-items: center; padding: 0 24px; font-size: {{bk.hSize}}; font-weight: 700; letter-spacing: -0.023em;">{{bk.title}}</div>
+              </sc-if>
+              <div class="fblk" onClick="{{ bk.pick }}" style="flex: {{bk.grow}} 1 0; border-top: {{bk.rule}}; background: {{bk.bg}}; color: {{bk.fg}}; outline: {{bk.outline}}; outline-offset: -2px;">
+
+                <sc-if value="{{bk.isHero}}" hint-placeholder-val="{{true}}">
+                  <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.heroAlign}}; gap: {{bk.gap}}; width: 100%; min-width: 0;">
+                    <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
+                      <sc-if value="{{bk.showHead}}" hint-placeholder-val="{{true}}"><div class="t" data-line="head" data-pt="head" style="white-space: pre-line; font-size: {{bk.hSize}}; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: {{bk.fg}};">{{bk.headline}}</div></sc-if>
+                      <div data-line="sub" data-pt="body" style="white-space: pre-line; font-size: {{bk.bSize}}; line-height: 1.5; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.sub}}</div>
+                    </div>
+                    <div style="width: {{bk.gfxW}}; flex: none; display: flex; align-items: {{bk.gfxAlign}}; justify-content: center;">
+                      <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
+                        <div style="width: 100%; height: {{bk.gfx}}; background-image: {{bk.gfxBg}}; background-size: contain; background-repeat: no-repeat; background-position: center bottom;"></div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{bk.isPrice}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; width: 100%; min-width: 0;">
+                    <!-- 세로 정렬은 유형이 정한다 — 유형 3 은 타이틀 바가 블록의 머리라
+                         본문이 바 밑에 붙어야 하고(flex-start), 유형 1·2 는 원래대로
+                         아이콘 바닥에 맞춘다(flex-end). alignPrice · alignGift.
+                         조건 문구도 같은 이유로 자리가 갈린다 — 유형 3 은 가격 줄과 같은 칸에
+                         (아이콘 아래로 내리면 아이콘 높이만큼 벌어진다), 유형 1·2 는 전처럼
+                         블록 폭을 쓰는 아래 별도 줄에. noteInline · noteBelow -->
+                    <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.alignPrice}}; gap: {{bk.gap}};">
+                      <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
+                        <sc-if value="{{bk.showProduct}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.product}}</div></sc-if>
+                        <div style="display: flex; align-items: baseline; gap: {{bk.gap}};">
+                          <span style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}}; text-decoration: line-through;">{{bk.list}}</span>
+                          <span data-pt="head" style="font-size: {{bk.hSize}}; font-weight: 700; letter-spacing: -0.023em; color: {{bk.accent}};">{{bk.price}}</span>
+                          <span style="font-size: {{bk.bSize}}; font-weight: 700; letter-spacing: -0.011em; color: {{bk.badgeOn}}; background: {{bk.accent}}; border-radius: 9999px; padding: 0.25em 0.7em;">{{bk.rate}}</span>
+                        </div>
+                        <sc-if value="{{bk.noteInline}}" hint-placeholder-val="{{false}}"><div data-pt="body" style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.note}}</div></sc-if>
+                      </div>
+                      <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
+                        <div style="width: {{bk.gfx}}; height: {{bk.gfx}}; flex: none; background-image: {{bk.gfxBg}}; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                      </sc-if>
+                    </div>
+                    <sc-if value="{{bk.noteBelow}}" hint-placeholder-val="{{true}}"><div data-pt="body" style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.note}}</div></sc-if>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{bk.isGift}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.alignGift}}; gap: {{bk.gap}}; width: 100%; min-width: 0;">
+                    <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
+                      <sc-if value="{{bk.showHead}}" hint-placeholder-val="{{true}}"><div class="t" data-line="head" data-pt="head" style="white-space: pre-line; font-size: {{bk.hSize}}; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: {{bk.fg}};">{{bk.headline}}</div></sc-if>
+                      <div data-line="sub" data-pt="body" style="white-space: pre-line; font-size: {{bk.bSize}}; line-height: 1.5; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.sub}}</div>
+                    </div>
+                    <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
+                      <div style="width: {{bk.gfx}}; height: {{bk.gfx}}; flex: none; background-image: {{bk.gfxBg}}; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+
+              </div>
+            </sc-for>
+
+            <sc-if value="{{hasRoom}}" hint-placeholder-val="{{false}}">
+              <div class="froom" onClick="{{ fitRoom }}" style="flex: {{roomGrow}} 1 0; display: flex; align-items: center; justify-content: center; gap: 6px; background: #ffffff; border: 1px dashed #CBCDD2; margin: 0 6px 6px; border-radius: 6px; cursor: pointer; color: #808288; font-size: 9px; letter-spacing: -0.1px;">
+                <svg width="10" height="10" viewBox="0 0 14 14" fill="none" stroke="#808288" stroke-width="1.4" stroke-linecap="round"><path d="M7 2.5v9M2.5 7h9"/></svg>
+                {{roomLabel}}
+              </div>
+            </sc-if>
+
+            <div class="ffoot" onClick="{{ pickF }}" style="cursor: pointer; outline: {{fOutline}}; outline-offset: -2px;">
+              <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">{{store}}</span>
+              <span class="sp"></span>
+              <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">가입 상담 및 문의</span>
+              <span style="font-size: {{footPhone}}; font-weight: 700; letter-spacing: -0.019em; color: #000000;">{{phone}}</span>
+            </div>
+
+          </div>
+          <div class="zoom">
+            <span>{{zoomLabel}}</span>
+            <span style="color: #CBCDD2;">|</span>
+            <span>재단선 3 mm 포함 출력</span>
+          </div>
+        </div>
+
+        <!-- 오른쪽: 블록 편집 -->
+        <div class="rail right" style="display: {{railD}}">
+          <div class="railhead">
+            <span class="railtitle">블록 편집</span>
+            <span class="sp"></span>
+            <span class="badge">{{selSize}}</span>
+            <sc-if value="{{showOrder}}" hint-placeholder-val="{{true}}">
+              <button class="delbtn" onClick="{{ selUp }}" title="위로" style="opacity: {{selUpOp}}">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#808288" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V3M3.6 6.4L7 3l3.4 3.4"/></svg>
+              </button>
+              <button class="delbtn" onClick="{{ selDown }}" title="아래로" style="opacity: {{selDownOp}}">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#808288" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8M3.6 7.6L7 11l3.4-3.4"/></svg>
+              </button>
+              <button class="delbtn" onClick="{{ selRemove }}" title="이 블록 빼기">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#808288" stroke-width="1.5" stroke-linecap="round"><path d="M3.6 3.6l6.8 6.8M10.4 3.6l-6.8 6.8"/></svg>
+              </button>
+            </sc-if>
+          </div>
+          <div class="railbody" style="gap: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 14px; font-weight: 600; letter-spacing: -0.224px; color: #1F2021;">{{selName}}</span>
+              <span style="font-size: 12px; letter-spacing: -0.12px; color: #808288;">{{selCat}}</span>
+            </div>
+
+            <sc-if value="{{showText}}" hint-placeholder-val="{{true}}">
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="field">
+                  <span class="flabel">제목<span class="fcount" style="color: {{headCountC}}">{{headLines}} / 3줄{{headFull}}</span></span>
+                  <textarea class="area" value="{{editHeadline}}" onChange="{{ setHeadline }}"></textarea>
+                </div>
+                <div class="field">
+                  <span class="flabel">본문<span class="fcount" style="color: {{subCountC}}">{{subLines}} / 2줄{{subFull}}</span></span>
+                  <textarea class="area" style="height: 50px;" value="{{editSub}}" onChange="{{ setSub }}"></textarea>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showPrice}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="field">
+                  <span class="flabel">상품명</span>
+                  <input class="input" value="{{editProduct}}" onChange="{{ setProduct }}">
+                </div>
+                <div class="trio">
+                  <div class="field">
+                    <span class="flabel">정상가</span>
+                    <input class="input" value="{{editList}}" onChange="{{ setList }}">
+                  </div>
+                  <div class="field">
+                    <span class="flabel">할인가</span>
+                    <input class="input" value="{{editPrice}}" onChange="{{ setPrice }}">
+                  </div>
+                  <div class="field">
+                    <span class="flabel">할인율 배지</span>
+                    <input class="input" value="{{editRate}}" onChange="{{ setRate }}">
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="flabel">조건 문구<span class="fcount">약정 · 부가세 등 · 할인가는 B Blue 고정</span></span>
+                  <input class="input" value="{{editNote}}" onChange="{{ setNote }}">
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showBanner}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="field">
+                  <span class="flabel">배너 제목</span>
+                  <input class="input" value="{{editHeadline}}" onChange="{{ setHeadline }}">
+                </div>
+                <div class="field">
+                  <span class="flabel">배너 문구<span class="fcount" style="color: {{subCountC}}">{{subLines}} / 2줄{{subFull}}</span></span>
+                  <textarea class="area" style="height: 50px;" value="{{editSub}}" onChange="{{ setSub }}"></textarea>
+                  <span style="font-size: 10px; line-height: 1.4; letter-spacing: -0.08px; color: #808288;">사은품 배너는 크기를 바꿀 수 없습니다 (템플릿 가이드 규정).</span>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showFooter}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="field">
+                  <span class="flabel">지점명</span>
+                  <input class="input" value="{{editStore}}" onChange="{{ setStore }}">
+                </div>
+                <div class="field">
+                  <span class="flabel">연락처<span class="fcount">가입 상담 및 문의</span></span>
+                  <input class="input" value="{{editPhone}}" onChange="{{ setPhone }}">
+                </div>
+                <span style="font-size: 10px; line-height: 1.4; letter-spacing: -0.08px; color: #808288;">이 두 가지만 대리점이 입력합니다. 같은 줄의 로고 · &#39;공식 인증 대리점&#39; 표기와 위치 · 크기는 바꿀 수 없습니다.</span>
+              </div>
+            </sc-if>
+
+            <!-- 그래픽이 배경보다 위에 온다 — 요금 블록은 입력 칸이 다섯이라,
+                 뒤에 두면 그리드가 패널 스크롤 아래로 내려가 라이브러리가 없는 것처럼 보였다 -->
+            <sc-if value="{{showAssets}}" hint-placeholder-val="{{true}}">
+              <div class="field">
+                <span class="flabel">그래픽<span class="fcount">{{gfxCount}}</span>
+                  <sc-if value="{{gfxPager}}" hint-placeholder-val="{{true}}">
+                    <button class="pg" onClick="{{ gfxPrev }}" title="이전 쪽" style="opacity: {{gfxPrevOp}}; cursor: {{gfxPrevCur}};">‹</button>
+                    <span style="font-size: 10px; letter-spacing: -0.08px; color: #808288; min-width: 26px; text-align: center;">{{gfxPageLabel}}</span>
+                    <button class="pg" onClick="{{ gfxNext }}" title="다음 쪽" style="opacity: {{gfxNextOp}}; cursor: {{gfxNextCur}};">›</button>
+                  </sc-if>
+                </span>
+                <div class="assets">
+                  <button class="asset" onClick="{{ pickNone }}" title="그래픽 없이 타이포만" style="border: {{bdNone}}"><span class="nogfx">없음</span></button>
+                  <sc-for list="{{gfxList}}" as="g" hint-placeholder-count="9">
+                    <button class="asset" onClick="{{ g.pick }}" title="{{g.title}}" style="border: {{g.bd}}"><span class="thumb" style="background-image: {{g.bg}}"></span></button>
+                  </sc-for>
+                </div>
+                <span style="font-size: 10px; line-height: 1.4; letter-spacing: -0.08px; color: #808288;">{{assetNote}}</span>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showBg}}" hint-placeholder-val="{{true}}">
+              <div class="field">
+                <span class="flabel">배경<span class="fcount">가이드 팔레트 10색</span></span>
+                <div class="swatches">
+                  <sc-for list="{{palette}}" as="p" hint-placeholder-count="10">
+                    <button class="sw" onClick="{{ p.pick }}" title="{{p.name}}" style="background: {{p.hex}}; border: {{p.border}}"></button>
+                  </sc-for>
+                </div>
+                <span style="font-size: 10px; line-height: 1.4; letter-spacing: -0.08px; color: #808288;">임의 HEX 입력란은 없습니다. 배경을 고르면 본문과 강조 색은 가이드 §1.6 배경별 규정대로 따라옵니다.</span>
+              </div>
+            </sc-if>
+          </div>
+
+          <div class="locked">
+            <div class="lockrow">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#808288" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex: none;"><rect x="2.5" y="6" width="9" height="6.5" rx="1.4"/><path d="M4.6 6V4.3a2.4 2.4 0 0 1 4.8 0V6"/></svg>
+              <span style="display: flex; flex-direction: column; gap: 2px;">
+                <span class="lockname">서체 — SKT Sans</span>
+                <span class="lockcap">제목체 Bold / 본문체 SemiBold 고정. 폰트 변경 UI 없음</span>
+              </span>
+            </div>
+            <div class="lockrow">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#808288" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex: none;"><rect x="2.5" y="6" width="9" height="6.5" rx="1.4"/><path d="M4.6 6V4.3a2.4 2.4 0 0 1 4.8 0V6"/></svg>
+              <span style="display: flex; flex-direction: column; gap: 2px;">
+                <span class="lockname">로고 — SK broadband</span>
+                <span class="lockcap">위치 · 크기 · 컬러 고정. 최소 5 mm 자동 보장</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stepbar">
+        <div class="steps">
+          <sc-for list="{{steps2}}" as="s" hint-placeholder-count="3">
+            <button class="stpbtn" onClick="{{ s.pick }}" style="color: {{s.color}}; font-weight: {{s.weight}}">
+              <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#37393B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg></sc-if>
+              {{s.label}}
+            </button>
+            <sc-if value="{{s.sep}}" hint-placeholder-val="{{true}}"><span class="sep">›</span></sc-if>
+          </sc-for>
+        </div>
+        <span class="sp"></span>
+        <span class="barnote">{{roomNote}}</span>
+        <sc-if value="{{previewOn}}" hint-placeholder-val="{{false}}">
+          <button class="pill" onClick="{{ closePreview }}">미리보기 닫기</button>
+        </sc-if>
+        <sc-if value="{{previewOff}}" hint-placeholder-val="{{true}}">
+          <button class="pill ghost" onClick="{{ prev2 }}">이전</button>
+          <button class="pill" onClick="{{ next2 }}">다음 — PDF 만들기</button>
+        </sc-if>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="pane pane3" style="display: {{d3}}">
+  <div class="root">
+
+    <div class="subnav">
+      <span class="title">PDF 만들기</span>
+      <span class="meta">{{docTitle}} · {{store}}</span>
+      <span class="sp"></span>
+      <span class="meta" style="color: {{sumColor}}">{{checkSummary}}</span>
+    </div>
+
+    <div class="wrap">
+
+      <div class="card">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <h1 style="margin: 0; font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -0.374px; color: #1F2021;">{{exportTitle}}</h1>
+          <p style="margin: 0; font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #37393B;">{{intro}}</p>
+        </div>
+
+        <div class="seg">
+          <sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+            <button class="segbtn" onClick="{{ m.pick }}" style="background: {{m.bg}}; color: {{m.fg}}; border: {{m.border}}">{{m.label}}</button>
+          </sc-for>
+        </div>
+
+        <div class="rows">
+          <sc-for list="{{specs}}" as="s" hint-placeholder-count="6">
+            <div class="row">
+              <span class="rk">{{s.k}}</span>
+              <span class="rv">{{s.v}}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{showChecks}}" hint-placeholder-val="{{true}}">
+        <div class="checks">
+          <sc-for list="{{checks}}" as="c" hint-placeholder-count="6">
+            <span class="chk" style="color: {{c.color}}">
+              <sc-if value="{{c.ok}}" hint-placeholder-val="{{true}}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#1F2021" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex: none;"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg>
+              </sc-if>
+              <sc-if value="{{c.warn}}" hint-placeholder-val="{{false}}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#C08A2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex: none;"><path d="M7 1.9l5.3 9.4H1.7z"/><path d="M7 5.6v2.4M7 9.7v.2"/></svg>
+              </sc-if>
+              <sc-if value="{{c.bad}}" hint-placeholder-val="{{false}}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#A63244" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px; flex: none;"><circle cx="7" cy="7" r="5.2"/><path d="M7 4.2v3.6M7 9.6v.2"/></svg>
+              </sc-if>
+              {{c.t}}
+            </span>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{showCta}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <button class="pill" onClick="{{ doExport }}" style="background: {{ctaBg}}; cursor: {{ctaCursor}}">{{cta}}</button>
+            <span style="white-space: pre-line; font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: {{ctaNoteColor}};">{{ctaNote}}</span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{showDone}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #FAFAFA; border: 1px solid #E2E4E6; border-radius: 8px; padding: 16px 18px;">
+            <span style="font-size: 12px; font-weight: 600; letter-spacing: -0.12px; color: #808288;">{{doneHead}}</span>
+            <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: #1F2021;">{{fileName}}</span>
+            <span style="white-space: pre-line; font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #37393B;">{{doneNote}}</span>
+            <div style="display: flex; gap: 10px; margin-top: 2px;">
+              <button class="pill ghost" onClick="{{ backToEdit }}">내용 편집으로 돌아가기</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div class="side">
+        <div class="sheet">
+          <div class="mark" style="left: 0; top: 6px; width: 9px; height: 1px; background: {{markColor}}"></div>
+          <div class="mark" style="left: 6px; top: 0; width: 1px; height: 9px; background: {{markColor}}"></div>
+          <div class="mark" style="right: 0; top: 6px; width: 9px; height: 1px; background: {{markColor}}"></div>
+          <div class="mark" style="right: 6px; top: 0; width: 1px; height: 9px; background: {{markColor}}"></div>
+          <div class="mark" style="left: 0; bottom: 6px; width: 9px; height: 1px; background: {{markColor}}"></div>
+          <div class="mark" style="left: 6px; bottom: 0; width: 1px; height: 9px; background: {{markColor}}"></div>
+          <div class="mark" style="right: 0; bottom: 6px; width: 9px; height: 1px; background: {{markColor}}"></div>
+          <div class="mark" style="right: 6px; bottom: 0; width: 1px; height: 9px; background: {{markColor}}"></div>
+
+          <div class="flyer">
+            <div class="fhead">
+              <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 26px;">
+              <span class="sp"></span>
+              <span class="fchip">공식 인증 대리점</span>
+              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="height: 16px; margin-left: 5px;">
+            </div>
+
+            <sc-for list="{{sheet}}" as="bk" hint-placeholder-count="3">
+              <sc-if value="{{bk.hasTitle}}" hint-placeholder-val="{{false}}">
+                <div class="t" style="flex: none; height: {{bk.barH}}; background: #3617CE; color: #ffffff; display: flex; align-items: center; padding: 0 17px; font-size: {{bk.hSize}}; font-weight: 700; letter-spacing: -0.023em;">{{bk.title}}</div>
+              </sc-if>
+              <div class="fblk" style="flex: none; height: {{bk.h}}; border-top: {{bk.rule}}; background: {{bk.bg}}; color: {{bk.fg}};">
+
+                <sc-if value="{{bk.isHero}}" hint-placeholder-val="{{true}}">
+                  <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.heroAlign}}; gap: {{bk.gap}}; width: 100%; min-width: 0;">
+                    <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
+                      <sc-if value="{{bk.showHead}}" hint-placeholder-val="{{true}}"><div class="t" style="white-space: pre-line; font-size: {{bk.hSize}}; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: {{bk.fg}};">{{bk.headline}}</div></sc-if>
+                      <div style="white-space: pre-line; font-size: {{bk.bSize}}; line-height: 1.5; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.sub}}</div>
+                    </div>
+                    <div style="width: {{bk.gfxW}}; flex: none; display: flex; align-items: {{bk.gfxAlign}}; justify-content: center;">
+                      <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
+                        <div style="width: 100%; height: {{bk.gfx}}; background-image: {{bk.gfxBg}}; background-size: contain; background-repeat: no-repeat; background-position: center bottom;"></div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{bk.isPrice}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; width: 100%; min-width: 0;">
+                    <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.alignPrice}}; gap: {{bk.gap}};">
+                      <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
+                        <sc-if value="{{bk.showProduct}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.product}}</div></sc-if>
+                        <div style="display: flex; align-items: baseline; gap: {{bk.gap}};">
+                          <span style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}}; text-decoration: line-through;">{{bk.list}}</span>
+                          <span style="font-size: {{bk.hSize}}; font-weight: 700; letter-spacing: -0.023em; color: {{bk.accent}};">{{bk.price}}</span>
+                          <span style="font-size: {{bk.bSize}}; font-weight: 700; letter-spacing: -0.011em; color: {{bk.badgeOn}}; background: {{bk.accent}}; border-radius: 9999px; padding: 0.25em 0.7em;">{{bk.rate}}</span>
+                        </div>
+                        <sc-if value="{{bk.noteInline}}" hint-placeholder-val="{{false}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.note}}</div></sc-if>
+                      </div>
+                      <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
+                        <div style="width: {{bk.gfx}}; height: {{bk.gfx}}; flex: none; background-image: {{bk.gfxBg}}; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                      </sc-if>
+                    </div>
+                    <sc-if value="{{bk.noteBelow}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.note}}</div></sc-if>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{bk.isGift}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.alignGift}}; gap: {{bk.gap}}; width: 100%; min-width: 0;">
+                    <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
+                      <sc-if value="{{bk.showHead}}" hint-placeholder-val="{{true}}"><div class="t" style="white-space: pre-line; font-size: {{bk.hSize}}; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: {{bk.fg}};">{{bk.headline}}</div></sc-if>
+                      <div style="white-space: pre-line; font-size: {{bk.bSize}}; line-height: 1.5; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.sub}}</div>
+                    </div>
+                    <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
+                      <div style="width: {{bk.gfx}}; height: {{bk.gfx}}; flex: none; background-image: {{bk.gfxBg}}; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+
+              </div>
+            </sc-for>
+
+            <sc-if value="{{sheetRoom}}" hint-placeholder-val="{{false}}">
+              <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px dashed #CBCDD2; margin: 0 4px 4px; border-radius: 4px; color: #808288; font-size: 7px; letter-spacing: -0.07px;">{{sheetRoomLabel}}</div>
+            </sc-if>
+            <sc-if value="{{sheetFull}}" hint-placeholder-val="{{true}}">
+              <div style="flex-grow: 1; background: #ffffff;"></div>
+            </sc-if>
+
+            <div class="ffoot">
+              <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">{{store}}</span>
+              <span class="sp"></span>
+              <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">가입 상담 및 문의</span>
+              <span style="font-size: {{footPhone}}; font-weight: 700; letter-spacing: -0.019em; color: #000000;">{{phone}}</span>
+            </div>
+          </div>
+        </div>
+        <span class="cap">{{sheetCap}}</span>
+      </div>
+
+    </div>
+
+    <div class="stepbar">
+      <div class="steps">
+        <sc-for list="{{steps3}}" as="s" hint-placeholder-count="3">
+          <button class="stpbtn" onClick="{{ s.pick }}" style="color: {{s.color}}; font-weight: {{s.weight}}">
+            <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#37393B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg></sc-if>
+            {{s.label}}
+          </button>
+          <sc-if value="{{s.sep}}" hint-placeholder-val="{{true}}"><span class="sep">›</span></sc-if>
+        </sc-for>
+      </div>
+      <span class="sp"></span>
+      <span class="barnote">{{barnote3}}</span>
+      <button class="pill ghost" onClick="{{ prev3 }}">이전</button>
+    </div>
+  </div>
+  </div>
+  <div class="pane pane4" style="display: {{d4}}">
+  <div class="root">
+
+    <div class="tile">
+      <div style="display: flex; flex-direction: column; gap: 24px; max-width: 900px;">
+        <h1 style="margin: 0; font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: -0.4px; color: #1F2021;">위반을 잡아내지 않습니다.<br>애초에 만들 수 없게 했습니다.</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; color: #808288; max-width: 760px;">자유롭게 만들고 나중에 검사해서 되돌리는 방식이 아닙니다. 가이드 밖의 값은 화면 어디에도 선택지로 나타나지 않습니다.</p>
+      </div>
+
+      <div class="cards">
+        <sc-for list="{{guards}}" as="g" hint-placeholder-count="4">
+          <div class="card">
+            <div class="cardhead">
+              <span class="cardname">{{g.name}}</span>
+            </div>
+            <div class="list">
+              <span class="listcap">고를 수 있는 것</span>
+              <sc-for list="{{g.can}}" as="c" hint-placeholder-count="3">
+                <span class="li" style="color: #1F2021;">
+                  <svg class="ic" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#1F2021" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg>
+                  {{c.t}}
+                </span>
+              </sc-for>
+            </div>
+            <div class="list">
+              <span class="listcap">존재하지 않는 것</span>
+              <sc-for list="{{g.cant}}" as="c" hint-placeholder-count="3">
+                <span class="li" style="color: #808288;">
+                  <svg class="ic" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#5B5D62" stroke-width="1.6" stroke-linecap="round"><path d="M3.6 3.6l6.8 6.8M10.4 3.6l-6.8 6.8"/></svg>
+                  {{c.t}}
+                </span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div class="sws">
+        <sc-for list="{{guidePalette}}" as="p" hint-placeholder-count="12">
+          <button class="sw" onClick="{{ p.pick }}" title="{{p.name}}" style="background: {{p.hex}}; border: {{p.border}}"></button>
+        </sc-for>
+      </div>
+      <div class="detail">
+        <span class="dname">{{gName}}</span>
+        <span class="dval"><span class="dkey">HEX</span>{{gHex}}</span>
+        <span class="dval"><span class="dkey">RGB</span>{{gRgb}}</span>
+        <span class="dval"><span class="dkey">CMYK</span>{{gCmyk}}</span>
+        <span class="dval"><span class="dkey">PANTONE</span>{{gPantone}}</span>
+        <span class="sp"></span>
+        <span class="dval" style="color: #808288;">화면은 RGB, 인쇄 PDF는 가이드 정의 CMYK 값을 그대로 지정합니다 — 자동 변환하지 않습니다.</span>
+      </div>
+    </div>
+
+    <div class="stepbar">
+      <span class="barnote">참고 화면입니다 — 제작 3단계에는 포함되지 않습니다. 상단 내비의 &#39;브랜드 가이드&#39;에서 언제든 열립니다.</span>
+      <span class="sp"></span>
+      <button class="pill" onClick="{{ goStudio }}">전단지 편집으로 돌아가기</button>
+    </div>
+
+  </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 1,
+
+      lastFlow: 1,             // 제작 흐름에서 마지막으로 머문 단계
+      guideSel: 0,             // 브랜드 가이드 화면의 선택 컬러
+
+      // 1단계 — 유형 선택. 기본은 선 분할 — 흰 바탕에 구분선만 둔 가장 조용한 판이다.
+      // 컬러 분할 · 타이틀 분할은 1단계에서 그대로 고를 수 있다 (template.md 4)
+      picked: 'line',
+
+      // 2단계 왼쪽 — 블록 라이브러리
+      size: 'full',
+      cat: 'all',
+      q: '',                   // 라이브러리 검색어 — 이름 · 카테고리에 걸린다
+      libPage: 0,
+
+      // 2단계 — 전단지에 담긴 블록.
+      // 그래픽은 이름으로 집는다 — id 는 생성 구간에서 나오는 일련번호라 손으로 쓸 수 없다
+      chosen: [
+        {
+          uid: 1, libId: 'half-12', kind: 'message', size: '1/2',
+          name: '이사', cat: '4. 메세지 소구형',
+          asset: this.gfxData().alias.apt,
+          headline: '입주 축하\n통신 요금 할인 혜택',
+          sub: '입주 박람회보다 더 좋은 상품과 가격으로\n안내해 드립니다'
+        },
+        {
+          uid: 2, libId: 'quarter-2', kind: 'price', size: '1/4',
+          name: '인터넷+IPTV 결합 1종', cat: '1. 요금 안내',
+          asset: this.gfxData().alias.coin,
+          product: '기가 인터넷(1G) + B tv All+', list: '월 69,850원',
+          price: '월 40,150원', rate: '42% 할인',
+          note: '*부가세 포함, 3년 약정, 요금가족결합 기준'
+        },
+        {
+          uid: 3, libId: 'quarter-5', kind: 'gift', size: '1/4',
+          name: '사은품 단독 강조 (그래픽)', cat: '2. 사은품',
+          asset: this.gfxData().alias.gift,
+          headline: '사은품도 놓치지 마세요',
+          sub: '3년간 요금 할인 · 현금 지원 · 삼성 TV 또는 가전제품\n*상품 중 택 1 · 가입 상품에 따라 변동 가능'
+        }
+      ],
+      nextUid: 4,
+
+      // 2단계 — 선택 대상 (chosen 의 인덱스, 또는 하단 고정 영역 'F')
+      sel: 0,
+      gfxPage: 0,              // 그래픽 후보 쪽번호. 어느 블록의 것인지 uid 로 붙들어 둔다
+      gfxPageUid: null,        //   — 다른 블록을 고르면 후보가 통째로 바뀌므로 1쪽으로 돌아간다
+      preview: false,          // 전체 화면 미리보기 (A5 실측 100%)
+      f: {
+        store: '우리정보통신점',
+        phone: '010-1234-5678'
+      },
+
+      // 3단계 — PDF 만들기
+      mode: 'print',
+
+      // 라이브러리 — 전면 블록으로 갈아끼우기 전 확인
+      confirmFull: null,
+
+      // 3단계 — 내보내기 확정 여부. 단계를 옮기면 풀린다
+      exported: false
+    };
+  }
+
+  stepItems(current, firstLabel) {
+    const labels = [firstLabel || '1 유형 선택', '2 블록 담고 편집', '3 PDF 만들기'];
+    return labels.map((label, i) => {
+      const n = i + 1;
+      return {
+        label: label,
+        done: n < current,
+        sep: n < 3,
+        color: n === current ? '#1F2021' : (n < current ? '#37393B' : '#A0A3A8'),
+        weight: n === current ? '600' : '400',
+        pick: () => this.setStep(n)
+      };
+    });
+  }
+
+  goTo(n) {
+    return () => this.setStep(Math.min(3, Math.max(1, n)));
+  }
+  setStep(n) {
+    const o = { step: n, exported: false, confirmFull: null };   // 단계를 옮기면 확정·확인은 풀린다
+    if (n === 1 || n === 2 || n === 3) o.lastFlow = n;   // 가이드만 흐름 밖
+    this.setState(o);
+  }
+
+  catalog() {
+    const navy = '#000028', blue = '#3617CE', gray = '#E2E4E6', sgray = '#F5F5F6';
+    const sb6 = '#E9EEFF', sb5 = '#D2DBFF', white = '#FFFFFF';
+    // 썸네일 컬러는 실제로 담기는 배경값과 같아야 한다 — 3차 서브는 명도 40 (brand.md 1.5)
+    const orange = '#F7CAB4', yellow = '#F9E8C0', cyan = '#BCE2FF', green = '#BBEDD0';
+    const hair = '1px solid #E2E4E6';
+    const band = (fill, grow, rule) => ({ fill, grow, rule: rule || 'none' });
+
+    const price = [
+      ['단일 할인', [band(white, 1, hair), band(sgray, 1.4)]],
+      ['통신 요금 할인', [band(navy, 1.2), band(white, 1)]],
+      ['인터넷+IPTV 결합 1종', [band(sb6, 1.4), band(white, 1, hair)]],
+      ['인터넷+IPTV 결합 3종', [band(navy, 1), band(sb5, 0.5), band(sb5, 0.5)]],
+      ['휴대폰 4회선 축소', [band(blue, 1.3), band(white, 1)]],
+      ['휴대폰 4회선 상세', [band(blue, 1), band(gray, 1.3)]],
+      ['휴대폰 5회선 상세', [band(navy, 1), band(gray, 1.5)]]
+    ];
+    const gift = [
+      ['사은품 단독 강조 (그래픽)', [band(navy, 1.6), band(white, 1, hair)]],
+      ['사은품 단독 강조 (실사)', [band(gray, 1.6), band(navy, 0.8)]]
+    ];
+    const product = [
+      ['셋톱박스', [band(white, 1, hair), band(gray, 1.5)]],
+      ['셋톱박스 상품 비교', [band(gray, 1), band(white, 1, hair), band(white, 1)]],
+      ['윙즈', [band(navy, 1.8), band(white, 0.7, hair)]]
+    ];
+    const message = [
+      ['이사', [band(blue, 1.7), band(white, 0.8, hair)]],
+      ['인터넷', [band(blue, 1.4), band(gray, 1)]],
+      ['IPTV', [band(blue, 1.2), band(navy, 1.2)]]
+    ];
+    const seasonal = [
+      ['지역특가', [band(gray, 1.6), band(navy, 0.8)], false],
+      ['가정의 달', [band(orange, 1.7), band(navy, 0.7)], true],
+      ['여름', [band(white, 1), band(cyan, 1.4)], false],
+      ['추석', [band(orange, 1.7), band(gray, 0.7)], true],
+      ['크리스마스', [band(green, 1.6), band(navy, 0.8)], true],
+      ['설날', [band(blue, 1.7), band(navy, 0.7)], true],
+      ['키즈', [band(yellow, 1.6), band(navy, 0.8)], true],
+      ['시니어', [band(orange, 1.6), band(navy, 0.8)], true]
+    ];
+    const extra = [
+      ['서부본부 전단 (QR)', [band(blue, 1.5), band(white, 1, hair)]],
+      ['유통망 요청 추가 유형 2', [band(navy, 1), band(white, 1, hair), band(navy, 0.6)]]
+    ];
+
+    const mk = (rows, cat, kind) => rows.map((r) => ({
+      name: r[0], cat: cat, kind: kind, bands: r[1], swapped: !!r[2]
+    }));
+    const withIds = (sizeKey, list) => list.map((it, i) => ({ ...it, id: sizeKey + '-' + i }));
+
+    return {
+      full: withIds('full', [].concat(
+        mk(price, '1. 요금 안내', 'price'), mk(gift, '2. 사은품', 'gift'),
+        mk(product, '3. 요금 안내 + 상품', 'price'), mk(message, '4. 메세지 소구형', 'message'),
+        mk(seasonal, '5. 시즈널', 'message'), mk(extra, '6–7. 본부 · 유통망 요청', 'message')
+      )),
+      half: withIds('half', [].concat(
+        mk(price, '1. 요금 안내', 'price'), mk(gift, '2. 사은품', 'gift'),
+        mk(product, '3. 요금 안내 + 상품', 'price'), mk(message, '4. 메세지 소구형', 'message'),
+        mk(seasonal, '5. 시즈널', 'message')
+      )),
+      third: withIds('third', [].concat(
+        mk(price.slice(0, 5), '1. 요금 안내', 'price'), mk(gift, '2. 사은품', 'gift'),
+        mk(product, '3. 요금 안내 + 상품', 'price'), mk(message, '4. 메세지 소구형', 'message')
+      )),
+      quarter: withIds('quarter', [].concat(
+        mk(price.slice(0, 5), '1. 요금 안내', 'price'), mk(gift, '2. 사은품', 'gift'),
+        mk(product, '3. 요금 안내 + 상품', 'price'), mk(message, '4. 메세지 소구형', 'message')
+      ))
+    };
+  }
+
+  // 한 장 = 12칸. 본문 680px(A5 794 - 머리 56 - 발 58)을 12로 나눈 56.67px 이 한 칸이다.
+  // 납품본 실측 그대로 — 1/2 340px = 6칸 · 1/3 227px = 4칸 · 1/4 170px = 3칸.
+  // 그 결과 가이드 조합 예시 A(1/2 + 1/3 + 1/3)는 14칸이라 만들 수 없다 (대조결과.md 25).
+  units(size) {
+    const u = { '전면': 12, '1/2': 6, '1/3': 4, '1/4': 3 };
+    return u[size] || 0;
+  }
+  usedUnits() {
+    return this.state.chosen.reduce((a, b) => a + this.units(b.size), 0);
+  }
+
+  // 라이브러리에서 고른 항목 -> 전단지 블록 (템플릿 기본값이 따라온다)
+  // 미입력 표시 문구 — makeBlock 이 넣는 값이자 4단계가 잡아내는 값. 표는 여기 하나뿐이다
+  placeholderDefs() {
+    return {
+      product: '상품명을 입력하세요', money: '월 00,000원', rate: '00% 할인',
+      giftHead: '사은품 제목을 입력하세요', giftBody: '혜택 내용을 입력하세요',
+      giftNote: '*조건을 입력하세요', head: '제목을 입력하세요', body: '본문을 입력하세요'
+    };
+  }
+  // 한 줄에 표시 문구가 남아 있으면 미입력이다. 지우지 않고 옆에 이어 친 경우까지 잡는다.
+  //   '…입력하세요' 안내 문구는 줄 어디에 있든 — 실제 카피에 나올 수 없는 말이다
+  //   '월 00,000원' · '00% 할인' 숫자 틀은 앞자리에서만 — '100% 할인' 같은 실제 값이 걸린다
+  // (제목·본문은 여러 줄이라 줄 단위로 본다 — 한 줄만 고쳐도 나머지 줄이 그대로면 미입력이다)
+  isPlaceholder(v) {
+    const defs = this.placeholderDefs();
+    const list = Object.keys(defs).map((k) => defs[k]);
+    const hit = (line, ph) => (ph.indexOf('입력하세요') >= 0
+      ? line.indexOf(ph) >= 0
+      : line.indexOf(ph) === 0);
+    return String(v == null ? '' : v).split('\n')
+      .filter((line) => list.filter((ph) => hit(line.trim(), ph)).length > 0)
+      .length > 0;
+  }
+  placeholderFields(b) {
+    const keys = [['headline', '제목'], ['sub', '본문'], ['product', '상품명'],
+                  ['list', '정상가'], ['price', '할인가'], ['rate', '할인율']];
+    return keys.filter((k) => this.isPlaceholder(b[k[0]])).map((k) => k[1]);
+  }
+
+  // 블록 세 종류가 모두 그래픽을 하나씩 갖는다. 예전에는 메세지 소구형만 고를 수 있었고
+  // 요금·사은품 블록은 동전·선물상자가 마크업에 박혀 있어 바꿀 수가 없었다.
+  makeBlock(item, sizeLabel) {
+    const p = this.placeholderDefs();
+    const base = { uid: this.state.nextUid, libId: item.id, kind: item.kind,
+                   size: sizeLabel, name: item.name, cat: item.cat };
+    const b = item.kind === 'price'
+      ? { ...base, product: p.product, list: p.money,
+          price: p.money, rate: p.rate, note: '*부가세 포함, 3년 약정 기준' }
+      : item.kind === 'gift'
+        ? { ...base, headline: p.giftHead, sub: p.giftBody + '\n' + p.giftNote }
+        // 제목 기본값에 블록 이름을 넣지 않는다 — 유형 3 타이틀 바가 제목 첫 줄을 인쇄하는데,
+        // 이름이 첫 줄이면 라이브러리 내부 이름이 그대로 원고에 실린다 (barTitle)
+        : { ...base, headline: p.head, sub: p.body };
+    return { ...b, asset: this.defaultAsset(b) };
+  }
+  addBlock(item, sizeLabel) {
+    const st = this.state;
+    // wiki/template.md §1 — 전면 블록은 단독 사용. 고르면 한 장을 통째로 차지한다
+    if (sizeLabel === '전면') {
+      this.setState({ chosen: [this.makeBlock(item, sizeLabel)], nextUid: st.nextUid + 1, sel: 0 });
+      return true;
+    }
+    // 남은 칸보다 큰 블록은 담기지 않는다
+    if (this.units(sizeLabel) > 12 - this.usedUnits()) return false;
+    this.setState({ chosen: st.chosen.concat([this.makeBlock(item, sizeLabel)]),
+                    nextUid: st.nextUid + 1, sel: st.chosen.length });
+    return true;
+  }
+  removeBlock(i) {
+    const st = this.state;
+    const next = st.chosen.filter((x, n) => n !== i);
+    const sel = st.sel === 'F' ? 'F' : Math.max(0, Math.min(next.length - 1, st.sel > i ? st.sel - 1 : st.sel));
+    this.setState({ chosen: next, sel: next.length ? sel : 'F' });
+  }
+
+  fgFor(hex) {
+    const dark = ['#000028', '#3617CE'];
+    return dark.indexOf(hex) >= 0 ? '#ffffff' : '#000000';
+  }
+
+  mutedFor(hex) {
+    return this.fgFor(hex) === '#ffffff' ? '#CBCDD2' : '#5B5D62';
+  }
+
+  accentFor(hex) {
+    return this.fgFor(hex) === '#ffffff' ? '#ffffff' : '#3617CE';
+  }
+
+  lines(s) {
+    return String(s || '').split('\n').length;
+  }
+
+  // 원고에 실제로 찍히는 줄 수 — 감겨서 늘어난 줄까지 센다.
+  // template.md 3 의 '제목 최대 3줄 · 본문 최대 2줄' 은 인쇄물에 앉는 줄이지
+  // 입력란에 친 개행이 아니다. 줄바꿈 없이 길게 치면 개행은 1줄이어도 인쇄는 여섯 줄이 된다.
+  //
+  // 재는 자리는 미리보기다 — 폭 · 서체 · 자간 · 줄높이를 그 자리에서 그대로 떠다가
+  // 화면 밖 자에 글을 앉히고, Range 가 만드는 줄 상자 수를 센다. 두 번째 조판기를
+  // 두지 않으려는 것이다 (exportHtml 이 미리보기 DOM 을 그대로 쓰는 것과 같은 이유).
+  // 글은 state 에서 가져온다. 렌더 중에 불리므로 DOM 은 아직 방금 친 글자를 모른다.
+  measureLines(text, sample) {
+    const t = String(text == null ? '' : text);
+    if (!t) return 0;
+    if (!sample || !sample.clientWidth) return this.lines(t);   // 못 재면 개행만
+    // 자는 body 에 둔다 — exportHtml 은 .flyer 만 떠 가므로 원고에는 섞이지 않는다
+    const doc = sample.ownerDocument;
+    let m = doc.getElementById('line-meter');
+    if (!m) {
+      m = doc.createElement('div');
+      m.id = 'line-meter';
+      m.setAttribute('aria-hidden', 'true');
+      m.style.cssText = 'position: absolute; left: -9999px; top: 0; visibility: hidden;'
+        + ' margin: 0; padding: 0; border: 0; pointer-events: none;';
+      doc.body.appendChild(m);
+    }
+    const cs = doc.defaultView.getComputedStyle(sample);
+    ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'fontStretch', 'letterSpacing',
+     'wordSpacing', 'lineHeight', 'whiteSpace', 'wordBreak', 'overflowWrap',
+     'textTransform', 'width'].forEach((k) => { m.style[k] = cs[k]; });
+    m.textContent = t;
+    const r = doc.createRange();
+    r.selectNodeContents(m);
+    const tops = [];
+    Array.prototype.forEach.call(r.getClientRects(), (rc) => {
+      if (!rc.width && !rc.height) return;
+      if (!tops.filter((v) => Math.abs(v - rc.top) < 1).length) tops.push(rc.top);
+    });
+    return tops.length || this.lines(t);
+  }
+
+  // 블록별 [{head, sub}] — 한 렌더에 vals2 · vals3 가 같이 부르므로 한 번만 재고 물려 쓴다.
+  // 미리보기가 아직 이 상태를 못 그렸으면 개행 수로 물러나되 그 값은 담아 두지 않는다.
+  flyerLines() {
+    const chosen = this.state.chosen;
+    const key = JSON.stringify(chosen.map((b) => [b.size, b.kind, b.headline || '', b.sub || '']));
+    if (this.lineKey === key) return this.lineVal;
+    const measured = this.withFlyer((f) => {
+      const blks = f.querySelectorAll('.fblk');
+      if (blks.length !== chosen.length) return null;
+      return chosen.map((b, i) => ({
+        head: this.measureLines(b.headline, blks[i].querySelector('[data-line="head"]')),
+        sub: this.measureLines(b.sub, blks[i].querySelector('[data-line="sub"]'))
+      }));
+    });
+    if (!measured) {
+      return chosen.map((b) => ({
+        head: b.headline ? this.lines(b.headline) : 0,
+        sub: b.sub ? this.lines(b.sub) : 0
+      }));
+    }
+    this.lineKey = key;
+    this.lineVal = measured;
+    return measured;
+  }
+
+  // 미리보기는 렌더 한 박자 뒤에 바뀐다. 블록을 담거나 빼거나 자리를 옮기면 flyerLines 가
+  // 재는 그 순간의 .fblk 는 아직 이전 구성이라, 남의 자리에서 잰 줄 수가 캐시에 앉는다
+  // (옮긴 블록만 '3 / 3줄' 이 '1 / 3줄' 로 보이고 글을 고칠 때까지 그대로 남았다).
+  // 그래서 구성이 바뀐 커밋 뒤에 캐시를 버리고 한 번 더 그린다 — 그때의 DOM 은 새 구성이다.
+  remeasureLines() {
+    const sig = this.state.chosen.map((b) => b.uid + ':' + b.size).join(',');
+    if (sig === this.lineSig) return;   // 구성이 그대로면 잰 값도 성하다
+    this.lineSig = sig;
+    this.lineKey = null;
+    this.forceUpdate();
+  }
+
+  // 첫 렌더는 미리보기가 아직 없어 개행 수로 물러나 있다 — 마운트 뒤 한 번 재야 제 값이 된다
+  componentDidMount() { this.remeasureLines(); }
+  componentDidUpdate() { this.remeasureLines(); }
+
+  vals1() {
+    const defs = [
+      {
+        id: 'line', name: '유형 1 — 선으로 영역분할', short: '선 분할',
+        desc: '얇은 구분선으로 블록 경계를 나눕니다. 정보량이 많은 요금 안내형에 적합합니다.',
+        segs: [
+          { fill: '#ffffff', grow: 1.4, rule: '1px solid #E2E4E6' },
+          { fill: '#ffffff', grow: 1, rule: '1px solid #E2E4E6' },
+          { fill: '#ffffff', grow: 1, rule: 'none' }
+        ]
+      },
+      {
+        id: 'color', name: '유형 2 — 컬러로 영역분할', short: '컬러 분할',
+        desc: '배경 컬러 블록으로 경계를 만듭니다. 시즈널·프로모션 전단지의 기본형입니다.',
+        segs: [
+          { fill: '#E2E4E6', grow: 1, rule: 'none' },
+          { fill: '#000028', grow: 1.6, rule: 'none' },
+          { fill: '#D2DBFF', grow: 0.8, rule: 'none' }
+        ]
+      },
+      {
+        id: 'title', name: '유형 3 — 타이틀로 영역분할', short: '타이틀 분할',
+        desc: '블록 상단 타이틀이 경계 역할을 합니다. 혜택을 나열하는 구성에 적합합니다.',
+        segs: [
+          { fill: '#3617CE', grow: 0.45, rule: 'none' },
+          { fill: '#FFFFFF', grow: 1, rule: 'none' },
+          { fill: '#3617CE', grow: 0.45, rule: 'none' },
+          { fill: '#FFFFFF', grow: 1, rule: 'none' }
+        ]
+      }
+    ];
+    const picked = this.state.picked;
+    const types = defs.map((d) => ({
+      ...d,
+      border: d.id === picked ? '2px solid #1F2021' : '1px solid #E2E4E6',
+      dotBorder: d.id === picked ? '6px solid #1F2021' : '1px solid #CBCDD2',
+      dotFill: d.id === picked ? '#ffffff' : '#ffffff',
+      pick: () => this.setState({ picked: d.id })
+    }));
+    const found = defs.filter((d) => d.id === picked)[0];
+    return {
+      steps1: this.stepItems(1, found ? '1 유형 선택 · ' + found.short : '1 유형 선택'),
+      next1: this.goTo(2),
+      types,
+      pickedName: found ? found.name : '',
+      pickedShort: found ? found.short : '',
+      // 3단계 부제가 쓴다 — '유형 2 컬러 분할' 이 하드코딩돼 있었다
+      typeMeta: '유형 ' + this.typeDef().no + ' ' + this.typeDef().short
+    };
+  }
+
+  // 2단계는 칸이 넷이라(구성 · 라이브러리 · 미리보기 · 편집) 라이브러리 몫만 따로 뗀다.
+  // 한 화면에 함께 그려지므로 vals2 와 같은 값 주머니에 섞여 들어간다 (renderVals)
+  vals2Lib() {
+    const st = this.state;
+    const cat = this.catalog();
+    const sizeDefs = [
+      { id: 'full', label: '전면', badge: '전면' },
+      { id: 'half', label: '1/2', badge: '1/2' },
+      { id: 'third', label: '1/3', badge: '1/3' },
+      { id: 'quarter', label: '1/4', badge: '1/4' }
+    ];
+    const chip = (on) => ({
+      bg: on ? '#1F2021' : '#ffffff',
+      fg: on ? '#ffffff' : '#1F2021',
+      border: on ? '1px solid #1F2021' : '1px solid #E2E4E6'
+    });
+    const sizes = sizeDefs.map((x) => ({
+      label: x.label, ...chip(st.size === x.id),
+      pick: () => this.setState({ size: x.id, confirmFull: null, libPage: 0 })
+    }));
+    const catDefs = [
+      { id: 'all', label: '전체' },
+      { id: '1. 요금 안내', label: '요금 안내' },
+      { id: '2. 사은품', label: '사은품' },
+      { id: '3. 요금 안내 + 상품', label: '요금 안내 + 상품' },
+      { id: '4. 메세지 소구형', label: '메세지 소구형' },
+      { id: '5. 시즈널', label: '시즈널' },
+      { id: '6–7. 본부 · 유통망 요청', label: '본부 · 유통망 요청' }
+    ];
+    const cats = catDefs.map((c) => ({
+      label: c.label, ...chip(st.cat === c.id),
+      pick: () => this.setState({ cat: c.id, confirmFull: null, libPage: 0 })
+    }));
+
+    const all = cat[st.size] || [];
+    // 검색어는 블록 이름과 카테고리에 함께 걸린다 — '이사' 도 '시즈널' 도 같은 칸에서 찾힌다.
+    // 74종을 사이즈 × 카테고리로만 좁히던 것을 이름으로도 좁힌다
+    const q = String(st.q || '').trim().toLowerCase();
+    const inQ = (i) => q === '' || (i.name + ' ' + i.cat).toLowerCase().indexOf(q) >= 0;
+    const filtered = all.filter((i) => (st.cat === 'all' || i.cat === st.cat) && inQ(i));
+    const badge = sizeDefs.filter((x) => x.id === st.size)[0].badge;
+    const used = this.usedUnits();
+    const left = 12 - used;
+    const need = this.units(badge);
+    const roomy = badge === '전면' || need <= left;   // 전면은 한 장을 통째로 갈아끼운다
+
+    const PAGE = 10;
+    const pages = Math.max(1, Math.ceil(filtered.length / PAGE));
+    const page = Math.min(Math.max(0, st.libPage), pages - 1);
+    const items = filtered.slice(page * PAGE, page * PAGE + PAGE).map((i) => {
+      const picked = st.chosen.filter((b) => b.libId === i.id).length > 0;
+      const blocked = !picked && !roomy;
+      return {
+        ...i,
+        size: badge,
+        picked: picked,
+        blocked: blocked,
+        opacity: blocked ? '0.42' : '1',
+        cursor: blocked ? 'not-allowed' : 'pointer',
+        border: picked ? '2px solid #1F2021' : '1px solid #E2E4E6',
+        pick: () => {
+          if (blocked) return;                       // 사이즈가 안 맞으면 아무 일도 일어나지 않는다
+          // 전면은 담긴 블록을 전부 지운다. 되돌릴 수 없으므로 한 번 묻는다
+          if (badge === '전면' && !picked && st.chosen.length > 0) {
+            this.setState({ confirmFull: { item: i, badge: badge } });
+            return;
+          }
+          if (picked) {
+            const n = st.chosen.map((b, x) => (b.libId === i.id ? x : -1)).filter((x) => x >= 0)[0];
+            this.removeBlock(n);
+            return;
+          }
+          this.addBlock(i, badge);
+        }
+      };
+    });
+
+    return {
+      sizes, cats, items,
+
+      // 전면 교체 확인
+      confirmOn: !!st.confirmFull,
+      confirmText: st.confirmFull
+        ? st.confirmFull.item.name + this.josa(st.confirmFull.item.name, '은', '는')
+          + ' 전면 블록입니다 — 지금 담긴 블록 ' + st.chosen.length
+          + '개가 모두 빠지고 되돌릴 수 없습니다.'
+        : '',
+      confirmGo: () => {
+        const c = st.confirmFull;
+        if (!c) return;
+        this.setState({ chosen: [this.makeBlock(c.item, c.badge)], nextUid: st.nextUid + 1,
+                        sel: 0, confirmFull: null });
+      },
+      confirmCancel: () => this.setState({ confirmFull: null }),
+
+      q: st.q,
+      hasQ: String(st.q || '').length > 0,
+      setQ: (e) => this.setState({ q: e.target.value, libPage: 0, confirmFull: null }),
+      clearQ: () => this.setState({ q: '', libPage: 0 }),
+
+      isEmpty: filtered.length === 0,
+      emptyText: q
+        ? '\u2018' + String(st.q).trim() + '\u2019 에 걸리는 블록이 ' + badge
+          + ' 사이즈에 없습니다. 검색어를 지우거나 사이즈 · 카테고리를 바꿔 보세요.'
+        : '이 사이즈에는 해당 카테고리 블록이 없습니다. 예를 들어 시즈널은 전면 · 1/2에서만 고를 수 있습니다.',
+      shown: badge + ' 사이즈 · ' + filtered.length + '종',
+      tail: filtered.length === 0
+        ? '이 사이즈에는 해당 카테고리 블록이 없습니다'
+        : (pages > 1
+            ? (page * PAGE + 1) + '–' + Math.min(filtered.length, page * PAGE + PAGE) + '번'
+            : '전체 표시'),
+      hasPager: pages > 1,
+      pagerLabel: (page + 1) + ' / ' + pages,
+      pagePrev: () => this.setState({ libPage: Math.max(0, page - 1) }),
+      pageNext: () => this.setState({ libPage: Math.min(pages - 1, page + 1) }),
+      prevOpacity: page > 0 ? '1' : '0.35',
+      nextOpacity: page < pages - 1 ? '1' : '0.35',
+      prevCursor: page > 0 ? 'pointer' : 'not-allowed',
+      nextCursor: page < pages - 1 ? 'pointer' : 'not-allowed',
+      roomNote: '한 장 12칸 중 ' + used + '칸 사용 · ' + left + '칸 남음',
+      sizeNote: badge === '전면'
+        ? '전면 블록은 한 장을 통째로 씁니다 — 고르면 담긴 블록이 모두 빠집니다'
+        : (roomy
+            ? badge + ' 사이즈는 ' + need + '칸 — 담을 수 있습니다'
+            : badge + ' 사이즈는 ' + need + '칸이라 ' + left + '칸에 들어가지 않습니다'),
+      // 담기지 않는 사이즈를 고른 채로 카드가 모두 흐려져 있으면 이유가 보여야 한다
+      sizeNoteC: roomy ? '#808288' : '#A63244'
+    };
+  }
+
+  vals2() {
+    const st = this.state;
+    const sel = st.sel;
+    const isF = sel === 'F';
+    const chosen = st.chosen;
+    const patch = (i, o) => this.setState({
+      chosen: chosen.map((b, n) => (n === i ? { ...b, ...o } : b))
+    });
+    const setF = (o) => this.setState({ f: { ...st.f, ...o } });
+    // 선택 테두리는 편집 중에만 그린다 — 전체 화면 미리보기는 인쇄 결과 그대로여야 한다
+    const ring = st.preview ? 'none' : '2px solid #1F2021';
+
+    const selIdx0 = isF ? 'F' : Math.max(0, Math.min(sel, chosen.length - 1));
+    const selIdx = selIdx0;
+    const metrics = this.flyerMetrics();
+    const tmplOf = (k) => (k === 'price' ? 'price' : (k === 'gift' ? 'gift' : 'hero'));
+
+    // 왼쪽 레일
+    const blocks = chosen.map((b, i) => ({
+      size: b.size, name: b.name, cat: b.cat,
+      rowBorder: selIdx === i ? '2px solid #1F2021' : '1px solid #E2E4E6',
+      rowBg: selIdx === i ? '#FAFAFA' : '#ffffff',
+      badgeBg: selIdx === i ? '#1F2021' : '#F5F5F6',
+      badgeFg: selIdx === i ? '#ffffff' : '#37393B',
+      pick: () => this.setState({ sel: i })
+    }));
+
+    // 미리보기 — 블록 높이는 12칸 모델을 그대로 따른다 (template.md 1)
+    const td = this.typeDef();
+    const blockViews = chosen.map((b, i) => {
+      const t = tmplOf(b.kind);
+      const bg = this.effBg(b);
+      const fg = this.fgFor(bg);
+      const accent = this.accentFor(bg);
+      return {
+        grow: this.units(b.size),
+        rule: td.rule && i > 0 ? '1px solid #E2E4E6' : 'none',
+        hasTitle: !!td.title,
+        title: this.barTitle(b),
+        bg: bg, fg: fg, muted: this.mutedFor(bg), accent: accent,
+        badgeOn: accent === '#ffffff' ? '#000028' : '#ffffff',
+        outline: selIdx === i ? ring : 'none',
+        isHero: t === 'hero', isPrice: t === 'price', isGift: t === 'gift',
+        hSize: metrics[i].head + 'px', bSize: metrics[i].body + 'px',
+        gap: metrics[i].gap + 'px', gfx: metrics[i].gfx + 'px',
+        barH: metrics[i].bar + 'px',
+        dir: metrics[i].stack ? 'column' : 'row',
+        gfxW: metrics[i].stack ? '100%' : metrics[i].gfx + 'px',
+        gfxAlign: metrics[i].stack ? 'center' : 'flex-end',
+        heroAlign: metrics[i].stack ? 'center' : 'stretch',
+        headline: this.bodyHeadline(b), sub: b.sub || '', showProduct: !td.title,
+        showHead: this.bodyHeadline(b).trim() !== '',   // 빈 제목 칸은 아예 빼서 줄간격이 남지 않게
+        alignPrice: metrics[i].stack ? 'center' : (td.title ? 'flex-start' : 'flex-end'),
+        alignGift: metrics[i].stack ? 'center' : (td.title ? 'flex-start' : 'center'),
+        noteInline: !!td.title, noteBelow: !td.title,
+        product: b.product || '', list: b.list || '',
+        price: b.price || '', rate: b.rate || '', note: b.note || '',
+        hasGfx: !!b.asset, gfxBg: this.gfxBg(b.asset),
+        pick: () => this.setState({ sel: i })
+      };
+    });
+
+    const cur = isF ? null : chosen[selIdx];
+    const tmpl = cur ? tmplOf(cur.kind) : 'none';
+    const meta = isF
+      ? { size: '고정', name: '하단 고정 영역', cat: '지점명 · 연락처' }
+      : (cur ? { size: cur.size, name: cur.name, cat: cur.cat }
+             : { size: '—', name: '선택된 블록 없음', cat: '왼쪽에서 블록을 고르세요' });
+
+    const paletteDefs = this.paletteDefs();
+    const palette = paletteDefs.map((x) => ({
+      ...x,
+      border: cur && x.hex === this.effBg(cur) ? '3px solid #1F2021' : '1px solid #E2E4E6',
+      pick: () => { if (cur) patch(selIdx, { bg: x.hex, bgUser: true }); }
+    }));
+    // 선택한 블록이 지금 미리보기에서 몇 줄로 앉는지 (감긴 줄 포함)
+    const selLines = (!isF && this.flyerLines()[selIdx]) || { head: 0, sub: 0 };
+
+    // 그래픽 후보 — 이 블록에 올 수 있는 것만, 원고 문구에 맞는 순서로 (template.md 2.5).
+    // 0점짜리도 뒤쪽 쪽에 남겨 둔다 — 문구가 아직 비어 있을 때 고를 것이 없으면 안 되고,
+    // 고르는 건 결국 사람이다. 쪽을 끝까지 넘기면 그 블록이 쓸 수 있는 후보가 전부 나온다.
+    // 한 쪽은 그리드 두 줄 — '없음' 은 어느 쪽에서나 첫 자리에 고정이고 후보가 9개 붙는다.
+    const ranked = cur ? this.gfxRank(cur) : [];
+    const GFX_PAGE = 9;
+    const gfxPages = Math.max(1, Math.ceil(ranked.length / GFX_PAGE));
+    // 쪽번호는 그 블록의 것일 때만 살린다. 다른 블록을 고르면 후보가 통째로 바뀌므로 1쪽부터다
+    const gfxPage = cur && st.gfxPageUid === cur.uid
+      ? Math.min(Math.max(0, st.gfxPage), gfxPages - 1) : 0;
+    const shown = ranked.slice(gfxPage * GFX_PAGE, gfxPage * GFX_PAGE + GFX_PAGE);
+    const gfxList = shown.map((r) => ({
+      bg: 'var(--g-' + r.g.i + ')',
+      bd: cur && cur.asset === r.g.i ? '2px solid #1F2021' : '1px solid #E2E4E6',
+      title: r.g.n + ' · ' + r.g.s + (r.n > 0 ? ' — 문구와 겹치는 낱말 ' + r.n + '개' : ''),
+      pick: () => { if (cur) patch(selIdx, { asset: r.g.i }); }
+    }));
+    const hit = ranked.filter((r) => r.n > 0).length;
+
+    return {
+      steps2: this.stepItems(2),
+      prev2: this.goTo(1),
+      next2: this.goTo(3),
+
+      blocks, blockViews, palette,
+      blockCount: '한 장 12칸 중 ' + this.usedUnits() + '칸',
+      hasRoom: this.usedUnits() < 12,
+      roomGrow: 12 - this.usedUnits(),
+      roomLabel: (12 - this.usedUnits()) + '칸 비어 있음 — 라이브러리에서 담기',
+      // 빈 칸을 누르면 화면을 옮기는 대신 왼쪽 라이브러리가 그 칸에 들어가는
+      // 가장 큰 사이즈로 맞춰진다. 라이브러리가 늘 그 자리에 있으니 옮길 곳이 없다
+      fitRoom: () => {
+        const room = 12 - this.usedUnits();
+        const fits = [['half', 6], ['third', 4], ['quarter', 3]].filter((x) => x[1] <= room);
+        this.setState({ size: fits.length ? fits[0][0] : 'quarter', cat: 'all',
+                        libPage: 0, confirmFull: null });
+      },
+
+      // 고른 블록의 순서·빼기 — 레일 줄에 있던 것을 이 패널 머리로 올렸다
+      showOrder: !isF && !!cur,
+      selUpOp: !isF && selIdx > 0 ? '1' : '0.25',
+      selDownOp: !isF && selIdx < chosen.length - 1 ? '1' : '0.25',
+      selUp: () => { if (!isF) this.moveBlock(selIdx, -1); },
+      selDown: () => { if (!isF) this.moveBlock(selIdx, 1); },
+      selRemove: () => { if (!isF) this.removeBlock(selIdx); },
+
+      store: st.f.store, phone: st.f.phone,
+      footLabel: this.fixedPx().label + 'px', footPhone: this.fixedPx().phone + 'px',
+      fOutline: isF ? ring : 'none',
+      fRowBorder: isF ? '2px solid #1F2021' : '1px solid #E2E4E6',
+      fRowBg: isF ? '#FAFAFA' : '#ffffff',
+      fBadgeBg: isF ? '#1F2021' : '#F5F5F6',
+      fBadgeFg: isF ? '#ffffff' : '#37393B',
+      pickF: () => this.setState({ sel: 'F' }),
+
+      selSize: meta.size, selName: meta.name, selCat: meta.cat,
+      showText: tmpl === 'hero',
+      showPrice: tmpl === 'price',
+      showBanner: tmpl === 'gift',
+      showAssets: !isF && !!cur,      // 세 종류 다 그래픽을 고른다
+      showFooter: isF,
+      showBg: !isF && !!cur,
+
+      editHeadline: cur ? (cur.headline || '') : '',
+      editSub: cur ? (cur.sub || '') : '',
+      editProduct: cur ? (cur.product || '') : '',
+      editList: cur ? (cur.list || '') : '',
+      editPrice: cur ? (cur.price || '') : '',
+      editRate: cur ? (cur.rate || '') : '',
+      editNote: cur ? (cur.note || '') : '',
+      editStore: st.f.store,
+      editPhone: st.f.phone,
+      headLines: selLines.head,
+      subLines: selLines.sub,
+      headCountC: selLines.head > 3 ? '#A63244' : (selLines.head >= 3 ? '#1F2021' : '#808288'),
+      subCountC: selLines.sub > 2 ? '#A63244' : (selLines.sub >= 2 ? '#1F2021' : '#808288'),
+      headFull: selLines.head >= 3 ? ' · 꽉 참' : '',
+      subFull: selLines.sub >= 2 ? ' · 꽉 참' : '',
+      setHeadline: (e) => patch(selIdx, { headline: this.syncField(e, this.clampToFit(e.target.value, 3, 'head')) }),
+      setSub: (e) => patch(selIdx, { sub: this.syncField(e, this.clampToFit(e.target.value, 2, 'sub')) }),
+      setProduct: (e) => patch(selIdx, { product: e.target.value }),
+      setList: (e) => patch(selIdx, { list: e.target.value }),
+      setPrice: (e) => patch(selIdx, { price: e.target.value }),
+      setRate: (e) => patch(selIdx, { rate: e.target.value }),
+      setNote: (e) => patch(selIdx, { note: e.target.value }),
+      setStore: (e) => setF({ store: e.target.value }),
+      setPhone: (e) => setF({ phone: e.target.value }),
+
+      gfxList: gfxList,
+      gfxCount: ranked.length ? ranked.length + '개' : '없음',
+      gfxNone: !cur || !cur.asset,
+      bdNone: cur && !cur.asset ? '2px solid #1F2021' : '1px solid #E2E4E6',
+      pickNone: () => { if (cur) patch(selIdx, { asset: '' }); },
+      // 쪽 넘김 — 후보가 한 쪽에 다 들어가면 숨는다
+      gfxPager: gfxPages > 1,
+      gfxPageLabel: (gfxPage + 1) + ' / ' + gfxPages,
+      gfxPrev: () => { if (cur) this.setState({ gfxPage: Math.max(0, gfxPage - 1), gfxPageUid: cur.uid }); },
+      gfxNext: () => { if (cur) this.setState({ gfxPage: Math.min(gfxPages - 1, gfxPage + 1), gfxPageUid: cur.uid }); },
+      gfxPrevOp: gfxPage > 0 ? '1' : '0.35',
+      gfxNextOp: gfxPage < gfxPages - 1 ? '1' : '0.35',
+      gfxPrevCur: gfxPage > 0 ? 'pointer' : 'not-allowed',
+      gfxNextCur: gfxPage < gfxPages - 1 ? 'pointer' : 'not-allowed',
+      assetNote: hit > 0
+        ? '원고 문구와 검색어가 겹치는 순서입니다 — ' + hit + '개가 걸렸습니다.'
+        : '문구에 걸린 검색어가 없어 후보 순서대로입니다. 맞는 게 없으면 ‘없음’을 고르세요.',
+
+      // 전체 화면 미리보기 — A5 실측 100% (400 x 568 시트를 1.3975배)
+      chromeD: st.preview ? 'none' : 'flex',
+      railD: st.preview ? 'none' : 'flex',
+      flyerZoom: st.preview ? '1.3975' : '1',
+      zoomLabel: st.preview ? 'A5 실측 100% — 148 × 210 mm' : 'A5 실측 대비 72%',
+      previewOn: st.preview,
+      previewOff: !st.preview,
+      openPreview: () => this.setState({ preview: true }),
+      closePreview: () => this.setState({ preview: false })
+    };
+  }
+
+  // ── 그래픽 ────────────────────────────────────────────────────────
+  // 후보 범위와 순위 규칙은 wiki/template.md 2.5 에 있고, 검색어는 각 인덱스의
+  // `검색어` 열에 있다. 여기 코드는 그 규칙을 옮긴 것뿐이다 — 규칙을 바꾸려면
+  // 문서를 고치고 wiki/build-graphics.py 를 다시 돌린다.
+  // wiki/pick.py 가 같은 규칙의 참조 구현이라 터미널에서 결과를 대조할 수 있다.
+
+  // >>> 생성 구간 — wiki/build-graphics.py 가 쓴다. 손으로 고치지 않는다
+  // 카탈로그 190개 · 후보 풀 8종. 규칙은 wiki/template.md 2.5
+  gfxData() {
+    return {
+      alias: { apt: 'g025', coin: 'g005', gift: 'g084' },
+      pool: {
+        '1. 요금 안내': { icon: ['Money', 'Benefit'], illust: [], product: [] },
+        '2. 사은품': { icon: ['Season', 'Benefit', 'Food'], illust: [], product: [] },
+        '3. 요금 안내 + 상품': { icon: ['Device', 'Media'], illust: [], product: ['목록'] },
+        '4. 메세지 소구형': { icon: ['Place', 'Transport', 'Comm'], illust: ['성인(남)', '성인(여)', '키즈(남)', '키즈(여)', '학생(남)', '학생(여)', '시니어(남)', '시니어(여)', 'B매니저(남)', 'B매니저(여)', '기타 — 상황·관계'], product: [] },
+        '5. 시즈널': { icon: ['Season', 'Media', 'Food'], illust: ['성인(남)', '성인(여)', '키즈(남)', '키즈(여)', '학생(남)', '학생(여)', '시니어(남)', '시니어(여)', 'B매니저(남)', 'B매니저(여)', '기타 — 상황·관계'], product: [] },
+        '6. 서부 본부 전단': { icon: ['Comm', 'Symbol'], illust: ['B매니저(남)', 'B매니저(여)'], product: [] },
+        '7. 유통망 요청 추가 유형 2': { icon: ['Place', 'Season', 'Benefit'], illust: ['성인(남)', '성인(여)', '키즈(남)', '키즈(여)', '학생(남)', '학생(여)', '시니어(남)', '시니어(여)', 'B매니저(남)', 'B매니저(여)', '기타 — 상황·관계'], product: [] },
+        '6–7. 본부 · 유통망 요청': { icon: ['Comm', 'Symbol', 'Place', 'Season', 'Benefit'], illust: ['B매니저(남)', 'B매니저(여)', '성인(남)', '성인(여)', '키즈(남)', '키즈(여)', '학생(남)', '학생(여)', '시니어(남)', '시니어(여)', '기타 — 상황·관계'], product: [] },
+      },
+      gfx: [
+        { i: 'g001', k: 'icon', s: 'Money', n: '지폐 1', t: '지폐 현금 돈 캐시백 페이백' },
+        { i: 'g002', k: 'icon', s: 'Money', n: '지폐 2', t: '만원 지폐 현금 돈 캐시백' },
+        { i: 'g003', k: 'icon', s: 'Money', n: '지폐 3', t: '오만원 지폐 현금 목돈 캐시백' },
+        { i: 'g004', k: 'icon', s: 'Money', n: 'B캐시', t: 'B캐시 포인트 적립 캐시백 리워드 멤버십' },
+        { i: 'g005', k: 'icon', s: 'Money', n: '현금', t: '현금 현금지원 캐시백 페이백 지원금 돈' },
+        { i: 'g006', k: 'icon', s: 'Money', n: '동전 1', t: '동전 잔돈 절약 적립' },
+        { i: 'g007', k: 'icon', s: 'Money', n: '동전 2', t: '동전 잔돈 절약 적립' },
+        { i: 'g008', k: 'icon', s: 'Money', n: '돈자루', t: '돈자루 목돈 절약 최대혜택 큰할인' },
+        { i: 'g009', k: 'icon', s: 'Money', n: '신용카드', t: '카드 신용카드 제휴카드 결제 청구할인 자동이체' },
+        { i: 'g010', k: 'icon', s: 'Money', n: '머니건', t: '머니건 현금 파격 최대혜택 쏜다' },
+        { i: 'g011', k: 'icon', s: 'Money', n: '돼지저금통', t: '저금통 절약 적립 알뜰 저축' },
+        { i: 'g012', k: 'icon', s: 'Device', n: '휴대폰 1', t: '휴대폰 스마트폰 핸드폰 모바일 단말기 기기' },
+        { i: 'g013', k: 'icon', s: 'Device', n: '휴대폰 2', t: '휴대폰 스마트폰 핸드폰 모바일 단말기 기기' },
+        { i: 'g014', k: 'icon', s: 'Device', n: '휴대폰 3', t: '휴대폰 스마트폰 핸드폰 모바일 단말기 기기' },
+        { i: 'g015', k: 'icon', s: 'Device', n: '노트북', t: '노트북 인터넷 재택 온라인 업무 학습' },
+        { i: 'g016', k: 'icon', s: 'Device', n: 'TV', t: 'TV 티비 Btv IPTV 채널 시청 셋톱박스' },
+        { i: 'g017', k: 'icon', s: 'Device', n: '태블릿', t: '태블릿 패드 모바일 기기 학습 콘텐츠' },
+        { i: 'g018', k: 'icon', s: 'Device', n: '리모컨', t: '리모컨 TV 셋톱박스 채널 조작' },
+        { i: 'g019', k: 'icon', s: 'Device', n: '인터넷 공유기', t: '공유기 와이파이 인터넷 무선 AP 기가 윙즈' },
+        { i: 'g020', k: 'icon', s: 'Device', n: '이동식 스탠드 TV', t: '이동식TV 스탠드TV TV 티비 이사 무빙' },
+        { i: 'g021', k: 'icon', s: 'Device', n: '게임', t: '게임 콘솔 게이밍 속도 저지연 인터넷' },
+        { i: 'g022', k: 'icon', s: 'Device', n: '스마트워치', t: '스마트워치 워치 웨어러블 회선추가 결합' },
+        { i: 'g023', k: 'icon', s: 'Place', n: '매장', t: '매장 대리점 지점 방문 상담 오프라인' },
+        { i: 'g024', k: 'icon', s: 'Place', n: '집', t: '집 가정 자택 홈 설치 가정용' },
+        { i: 'g025', k: 'icon', s: 'Place', n: '아파트', t: '아파트 이사 입주 신축 집들이 단지 전입 세대' },
+        { i: 'g026', k: 'icon', s: 'Place', n: '가판대', t: '가판대 부스 현장 행사 프로모션 박람회' },
+        { i: 'g027', k: 'icon', s: 'Place', n: '서빙로봇', t: '서빙로봇 로봇 매장 자영업 사장님 사업자' },
+        { i: 'g028', k: 'icon', s: 'Place', n: '와이파이', t: '와이파이 무선 인터넷 공유기 기가' },
+        { i: 'g029', k: 'icon', s: 'Place', n: '와이파이 속도', t: '속도 기가 와이파이 초고속 빠른인터넷 광랜' },
+        { i: 'g030', k: 'icon', s: 'Transport', n: '승용차 1', t: '자동차 차량 방문 출동 이동' },
+        { i: 'g031', k: 'icon', s: 'Transport', n: '승용차 2', t: '박스카 차량 방문 출동 이동' },
+        { i: 'g032', k: 'icon', s: 'Transport', n: '트럭 1', t: '트럭 배송 운반 이사' },
+        { i: 'g033', k: 'icon', s: 'Transport', n: '트럭 2', t: '사다리차 이사 이전 이전설치 운반' },
+        { i: 'g034', k: 'icon', s: 'Transport', n: '오토바이', t: '오토바이 배달 퀵 신속 빠른' },
+        { i: 'g035', k: 'icon', s: 'Transport', n: '자전거', t: '자전거 동네 지역 근거리' },
+        { i: 'g036', k: 'icon', s: 'Transport', n: '비행기', t: '비행기 여행 해외 로밍 출국 휴가' },
+        { i: 'g037', k: 'icon', s: 'Transport', n: '로켓', t: '로켓 속도 기가 초고속 빠른 급상승' },
+        { i: 'g038', k: 'icon', s: 'Transport', n: '쇼핑백', t: '쇼핑백 쇼핑 구매 제휴' },
+        { i: 'g039', k: 'icon', s: 'Transport', n: '위치 핀', t: '위치 지역 동네 우리동네 매장찾기 지점 지역특가' },
+        { i: 'g040', k: 'icon', s: 'Comm', n: '말풍선 1', t: '말풍선 상담 문의 대화' },
+        { i: 'g041', k: 'icon', s: 'Comm', n: '말풍선 2', t: '말풍선 상담 문의 대화' },
+        { i: 'g042', k: 'icon', s: 'Comm', n: '말풍선 3', t: '말풍선 상담 문의 대화' },
+        { i: 'g043', k: 'icon', s: 'Comm', n: '확성기', t: '확성기 공지 알림 새소식' },
+        { i: 'g044', k: 'icon', s: 'Comm', n: '검색', t: '검색 조회 찾기 비교 확인' },
+        { i: 'g045', k: 'icon', s: 'Comm', n: '시계', t: '시계 기간 마감 한정 시간 서두르기' },
+        { i: 'g046', k: 'icon', s: 'Comm', n: '공구', t: '공구 설치 AS 수리 점검 기사' },
+        { i: 'g047', k: 'icon', s: 'Comm', n: '계약서', t: '계약 약정 가입 신청 서류' },
+        { i: 'g048', k: 'icon', s: 'Comm', n: '영수증', t: '영수증 청구서 명세' },
+        { i: 'g049', k: 'icon', s: 'Comm', n: '유심', t: '유심 USIM 개통 회선 번호이동' },
+        { i: 'g050', k: 'icon', s: 'Benefit', n: '깃발', t: '깃발 시작 출발 오픈 신규' },
+        { i: 'g051', k: 'icon', s: 'Benefit', n: '할인', t: '할인 세일 특가 인하 디스카운트' },
+        { i: 'g052', k: 'icon', s: 'Benefit', n: '자물쇠', t: '자물쇠 보안 안심 약정 잠금' },
+        { i: 'g053', k: 'icon', s: 'Benefit', n: '달력', t: '달력 기간 일정 한정 마감 이달' },
+        { i: 'g054', k: 'icon', s: 'Benefit', n: '메모', t: '메모 체크 확인 유의사항' },
+        { i: 'g055', k: 'icon', s: 'Benefit', n: '과녁', t: '과녁 타겟 정확 맞춤 딱맞는' },
+        { i: 'g056', k: 'icon', s: 'Benefit', n: '졸업 모자', t: '졸업 학생 입학 신학기 학습' },
+        { i: 'g057', k: 'icon', s: 'Benefit', n: '배송 박스', t: '배송 택배 박스 사은품 발송' },
+        { i: 'g058', k: 'icon', s: 'Benefit', n: '쿠폰', t: '쿠폰 할인권 제휴 바우처' },
+        { i: 'g059', k: 'icon', s: 'Benefit', n: '상품권', t: '상품권 기프티콘 사은품 경품 지급' },
+        { i: 'g060', k: 'icon', s: 'Food', n: '맥주', t: '맥주 치맥 회식 제휴 음료' },
+        { i: 'g061', k: 'icon', s: 'Food', n: '나초', t: '나초 스낵 간식 영화 제휴' },
+        { i: 'g062', k: 'icon', s: 'Food', n: '핫도그', t: '핫도그 간식 먹거리 제휴' },
+        { i: 'g063', k: 'icon', s: 'Food', n: '커피 (따뜻한)', t: '커피 카페 따뜻한 겨울 제휴 음료 기프티콘' },
+        { i: 'g064', k: 'icon', s: 'Food', n: '아이스커피', t: '아이스커피 커피 여름 시원한 카페 제휴 음료' },
+        { i: 'g065', k: 'icon', s: 'Food', n: '콜라', t: '콜라 음료 영화 간식 제휴' },
+        { i: 'g066', k: 'icon', s: 'Food', n: '팝콘', t: '팝콘 영화 극장 간식 시청' },
+        { i: 'g067', k: 'icon', s: 'Food', n: '도넛', t: '도넛 간식 디저트 제휴' },
+        { i: 'g068', k: 'icon', s: 'Food', n: '쿠키', t: '쿠키 진저쿠키 크리스마스 간식 디저트' },
+        { i: 'g069', k: 'icon', s: 'Food', n: '젤리곰', t: '젤리 간식 키즈 아이 디저트' },
+        { i: 'g070', k: 'icon', s: 'Food', n: '케이크', t: '케이크 생일 축하 기념일 파티' },
+        { i: 'g071', k: 'icon', s: 'Media', n: '영화', t: '영화 콘텐츠 VOD 시청 Btv' },
+        { i: 'g072', k: 'icon', s: 'Media', n: '영사기', t: '영사기 영화 콘텐츠 극장 상영' },
+        { i: 'g073', k: 'icon', s: 'Media', n: '필름', t: '필름 영화 콘텐츠 시리즈 VOD' },
+        { i: 'g074', k: 'icon', s: 'Media', n: '3D 안경', t: '3D안경 영화 입체 극장 콘텐츠' },
+        { i: 'g075', k: 'icon', s: 'Media', n: '모래시계', t: '모래시계 기간 마감 한정 서두르기' },
+        { i: 'g076', k: 'icon', s: 'Media', n: '물놀이 튜브', t: '튜브 물놀이 여름 휴가 바캉스 시원한' },
+        { i: 'g077', k: 'icon', s: 'Media', n: '맑음', t: '맑음 해 햇살 여름 화창 날씨' },
+        { i: 'g078', k: 'icon', s: 'Media', n: '구름조금', t: '구름 봄 가을 선선한 날씨' },
+        { i: 'g079', k: 'icon', s: 'Media', n: '비', t: '비 비구름 빗방울 장마 우천 여름 실내 날씨' },
+        { i: 'g080', k: 'icon', s: 'Media', n: '눈', t: '눈구름 눈 첫눈 겨울 한파 크리스마스 날씨' },
+        { i: 'g081', k: 'icon', s: 'Season', n: '선물상자 1', t: '선물 사은품 경품 증정 기프트' },
+        { i: 'g082', k: 'icon', s: 'Season', n: '선물상자 2', t: '선물 사은품 경품 증정 명절 추석 설날 선물세트' },
+        { i: 'g083', k: 'icon', s: 'Season', n: '선물상자 3', t: '선물 사은품 경품 증정 기프트' },
+        { i: 'g084', k: 'icon', s: 'Season', n: '선물상자 4', t: '선물 사은품 경품 증정 기프트' },
+        { i: 'g085', k: 'icon', s: 'Season', n: '선물상자 5', t: '선물 사은품 개봉 언박싱 증정 기프트' },
+        { i: 'g086', k: 'icon', s: 'Season', n: '크리스마스 오너먼트 1', t: '크리스마스 성탄절 연말 겨울 오너먼트 장식' },
+        { i: 'g087', k: 'icon', s: 'Season', n: '크리스마스 오너먼트 2', t: '크리스마스 성탄절 연말 겨울 오너먼트 장식' },
+        { i: 'g088', k: 'icon', s: 'Season', n: '크리스마스 오너먼트 3', t: '크리스마스 성탄절 연말 겨울 오너먼트 장식' },
+        { i: 'g089', k: 'icon', s: 'Season', n: '눈사람', t: '눈사람 겨울 크리스마스 연말 한파' },
+        { i: 'g090', k: 'icon', s: 'Season', n: '루돌프', t: '루돌프 크리스마스 성탄절 연말 겨울' },
+        { i: 'g091', k: 'icon', s: 'Season', n: '크리스마스 트리', t: '크리스마스트리 크리스마스 성탄절 연말 겨울' },
+        { i: 'g092', k: 'icon', s: 'Season', n: '나무', t: '나무 봄 자연 식목일 성장' },
+        { i: 'g093', k: 'icon', s: 'Season', n: '꽃다발', t: '꽃다발 꽃 봄 가정의 어버이날 스승의 감사 축하' },
+        { i: 'g094', k: 'icon', s: 'Season', n: '클로버', t: '클로버 행운 럭키 당첨' },
+        { i: 'g095', k: 'icon', s: 'Season', n: '복주머니', t: '복주머니 설날 새해 명절 신년 복 세뱃돈' },
+        { i: 'g096', k: 'icon', s: 'Symbol', n: '위 화살표', t: '화살표 상승 증가 인상 속도' },
+        { i: 'g097', k: 'icon', s: 'Symbol', n: '아래 화살표', t: '화살표 아래 인하 하락 다운' },
+        { i: 'g098', k: 'icon', s: 'Symbol', n: '플러스', t: '플러스 추가 결합 더하기' },
+        { i: 'g099', k: 'icon', s: 'Symbol', n: '나누기', t: '나누기 분할 나눔 배분' },
+        { i: 'g100', k: 'icon', s: 'Symbol', n: '번개', t: '번개 속도 기가 초고속 순식간' },
+        { i: 'g101', k: 'icon', s: 'Symbol', n: '마우스 커서 1', t: '커서 클릭 온라인 신청 바로가입' },
+        { i: 'g102', k: 'icon', s: 'Symbol', n: '마우스 커서 2', t: '커서 클릭 온라인 신청 바로가입' },
+        { i: 'g103', k: 'icon', s: 'Symbol', n: '모바일 B tv', t: '모바일Btv Btv 앱 모바일 콘텐츠' },
+        { i: 'g104', k: 'icon', s: 'Symbol', n: '챗봇', t: '챗봇 상담 문의 자동응답 AI' },
+        { i: 'g105', k: 'icon', s: 'Symbol', n: '폭죽', t: '폭죽 축하 기념 오픈 파티' },
+        { i: 'g106', k: 'icon', s: 'Symbol', n: '여행', t: '여행 휴가 바캉스 로밍 해외' },
+        { i: 'g107', k: 'illust', s: '성인(남)', n: '성인(남) 01', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g108', k: 'illust', s: '성인(남)', n: '성인(남) 02', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g109', k: 'illust', s: '성인(남)', n: '성인(남) 03', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g110', k: 'illust', s: '성인(남)', n: '성인(남) 04', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g111', k: 'illust', s: '성인(남)', n: '성인(남) 05', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g112', k: 'illust', s: '성인(남)', n: '성인(남) 06', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g113', k: 'illust', s: '성인(남)', n: '성인(남) 07', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g114', k: 'illust', s: '성인(남)', n: '성인(남) 08', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g115', k: 'illust', s: '성인(남)', n: '성인(남) 09', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g116', k: 'illust', s: '성인(남)', n: '성인(남) 10', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g117', k: 'illust', s: '성인(남)', n: '성인(남) 11', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g118', k: 'illust', s: '성인(남)', n: '성인(남) 12', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g119', k: 'illust', s: '성인(남)', n: '성인(남) 13', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g120', k: 'illust', s: '성인(남)', n: '성인(남) 14', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g121', k: 'illust', s: '성인(남)', n: '성인(남) 15', t: '성인 남성 남자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g122', k: 'illust', s: '성인(여)', n: '성인(여) 01', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g123', k: 'illust', s: '성인(여)', n: '성인(여) 02', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g124', k: 'illust', s: '성인(여)', n: '성인(여) 03', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g125', k: 'illust', s: '성인(여)', n: '성인(여) 04', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g126', k: 'illust', s: '성인(여)', n: '성인(여) 05', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g127', k: 'illust', s: '성인(여)', n: '성인(여) 06', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g128', k: 'illust', s: '성인(여)', n: '성인(여) 07', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g129', k: 'illust', s: '성인(여)', n: '성인(여) 08', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g130', k: 'illust', s: '성인(여)', n: '성인(여) 09', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g131', k: 'illust', s: '성인(여)', n: '성인(여) 10', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g132', k: 'illust', s: '성인(여)', n: '성인(여) 11', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g133', k: 'illust', s: '성인(여)', n: '성인(여) 12', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g134', k: 'illust', s: '성인(여)', n: '성인(여) 13', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g135', k: 'illust', s: '성인(여)', n: '성인(여) 14', t: '성인 여성 여자 일반고객 직장인 1인가구 전상품' },
+        { i: 'g136', k: 'illust', s: '키즈(남)', n: '키즈(남) 01', t: '키즈 아이 어린이 남아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g137', k: 'illust', s: '키즈(남)', n: '키즈(남) 02', t: '키즈 아이 어린이 남아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g138', k: 'illust', s: '키즈(남)', n: '키즈(남) 03', t: '키즈 아이 어린이 남아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g139', k: 'illust', s: '키즈(남)', n: '키즈(남) 04', t: '키즈 아이 어린이 남아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g140', k: 'illust', s: '키즈(남)', n: '키즈(남) 05', t: '키즈 아이 어린이 남아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g141', k: 'illust', s: '키즈(여)', n: '키즈(여) 01', t: '키즈 아이 어린이 여아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g142', k: 'illust', s: '키즈(여)', n: '키즈(여) 02', t: '키즈 아이 어린이 여아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g143', k: 'illust', s: '키즈(여)', n: '키즈(여) 03', t: '키즈 아이 어린이 여아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g144', k: 'illust', s: '키즈(여)', n: '키즈(여) 04', t: '키즈 아이 어린이 여아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g145', k: 'illust', s: '키즈(여)', n: '키즈(여) 05', t: '키즈 아이 어린이 여아 초등 키즈요금제 Btv키즈 어린이날' },
+        { i: 'g146', k: 'illust', s: '학생(남)', n: '학생(남) 01', t: '학생 남학생 청소년 중고등 대학생 신학기 학생할인 입학' },
+        { i: 'g147', k: 'illust', s: '학생(남)', n: '학생(남) 02', t: '학생 남학생 청소년 중고등 대학생 신학기 학생할인 입학' },
+        { i: 'g148', k: 'illust', s: '학생(여)', n: '학생(여) 01', t: '학생 여학생 청소년 중고등 대학생 신학기 학생할인 입학' },
+        { i: 'g149', k: 'illust', s: '학생(여)', n: '학생(여) 02', t: '학생 여학생 청소년 중고등 대학생 신학기 학생할인 입학' },
+        { i: 'g150', k: 'illust', s: '시니어(남)', n: '시니어(남) 01', t: '시니어 어르신 실버 노년 부모님 실버요금제 방문설치 어버이날' },
+        { i: 'g151', k: 'illust', s: '시니어(남)', n: '시니어(남) 02', t: '시니어 어르신 실버 노년 부모님 실버요금제 방문설치 어버이날' },
+        { i: 'g152', k: 'illust', s: '시니어(남)', n: '시니어(남) 03', t: '시니어 어르신 실버 노년 부모님 실버요금제 방문설치 어버이날' },
+        { i: 'g153', k: 'illust', s: '시니어(여)', n: '시니어(여) 01', t: '시니어 어르신 실버 노년 부모님 실버요금제 방문설치 어버이날' },
+        { i: 'g154', k: 'illust', s: '시니어(여)', n: '시니어(여) 02', t: '시니어 어르신 실버 노년 부모님 실버요금제 방문설치 어버이날' },
+        { i: 'g155', k: 'illust', s: '시니어(여)', n: '시니어(여) 03', t: '시니어 어르신 실버 노년 부모님 실버요금제 방문설치 어버이날' },
+        { i: 'g156', k: 'illust', s: 'B매니저(남)', n: 'B매니저(남) 01', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g157', k: 'illust', s: 'B매니저(남)', n: 'B매니저(남) 02', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g158', k: 'illust', s: 'B매니저(남)', n: 'B매니저(남) 03', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g159', k: 'illust', s: 'B매니저(여)', n: 'B매니저(여) 01', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g160', k: 'illust', s: 'B매니저(여)', n: 'B매니저(여) 02', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g161', k: 'illust', s: 'B매니저(여)', n: 'B매니저(여) 03', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g162', k: 'illust', s: 'B매니저(여)', n: 'B매니저(여) 04', t: 'B매니저 상담원 직원 매장 상담 접수 가입상담' },
+        { i: 'g163', k: 'illust', s: '기타 — 상황·관계', n: '군인', t: '군인 장병 군장병 병사 군인할인' },
+        { i: 'g164', k: 'illust', s: '기타 — 상황·관계', n: '시니어 부부', t: '시니어부부 어르신 실버결합 노부부 부모님 어버이날' },
+        { i: 'g165', k: 'illust', s: '기타 — 상황·관계', n: '가족', t: '가족 가족결합 온가족 4인가족 가정의달' },
+        { i: 'g166', k: 'illust', s: '기타 — 상황·관계', n: '모녀', t: '모녀 가족결합 엄마 딸 가정의달 어버이날' },
+        { i: 'g167', k: 'illust', s: '기타 — 상황·관계', n: '신혼부부', t: '신혼부부 신혼 결혼 이사 입주 혼수 커플' },
+        { i: 'g168', k: 'illust', s: '기타 — 상황·관계', n: '설치 매니저(남) 01', t: '설치기사 설치매니저 방문설치 기사 AS 점검' },
+        { i: 'g169', k: 'product', s: '목록', n: '**기종 미확인** — S펜 동반, Ultra 계열로 보임', t: '휴대폰 스마트폰 갤럭시 울트라 S펜 단말기' },
+        { i: 'g170', k: 'product', s: '목록', n: '**기종 미확인** — 후면 카메라 3구 세로', t: '휴대폰 스마트폰 갤럭시 버건디 단말기' },
+        { i: 'g171', k: 'product', s: '목록', n: '**기종 미확인** — 접힘+펼침 2컷', t: '폴더블 폴드 갤럭시 접는폰 단말기' },
+        { i: 'g172', k: 'product', s: '목록', n: '**기종 미확인** — 접힘', t: '폴더블 플립 갤럭시 접는폰 민트 단말기' },
+        { i: 'g173', k: 'product', s: '목록', n: '**기종 미확인** — 반접힘', t: '폴더블 플립 갤럭시 접는폰 민트 단말기' },
+        { i: 'g174', k: 'product', s: '목록', n: 'Galaxy A15', t: '갤럭시A15 A15 갤럭시 보급형 휴대폰 스마트폰 저가' },
+        { i: 'g175', k: 'product', s: '목록', n: 'Galaxy A35', t: '갤럭시A35 A35 갤럭시 보급형 휴대폰 스마트폰' },
+        { i: 'g176', k: 'product', s: '목록', n: 'Galaxy A35', t: '갤럭시A35 A35 갤럭시 핑크 보급형 휴대폰 스마트폰' },
+        { i: 'g177', k: 'product', s: '목록', n: 'Galaxy S23 FE', t: '갤럭시S23FE S23 갤럭시 휴대폰 스마트폰' },
+        { i: 'g178', k: 'product', s: '목록', n: '**기종 미확인** — 펼침', t: '폴더블 플립 갤럭시 접는폰 민트 단말기' },
+        { i: 'g179', k: 'product', s: '목록', n: '**기종 미확인** — 전후면 2컷', t: '휴대폰 스마트폰 갤럭시 세이지그린 단말기' },
+        { i: 'g180', k: 'product', s: '목록', n: '**기종 미확인**', t: '휴대폰 스마트폰 퍼플 단말기' },
+        { i: 'g181', k: 'product', s: '목록', n: 'Galaxy S25 계열 — 표기 확인 필요', t: '갤럭시S25 S25 갤럭시 플래그십 휴대폰 스마트폰 신형' },
+        { i: 'g182', k: 'product', s: '목록', n: 'Galaxy S25 Ultra', t: '갤럭시S25울트라 S25울트라 울트라 갤럭시 플래그십 휴대폰 최신' },
+        { i: 'g183', k: 'product', s: '목록', n: 'Galaxy S25+', t: '갤럭시S25플러스 S25플러스 갤럭시 플래그십 휴대폰 최신' },
+        { i: 'g184', k: 'product', s: '목록', n: 'Galaxy S25', t: '갤럭시S25 S25 갤럭시 플래그십 휴대폰 스마트폰 최신' },
+        { i: 'g185', k: 'product', s: '목록', n: 'iPhone 16 Pro', t: '아이폰16프로 아이폰 iPhone 애플 휴대폰 스마트폰 최신' },
+        { i: 'g186', k: 'product', s: '목록', n: 'Galaxy Wide 7', t: '갤럭시와이드7 와이드7 갤럭시 보급형 휴대폰 실속' },
+        { i: 'g187', k: 'product', s: '목록', n: 'Galaxy Z Fold 7', t: '갤럭시Z폴드7 폴드7 폴더블 폴드 접는폰 갤럭시 최신' },
+        { i: 'g188', k: 'product', s: '목록', n: 'Galaxy Z Flip 7 — 별도 컷', t: '갤럭시Z플립7 플립7 폴더블 플립 접는폰 갤럭시 최신' },
+        { i: 'g189', k: 'product', s: '목록', n: 'Galaxy Z Fold 7 — 별도 컷', t: '갤럭시Z폴드7 폴드7 폴더블 폴드 접는폰 갤럭시 최신' },
+        { i: 'g190', k: 'product', s: '목록', n: 'Galaxy Z Flip 7', t: '갤럭시Z플립7 플립7 폴더블 플립 접는폰 갤럭시 최신' },
+      ]
+    };
+  }
+  // <<< 생성 구간
+
+  // 그림 한 장을 가리키는 CSS 변수 이름. 마크업은 이 문자열만 받는다.
+  // (런타임이 동적 src 는 풀어 주지 않아 그림을 CSS 로 넣는다 — build-graphics.py 머리말)
+  gfxBg(id) {
+    const g = this.gfxAt(id);
+    return g ? 'var(--g-' + g.i + ')' : 'none';
+  }
+  gfxAt(id) {
+    return this.gfxData().gfx.filter((g) => g.i === id)[0] || null;
+  }
+  gfxName(id) {
+    const g = this.gfxAt(id);
+    return g ? g.n : '없음';
+  }
+
+  // 블록의 후보를 순위대로. template.md 2.5 —
+  //   1) 원고 문구에 검색어 낱말이 몇 개 들어 있는지  2) 후보 풀의 섹션 순서  3) 인덱스 행 순서
+  // 문구에는 블록 이름(‘이사’·‘추석’)도 넣는다. 아직 한 글자도 안 쳤을 때
+  // 붙일 기본 그래픽이 그 이름에서 나온다.
+  // 원고에 검색어가 들어 있나 (template.md 2.5).
+  // 한 글자는 낱말 첫머리에서만 센다 — '해'가 '올해'에, '비'가 '서비스'에, '복'이 '행복'에
+  // 박혀서 날씨·복주머니가 엉뚱한 원고의 1등이 됐다. 두 글자 이상은 낱말 안쪽도 센다 —
+  // 거기까지 경계를 보면 '기가인터넷'·'4회선'·'30만원' 같은 합성어가 전부 깨진다.
+  hitTag(t, copy) {
+    if (t.length > 1) return copy.indexOf(t) >= 0;
+    let i = copy.indexOf(t);
+    while (i >= 0) {
+      if (i === 0 || !this.isWordChar(copy.charCodeAt(i - 1))) return true;
+      i = copy.indexOf(t, i + 1);
+    }
+    return false;
+  }
+  // 낱말을 이루는 글자 — 숫자 · 영문 · 한글(음절과 자모)
+  isWordChar(c) {
+    return (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122)
+        || (c >= 0xAC00 && c <= 0xD7A3) || (c >= 0x1100 && c <= 0x11FF);
+  }
+
+  gfxRank(b) {
+    if (!b) return [];
+    const pool = this.gfxData().pool[b.cat];
+    if (!pool) return [];
+    const copy = [b.name, b.headline, b.sub, b.product, b.price, b.rate, b.note]
+      .filter(Boolean).join(' ');
+    const out = [];
+    this.gfxData().gfx.forEach((g, idx) => {
+      const secs = pool[g.k] || [];
+      const sec = secs.indexOf(g.s);
+      if (sec < 0) return;
+      let n = 0;
+      g.t.split(' ').forEach((t) => { if (t && this.hitTag(t, copy)) n++; });
+      out.push({ g: g, n: n, sec: sec, idx: idx });
+    });
+    out.sort((x, y) => (y.n - x.n) || (x.sec - y.sec) || (x.idx - y.idx));
+    return out;
+  }
+  // 라이브러리에서 담을 때 붙는 기본 그래픽. 한 낱말도 안 걸리면 비운다 (2.5)
+  defaultAsset(b) {
+    const top = this.gfxRank(b)[0];
+    return top && top.n > 0 ? top.g.i : '';
+  }
+
+  // 블록 순서 바꾸기 — 라이브러리는 항상 맨 아래에 담는다
+  moveBlock(i, d) {
+    const st = this.state;
+    const j = i + d;
+    if (j < 0 || j >= st.chosen.length) return;
+    const next = st.chosen.slice();
+    const t = next[i];
+    next[i] = next[j];
+    next[j] = t;
+    const sel = st.sel === i ? j : (st.sel === j ? i : st.sel);
+    this.setState({ chosen: next, sel: sel });
+  }
+
+  // 1단계 유형 — 블록 배경 기본값과 경계 처리를 정한다.
+  // 1단계 카드의 도식(흰 띠+헤어라인 / 컬러 띠 / 파란 타이틀 바)과 같은 결과가 나와야 한다.
+  typeDefs() {
+    const w = { price: '#FFFFFF', gift: '#FFFFFF', message: '#FFFFFF' };
+    return {
+      line: { no: 1, short: '선 분할', bg: w, rule: true, title: false },
+      color: { no: 2, short: '컬러 분할', rule: false, title: false,
+               bg: { price: '#E9EEFF', gift: '#F5F5F6', message: '#000028' } },
+      title: { no: 3, short: '타이틀 분할', bg: w, rule: false, title: true }
+    };
+  }
+  typeDef() { return this.typeDefs()[this.state.picked] || this.typeDefs().color; }
+  typeBg(kind) {
+    const b = this.typeDef().bg;
+    return b[kind] || b.message;
+  }
+  // 스와치로 직접 고른 블록만 그 값을 지킨다. 나머지는 유형을 따라간다
+  effBg(b) {
+    if (!b) return '#FFFFFF';
+    return b.bgUser ? b.bg : this.typeBg(b.kind);
+  }
+
+  // 유형 3 타이틀 바 문구 — 대리점이 고친 제목의 첫 줄을 그대로 쓴다.
+  // 제목 칸이 없는 요금형은 상품명이 그 자리다 (편집 패널에 제목이 없다).
+  // 라이브러리 이름은 쓰지 않는다 — '사은품 단독 강조 (그래픽)' 같은 내부 이름이
+  // 원고에 인쇄되던 자리다. 표시 문구가 그대로면 감추지 않고 보여 준다 —
+  // 4단계 미입력 검사가 같은 값을 잡아 내보내기를 막는다.
+  barTitle(b) {
+    if (!b) return '';
+    return String(b.headline || b.product || '').split('\n')[0].trim();
+  }
+
+  // 바가 가져간 줄은 본문에서 뺀다 — 같은 문구를 한 블록에 두 번 찍지 않는다.
+  // 제목 첫 줄이 타이틀 바로 올라갔으니 본문 제목은 둘째 줄부터다.
+  // 요금형은 바에 상품명이 올라가므로 본문의 상품명 줄을 감춘다 (showProduct).
+  bodyHeadline(b) {
+    const h = String((b && b.headline) || '');
+    if (!this.typeDef().title) return h;
+    return h.split('\n').slice(1).join('\n');
+  }
+
+  // 줄 수는 입력 단계에서 자른다 — wiki/template.md 3 (제목 3줄 · 본문 2줄)
+  clampLines(v, max) {
+    const t = String(v == null ? '' : v);
+    const a = t.split('\n');
+    return a.length <= max ? t : a.slice(0, max).join('\n');
+  }
+
+  // 규정 줄 수를 넘는 글자는 아예 들어가지 않는다 — 개행으로 한 번, 감긴 줄로 한 번 자른다.
+  // template.md 3 은 초과를 금지한다. 4단계에서 잡아 돌려보내는 대신 칠 때 막는다.
+  // 들어가는 가장 긴 앞부분을 이분탐색으로 찾는다 (글이 길수록 줄은 줄지 않는다).
+  clampToFit(v, max, role) {
+    const t = this.clampLines(v, max);
+    const idx = this.state.sel;
+    const fit = this.withFlyer((f) => {
+      const blk = f.querySelectorAll('.fblk')[idx];
+      const sample = blk && blk.querySelector('[data-line="' + role + '"]');
+      if (!sample) return null;                                  // 못 재면 개행 제한만
+      if (this.measureLines(t, sample) <= max) return t;
+      let lo = 0, hi = t.length;
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (this.measureLines(t.slice(0, mid), sample) <= max) lo = mid;
+        else hi = mid - 1;
+      }
+      return t.slice(0, lo);
+    });
+    return fit == null ? t : fit;
+  }
+
+  // 잘려 나간 글자는 입력란에서도 되돌린다 — 값 바인딩만으로는 화면이 앞서 나간다.
+  // 자르는 쪽은 늘 끝이라 커서는 치던 자리에 그대로 둔다.
+  syncField(e, v) {
+    if (v === e.target.value) return v;
+    const at = Math.min(e.target.selectionStart == null ? v.length : e.target.selectionStart, v.length);
+    e.target.value = v;
+    try { e.target.setSelectionRange(at, at); } catch (err) { /* 입력란이 아니면 그만둔다 */ }
+    return v;
+  }
+
+  // 조사 — 받침 유무로 고른다. '단일 할인은' · '이사는' · '할인율이' · '정상가가'.
+  // 괄호·숫자·영문으로 끝나면 그 앞의 마지막 한글 음절을 본다 ('사은품 단독 강조 (그래픽)은')
+  josa(word, withT, without) {
+    const s = String(word == null ? '' : word);
+    for (let i = s.length - 1; i >= 0; i -= 1) {
+      const c = s.charCodeAt(i);
+      if (c >= 0xAC00 && c <= 0xD7A3) return (c - 0xAC00) % 28 !== 0 ? withT : without;
+    }
+    return withT;
+  }
+
+  // 배경 팔레트 — 3단계 스와치와 4단계 검증이 같은 표를 본다.
+  // 배경으로 쓸 수 있는 값의 전부. 여기 없는 값은 4단계가 위반으로 잡는다 (brand.md 1.5 · 1.7)
+  paletteDefs() {
+    return [
+      { name: 'B Navy 2', hex: '#000028' }, { name: 'B Blue', hex: '#3617CE' },
+      { name: 'B Gray', hex: '#E2E4E6' }, { name: 'Sub Gray 7', hex: '#F5F5F6' },
+      { name: 'White', hex: '#FFFFFF' }, { name: 'Sub Blue 6', hex: '#E9EEFF' },
+      { name: 'Sub Blue 5', hex: '#D2DBFF' },
+      // 3차 서브 컬러는 배경으로 쓸 때 명도 40 만 (1.5).
+      // 1.6 은 이 행을 '온라인 전용' 으로 적어 두었으나, 인쇄물 적용을 BX 가 승인했다
+      // (2026-09-15 · 대조결과.md 24). 그래서 별도 경고 없이 통과시킨다
+      { name: 'B Orange 40', hex: '#F7CAB4' },
+      { name: 'B Yellow 40', hex: '#F9E8C0' },
+      { name: 'B Cyan 40', hex: '#BCE2FF' }
+    ];
+  }
+  // 예전 문서가 들고 있을 수 있는 명도 100 원색 — 배경으로는 규정 밖이다
+  legacyBg(hex) {
+    const m = {
+      '#EB7B44': 'B Orange (명도 100)', '#F1C661': 'B Yellow (명도 100)',
+      '#57B6FF': 'B Cyan (명도 100)', '#54D189': 'B Green (명도 100)',
+      '#EAA6C8': 'B Pink (명도 100)'
+    };
+    return m[String(hex || '').toUpperCase()] || null;
+  }
+  paletteAt(hex) {
+    const h = String(hex || '').toUpperCase();
+    return this.paletteDefs().filter((d) => d.hex.toUpperCase() === h)[0];
+  }
+  hexName(hex) {
+    const f = this.paletteAt(hex);
+    if (f) return f.name;
+    return this.legacyBg(hex) || String(hex || '').toUpperCase();
+  }
+  bgOffGuide(hex) { return !this.paletteAt(hex); }
+
+  // 배경이 아닌, 도구가 파생시키는 값 — brand.md 1.1 ~ 1.4
+  inkDefs() {
+    return [
+      { name: 'Black', hex: '#000000' }, { name: 'White', hex: '#FFFFFF' },
+      { name: 'B Blue', hex: '#3617CE' }, { name: 'B Navy 2', hex: '#000028' },
+      { name: 'B Gray', hex: '#E2E4E6' }, { name: 'Sub Gray 3', hex: '#5B5D62' },
+      { name: 'Sub Gray 4', hex: '#808288' }, { name: 'Sub Gray 6', hex: '#CBCDD2' }
+    ];
+  }
+  inkAt(hex) {
+    const h = String(hex || '').toUpperCase();
+    return this.inkDefs().filter((d) => d.hex.toUpperCase() === h)[0];
+  }
+
+  // 사이즈별 타이포 규격 (pt) — wiki/template.md 3
+  typeSpec(size) {
+    const t = {
+      '전면': { head: [36, 40], body: [13, 17] },
+      '1/2': { head: [22, 26], body: [10, 14] },
+      '1/3': { head: [14, 18], body: [8, 12] },
+      '1/4': { head: [14, 18], body: [7, 12] }
+    };
+    return t[size] || t['1/4'];
+  }
+
+  // 규정(pt) -> 미리보기(px). 미리보기 400 x 568 px 가 A5 419.53 x 595.28 pt 를 그린다.
+  // 환산은 이 한 줄뿐이고, 원고의 글자 · 그래픽 크기가 전부 여기서 나온다.
+  ptPx(pt) { return pt * 400 / 419.53; }
+  pxPt(px) { return Math.round(px * 419.53 / 400 * 10) / 10; }
+
+  // 사이즈별 실제 렌더 크기 — typeSpec 범위의 하한을 올림한 값이다.
+  // 하한인 이유: 제목 3줄 · 본문 2줄이 블록 안에 들어가야 한다 (template.md 3).
+  // 올림인 이유: 내림하면 환산 뒤 규정 하한 밑으로 떨어진다 (36pt -> 34px -> 35.7pt).
+  typePx(size) {
+    const sp = this.typeSpec(size);
+    const head = Math.ceil(this.ptPx(sp.head[0]));
+    return {
+      head: head,
+      body: Math.ceil(this.ptPx(sp.body[0])),
+      gap: Math.round(head * 0.27),     // 제목 <-> 본문 — 제목에 비례한다
+      bar: Math.round(head * 1.5)       // 유형 3 타이틀 바 — 제목 첫 줄이 여기 앉으므로 제목 크기로 찍는다
+    };
+  }
+
+  // 고정 영역 — template.md 3 '고정 영역 규격'. 대리점이 못 고치는 자리다
+  fixedPx() {
+    return { label: Math.round(this.ptPx(8.5)), phone: Math.round(this.ptPx(14)) };
+  }
+
+  // 원고의 모든 치수를 블록마다 한 번만 낸다. 3단계(400 x 568)가 이 값을 그대로 쓰고
+  // 4단계 축소판은 여기에 0.7 을 곱해 쓴다 — 두 화면이 상수를 따로 들고 있어
+  // 축소판이 3단계의 축소판이 아니었다 (아이콘 +25% · 사은품 상자 +37%).
+  flyerMetrics() {
+    const td = this.typeDef();
+    const chosen = this.state.chosen;
+    // 타이틀 바는 flex:none 이라 12칸이 나눠 갖는 높이를 그만큼 줄인다
+    const bars = td.title ? chosen.reduce((a, b) => a + this.typePx(b.size).bar, 0) : 0;
+    const unit = Math.max(0, 486 - bars) / 12;      // 486 = 568 - 머리 40 - 발 42
+    return chosen.map((b) => {
+      const t = this.typePx(b.size);
+      const h = this.units(b.size) * unit;
+      const inner = Math.max(0, h - 38);            // .fblk 세로 패딩 19 x 2
+      return {
+        h: h, bar: td.title ? t.bar : 0,
+        head: t.head, body: t.body, gap: t.gap,
+        // 그래픽 슬롯 — 한 변으로 폭과 높이를 같이 정한다. 정사각 아이콘은 그 크기로 차고,
+        // 세로로 긴 것(키즈 161x300 · 태그 130x220)은 높이가 먼저 걸려 슬롯 안에 남는다.
+        // 블록 안쪽 높이의 0.68 이 기준이라 어떤 사이즈에서도 넘치지 않는다 —
+        // 고정 px 이던 시절 1/4 에서 110~146px 짜리가 83px 칸을 넘어 잘려 나가던 자리다.
+        //
+        // 다만 옆에 세우면 본문 폭(400 - 24 x 2 = 352)의 0.45 가 한계다. 전면은 그 한계를
+        // 넘는다 — 규정대로 제목을 36pt 로 놓으면 남는 글자 폭이 182px 뿐이라 '통신 요금 할인
+        // 혜택' 이 '할 / 인' 으로 갈라진다. 그래서 전면에서는 그래픽을 글 아래로 내리고
+        // (stack) 폭을 다 쓴다. 판정은 슬롯이 폭 한계를 넘는지 하나뿐이다.
+        ...(function () {
+          const tall = Math.round(inner * 0.68);
+          const stack = tall > 158;
+          return { stack: stack, gfx: Math.max(24, stack ? Math.round(inner * 0.45) : tall) };
+        }())
+      };
+    });
+  }
+
+  // 원고에 실제로 찍히는 글자 크기 — 미리보기 DOM 에서 읽어 pt 로 돌린다.
+  // typeSpec 을 그대로 읊으면 마크업에 상수를 박아도 검사를 통과한다 (실제로 그랬다).
+  flyerSizes() {
+    const chosen = this.state.chosen;
+    return this.withFlyer((f) => {
+      const blks = f.querySelectorAll('.fblk');
+      if (blks.length !== chosen.length) return null;
+      const pt = (el) => (el ? this.pxPt(parseFloat(getComputedStyle(el).fontSize)) : 0);
+      return chosen.map((b, i) => ({
+        size: b.size, name: b.name,
+        head: pt(blks[i].querySelector('[data-pt="head"]')),
+        body: pt(blks[i].querySelector('[data-pt="body"]'))
+      }));
+    });
+  }
+
+  // 전단지 이름 — 이름 입력란이 아직 없으므로 첫 블록의 제목 첫 줄에서 가져온다
+  docTitle() {
+    const b = this.state.chosen[0];
+    if (!b) return '새 전단지';
+    const t = String(b.headline || b.product || b.name || '').split('\n')[0].trim();
+    // 미입력 표시 문구는 제목 · 파일명으로 새어 나가지 않는다
+    if (!t || this.isPlaceholder(t)) return b.name || '새 전단지';
+    return t;
+  }
+  fileSlug(s) {
+    const t = String(s || '').replace(/[^0-9A-Za-z가-힣_-]/g, '');
+    return t || '무제';
+  }
+  outFile(mode) {
+    return this.fileSlug(this.state.f.store) + '_' + this.fileSlug(this.docTitle())
+      + '_A5_' + (mode === 'print' ? '인쇄용' : '공유용') + '.pdf';
+  }
+
+  // 출력 전 확인 — 고정 문구가 아니라 지금 담긴 문서에서 계산한다
+  checks4() {
+    const chosen = this.state.chosen;
+    const out = [];
+
+    // 1. 블록 · 칸
+    const used = this.usedUnits();
+    if (chosen.length === 0) {
+      out.push({ ok: false, t: '블록이 하나도 없습니다 — 2단계에서 블록을 담아야 출력할 수 있습니다' });
+    } else {
+      out.push({
+        ok: used >= 12,
+        warn: used < 12,          // 가이드가 허용하는 조합이라 막지 않는다 (template.md 1)
+        t: used >= 12
+          ? '블록 ' + chosen.length + '개 · 한 장 12칸을 모두 채웠습니다'
+          : '블록 ' + chosen.length + '개 · 12칸 중 ' + used + '칸 — 나머지 ' + (12 - used) + '칸은 빈 채로 인쇄됩니다'
+      });
+    }
+
+    // 2. 줄 수 — template.md 3 (제목 최대 3줄 · 본문 최대 2줄)
+    //    개행이 아니라 원고에 찍히는 줄을 센다 — 줄바꿈 없이 길게 친 한 줄도 감기면 여러 줄이다
+    const counts = this.flyerLines();
+    let hMax = 0;
+    let sMax = 0;
+    const over = [];
+    chosen.forEach((b, i) => {
+      const h = counts[i] ? counts[i].head : 0;
+      const s = counts[i] ? counts[i].sub : 0;
+      if (h > hMax) hMax = h;
+      if (s > sMax) sMax = s;
+      if (h > 3) over.push(b.name + ' 제목 ' + h + '줄');
+      if (s > 2) over.push(b.name + ' 본문 ' + s + '줄');
+    });
+    out.push({
+      ok: over.length === 0,
+      t: over.length === 0
+        ? '제목 ' + hMax + '줄 · 본문 ' + sMax + '줄 — 감긴 줄까지 세어 제목 3줄 · 본문 2줄 규정 안입니다'
+        : '줄 수 초과 — ' + over.join(', ') + ' (감긴 줄 포함 · 제목 최대 3줄 · 본문 최대 2줄)'
+    });
+
+    // 3. 글자 크기 — template.md 3. 규정표를 읊지 않고 원고에 찍히는 값을 재서 대조한다.
+    //    전에는 typeSpec 의 하한을 그대로 보고해, 마크업에 박힌 상수(사은품 제목 11px =
+    //    11.5pt 고정)가 네 사이즈 규정을 전부 벗어나 있어도 그냥 통과했다.
+    const sizes = this.flyerSizes() || [];
+    const offSpec = [];
+    let minPt = this.pxPt(this.fixedPx().label);      // 고정 라벨 8.5pt
+    sizes.forEach((z) => {
+      const sp = this.typeSpec(z.size);
+      if (z.head && (z.head < sp.head[0] || z.head > sp.head[1])) {
+        offSpec.push(z.name + ' 제목 ' + z.head + 'pt (' + z.size + ' 규정 '
+          + sp.head[0] + '~' + sp.head[1] + 'pt)');
+      }
+      if (z.body && (z.body < sp.body[0] || z.body > sp.body[1])) {
+        offSpec.push(z.name + ' 본문 ' + z.body + 'pt (' + z.size + ' 규정 '
+          + sp.body[0] + '~' + sp.body[1] + 'pt)');
+      }
+      if (z.body && z.body < minPt) minPt = z.body;
+    });
+    out.push({
+      ok: offSpec.length === 0 && minPt >= 6,
+      t: offSpec.length > 0
+        ? '규정 크기를 벗어났습니다 — ' + offSpec.join(', ')
+        : '가장 작은 글자 ' + minPt + ' pt — 사이즈별 규정 범위 안이고 본문 최소 6 pt 도 지켰습니다'
+    });
+
+    // 4. 로고 — wiki/assets-logo.md 적용 크기표 (CI 13.5 mm / BI 8.7 mm)
+    out.push({ ok: true, t: '로고는 상단 한 곳 — CI 13.5 mm · BI 8.7 mm · 여백 1.1X · 최소 5 mm 충족' });
+
+    // 5. 컬러 — brand.md 1.5 / 1.6
+    const bgs = [];
+    chosen.forEach((b) => {
+      const u = String(this.effBg(b) || '').toUpperCase();
+      if (u && bgs.indexOf(u) < 0) bgs.push(u);
+    });
+    const offBg = bgs.filter((h) => this.bgOffGuide(h));
+    const all = [];
+    const add = (c) => {
+      const u = String(c || '').toUpperCase();
+      if (u && all.indexOf(u) < 0) all.push(u);
+    };
+    bgs.forEach((bg) => { add(bg); add(this.fgFor(bg)); add(this.mutedFor(bg)); add(this.accentFor(bg)); });
+    ['#FFFFFF', '#000028', '#5B5D62', '#000000', '#E2E4E6'].forEach(add);   // 머리 · 발 고정색
+    const unknown = all.filter((h) => !this.paletteAt(h) && !this.inkAt(h));
+    out.push({
+      ok: offBg.length === 0 && unknown.length === 0,
+      t: offBg.length > 0
+        ? '배경 ' + offBg.map((h) => this.hexName(h)).join(' · ') + ' — 3차 서브 컬러는 명도 40만 배경으로 쓸 수 있습니다 (1.5)'
+        : (unknown.length > 0
+            ? '가이드에 없는 색이 쓰였습니다 — ' + unknown.join(' · ') + ' (1.7)'
+            : '쓰인 색 ' + all.length + '가지 전부 가이드 값과 대조 완료 · 서체는 SKT Sans 두 종뿐')
+    });
+
+    // 6. 미입력 — 담기만 하고 안 고친 표시 문구는 그대로 인쇄된다
+    const unfilled = [];
+    chosen.forEach((b) => {
+      const f = this.placeholderFields(b);
+      if (f.length > 0) unfilled.push(b.name + ' ' + f.join(' · '));
+    });
+    const unfilledText = unfilled.join(', ');
+    out.push({
+      ok: unfilled.length === 0,
+      t: unfilled.length === 0
+        ? (chosen.length === 0
+            ? '미입력 항목 없음'
+            : '블록 ' + chosen.length + '개 모두 실제 문구가 들어갔습니다 — 미입력 없음')
+        : '미입력 — ' + unfilledText + this.josa(unfilledText, '이', '가')
+          + ' 안내 문구 그대로입니다'
+    });
+
+    // 7. 타이틀 바 — 유형 3 에서만 센다. 제목 첫 줄이 블록 경계로 인쇄되므로
+    //    비어 있으면 글자 없는 파란 띠가 그대로 찍힌다. 미입력 검사는 빈 값을 잡지 않는다
+    if (this.typeDef().title && chosen.length > 0) {
+      const blank = chosen.filter((b) => !this.barTitle(b)).map((b) => b.name);
+      const blankText = blank.join(' · ');
+      out.push({
+        ok: blank.length === 0,
+        t: blank.length === 0
+          ? '타이틀 ' + chosen.length + '개 — 제목 첫 줄이 블록 경계로 인쇄됩니다 (요금형은 상품명)'
+          : '타이틀 비어 있음 — ' + blankText + this.josa(blankText, '은', '는')
+            + ' 제목 첫 줄이 없어 글자 없는 띠만 인쇄됩니다 (요금형은 상품명)'
+      });
+    }
+
+    return out.map((c) => ({
+      t: c.t,
+      ok: !!c.ok,
+      warn: !c.ok && !!c.warn,          // 참고 — 내보내기를 막지 않는다
+      bad: !c.ok && !c.warn,            // 위반 — 내보내기를 막는다
+      color: c.ok ? '#37393B' : (c.warn ? '#37393B' : '#A63244')
+    }));
+  }
+
+  // A5 증명 — 블록 높이는 12칸 모델을 그대로 따른다 (template.md 1)
+  sheetViews() {
+    const td = this.typeDef();
+    const MINI = 280 / 400;              // 280 x 400 축소판은 미리보기 400 x 568 의 0.7 이다
+    const metrics = this.flyerMetrics();
+    const mini = (n) => Math.round(n * MINI) + 'px';
+    const tmplOf = (k) => (k === 'price' ? 'price' : (k === 'gift' ? 'gift' : 'hero'));
+    return this.state.chosen.map((b, i) => {
+      const m = metrics[i];
+      const t = tmplOf(b.kind);
+      const bg = this.effBg(b);
+      const fg = this.fgFor(bg);
+      const accent = this.accentFor(bg);
+      return {
+        h: mini(m.h),
+        rule: td.rule && this.state.chosen.indexOf(b) > 0 ? '1px solid #E2E4E6' : 'none',
+        hasTitle: !!td.title,
+        title: this.barTitle(b),
+        bg: bg, fg: fg, muted: this.mutedFor(bg), accent: accent,
+        badgeOn: accent === '#ffffff' ? '#000028' : '#ffffff',
+        hSize: mini(m.head), bSize: mini(m.body),
+        gap: mini(m.gap), gfx: mini(m.gfx), barH: mini(m.bar),
+        dir: m.stack ? 'column' : 'row',
+        gfxW: m.stack ? '100%' : mini(m.gfx),
+        gfxAlign: m.stack ? 'center' : 'flex-end',
+        heroAlign: m.stack ? 'center' : 'stretch',
+        isHero: t === 'hero', isPrice: t === 'price', isGift: t === 'gift',
+        headline: this.bodyHeadline(b), sub: b.sub || '', showProduct: !td.title,
+        showHead: this.bodyHeadline(b).trim() !== '',   // 빈 제목 칸은 아예 빼서 줄간격이 남지 않게
+        alignPrice: m.stack ? 'center' : (td.title ? 'flex-start' : 'flex-end'),
+        alignGift: m.stack ? 'center' : (td.title ? 'flex-start' : 'center'),
+        noteInline: !!td.title, noteBelow: !td.title,
+        product: b.product || '', list: b.list || '',
+        price: b.price || '', rate: b.rate || '', note: b.note || '',
+        hasGfx: !!b.asset, gfxBg: this.gfxBg(b.asset)
+      };
+    });
+  }
+
+  // ── 4단계 내보내기 ──────────────────────────────────────────────
+  // 아트보드끼리는 상태를 주고받을 수 없다 — 각각 sandbox="allow-scripts" 프레임이다.
+  // 그 샌드박스에는 allow-downloads · allow-popups · allow-modals 가 없어서 내려받기도,
+  // 새 창도, window.print() 도 막혀 있다. 통하는 건 execCommand('copy') 하나뿐이라,
+  // 편집한 전단지를 '한 장짜리 인쇄 원고 HTML' 로 만들어 클립보드에 넣는다.
+  // 붙여넣어 저장하고 브라우저에서 인쇄 → PDF 로 저장하면 아래 규격 그대로 나온다.
+
+  // 미리보기 DOM 을 그대로 쓴다 — 두 번째 렌더러를 두면 화면과 결과가 갈라진다.
+  // 4단계에서는 pane2 이 숨어 있어 높이가 0 이라, 읽는 동안만 펴고 zoom 을 1 로 되돌린다.
+  withFlyer(fn) {
+    const pane = document.querySelector('.pane2');
+    const f = pane && pane.querySelector('.flyer');
+    if (!f) return null;
+    const pd = pane.style.display, fz = f.style.zoom;
+    pane.style.display = 'flex';
+    f.style.zoom = '1';
+    try { return fn(f); } finally { pane.style.display = pd; f.style.zoom = fz; }
+  }
+
+  // 미리보기가 쓰는 @font-face 를 그대로 가져온다. 규칙에 서브셋이 data: URI 로 박혀 있어
+  // 원고 한 파일만으로 SKT Sans 가 렌더링된다 (인쇄 → PDF 가 서브셋을 임베딩한다).
+  // 원고에 실제로 쓰인 그래픽만 CSS 변수로 함께 내보낸다. 미리보기 DOM 을 그대로
+  // 복사해 나가는데(f.outerHTML) 그림이 var(--g-xxx) 로 들어 있어, 변수 정의가 없으면
+  // 원고에서 그림만 사라진다. 190개를 다 싣지는 않는다 — 한 장이 쓰는 건 많아야 넷이다.
+  gfxCss() {
+    const seen = {};
+    let out = '';
+    this.state.chosen.forEach((b) => {
+      if (!b.asset || seen[b.asset]) return;
+      seen[b.asset] = true;
+      const v = window.getComputedStyle(document.documentElement)
+        .getPropertyValue('--g-' + b.asset);
+      if (v) out += ':root { --g-' + b.asset + ':' + v + '; }\n';
+    });
+    return out;
+  }
+
+  fontCss() {
+    let out = '';
+    Array.prototype.forEach.call(document.styleSheets, (ss) => {
+      let rules;
+      try { rules = ss.cssRules; } catch (e) { return; }
+      Array.prototype.forEach.call(rules || [], (r) => {
+        if (r.cssText && r.cssText.indexOf('@font-face') === 0) out += r.cssText + '\n';
+      });
+    });
+    return out;
+  }
+
+  copyText(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  exportHtml(mode) {
+    const isPrint = mode === 'print';
+    const Z = 1.3975;                      // 미리보기 400 x 568 → 마감 559 x 794
+    const BX = isPrint ? 11.5 : 0;         // 재단 여백 3 mm — 공유용은 마감 크기 그대로
+    const BY = isPrint ? 11 : 0;
+    const W = 559 + BX * 2, H = 794 + BY * 2;
+    const px = (n) => Math.round(n * 100) / 100 + 'px';
+    const mm = (n) => Math.round(n / (96 / 25.4)) + 'mm';
+
+    return this.withFlyer((f) => {
+      // 블록 배경을 재단 여백까지 흘린다 — 세로로 쌓인 자식 높이를 그대로 따른다
+      let y = 0, bands = '';
+      Array.prototype.forEach.call(f.children, (el) => {
+        const top = y * Z + BY, h = el.offsetHeight * Z;
+        y += el.offsetHeight;
+        if (!isPrint) return;
+        const bg = window.getComputedStyle(el).backgroundColor;
+        ['left:0', 'right:0'].forEach((side) => {
+          bands += '<i style="position:absolute;' + side + ';width:' + px(BX)
+            + ';top:' + px(top) + ';height:' + px(h) + ';background:' + bg + '"></i>';
+        });
+      });
+
+      // 크롭마크 — 마감선을 가리키고 전부 재단 여백 안이라 잘려 나간다
+      let marks = '';
+      if (isPrint) {
+        [['left:0', 'top:' + px(BY - 0.5), 'width:7px;height:1px'],
+         ['left:' + px(BX - 0.5), 'top:0', 'width:1px;height:7px'],
+         ['right:0', 'top:' + px(BY - 0.5), 'width:7px;height:1px'],
+         ['right:' + px(BX - 0.5), 'top:0', 'width:1px;height:7px'],
+         ['left:0', 'bottom:' + px(BY - 0.5), 'width:7px;height:1px'],
+         ['left:' + px(BX - 0.5), 'bottom:0', 'width:1px;height:7px'],
+         ['right:0', 'bottom:' + px(BY - 0.5), 'width:7px;height:1px'],
+         ['right:' + px(BX - 0.5), 'bottom:0', 'width:1px;height:7px']]
+          .forEach((m) => {
+            marks += '<i style="position:absolute;background:#000;'
+              + m[0] + ';' + m[1] + ';' + m[2] + '"></i>';
+          });
+      }
+
+      return [
+        '<!doctype html>',
+        '<html lang="ko"><head><meta charset="utf-8">',
+        '<title>' + this.outFile(mode).replace(/\.pdf$/, '') + '</title>',
+        '<style>',
+        '@page { size: ' + mm(W) + ' ' + mm(H) + '; margin: 0; }',
+        this.fontCss(),
+        this.gfxCss(),
+        'html, body { margin: 0; padding: 0; background: #ffffff; }',
+        '.page { position: relative; width: ' + px(W) + '; height: ' + px(H) + ';',
+        '  background: #ffffff; overflow: hidden; font-family: "SKT Sans Text",',
+        '  -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,',
+        '  "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }',
+        '.t { font-family: "SKT Sans Display", "SKT Sans Text", sans-serif; }',
+        '.zoom { position: absolute; left: ' + px(BX) + '; top: ' + px(BY) + '; zoom: ' + Z + '; }',
+        '.flyer { width: 400px; height: 568px; background: #ffffff; overflow: hidden;',
+        '  display: flex; flex-direction: column; }',
+        '.fhead { height: 40px; flex: none; background: #ffffff; display: flex;',
+        '  align-items: center; padding: 0 24px; gap: 8px; }',
+        '.fchip { font-size: 8px; letter-spacing: -0.08px; font-weight: 600; color: #000028;',
+        '  border: 1px solid #000028; border-radius: 9999px; padding: 3px 7px; }',
+        '.fblk { position: relative; display: flex; padding: 19px 24px; gap: 12px;',
+        '  overflow: hidden; outline: none !important; cursor: default; }',
+        '.ffoot { height: 42px; flex: none; display: flex; align-items: center; padding: 0 24px;',
+        '  gap: 8px; background: #ffffff; border-top: 1px solid #E2E4E6; }',
+        '.sp { flex-grow: 1; }',
+        '.page * { outline: none !important; }',                 // 선택 테두리
+        '.froom { border: none !important; color: transparent !important; }',  // 빈 칸 안내
+        '.froom * { display: none !important; }',
+        '</style></head><body>',
+        '<div class="page">' + bands + '<div class="zoom">' + f.outerHTML + '</div>' + marks + '</div>',
+        '</body></html>'
+      ].join('\n');
+    });
+  }
+
+  vals3() {
+    const st = this.state;
+    const mode = st.mode;
+    const chip = (on) => ({
+      bg: on ? '#1F2021' : '#ffffff',
+      fg: on ? '#ffffff' : '#1F2021',
+      border: on ? '1px solid #1F2021' : '1px solid #E2E4E6'
+    });
+    const modes = [
+      { id: 'print', label: '인쇄소 입고용' },
+      { id: 'screen', label: '화면 공유용' }
+    ].map((m) => ({
+      label: m.label, ...chip(mode === m.id),
+      pick: () => this.setState({ mode: m.id, exported: false })
+    }));
+
+    const file = this.outFile(mode);
+    const printSpecs = [
+      { k: '판형', v: 'A5 · 148 × 210 mm (세로)' },
+      { k: '재단 여백', v: '사방 3 mm 포함 — 출력 대지 154 × 216 mm, 크롭마크 포함' },
+      { k: '이미지', v: '글자는 벡터 유지. 그래픽은 160 px 축소본 임베딩 — 가장 큰 칸에서 약 78 dpi 로, 인쇄 선명도가 필요하면 BX팀 원본으로 교체하세요' },
+      { k: '컬러', v: 'RGB 로 저장 — 인쇄소에 가이드 정의 CMYK 값 지정을 함께 요청하세요' },
+      { k: '서체', v: 'SKT Sans 제목체 Bold · 본문체 SemiBold 서브셋 임베딩 (KS X 1001)' },
+      { k: '파일명', v: file }
+    ];
+    const screenSpecs = [
+      { k: '판형', v: 'A5 · 148 × 210 mm (세로)' },
+      { k: '재단 여백', v: '없음 — 재단선 없이 마감 크기로 저장' },
+      { k: '이미지', v: '글자는 벡터 유지. 그래픽은 160 px 축소본 임베딩 — 가장 큰 칸에서 약 78 dpi 로, 인쇄 선명도가 필요하면 BX팀 원본으로 교체하세요' },
+      { k: '컬러', v: 'sRGB' },
+      { k: '서체', v: 'SKT Sans 제목체 Bold · 본문체 SemiBold 서브셋 임베딩' },
+      { k: '파일명', v: file }
+    ];
+
+    const checks = this.checks4();
+    const bad = checks.filter((c) => c.bad).length;
+    const warn = checks.filter((c) => c.warn).length;
+    const used = this.usedUnits();
+    const room = 12 - used;
+
+    return {
+      steps3: this.stepItems(3),
+      prev3: this.goTo(2),
+      modes,
+
+      docTitle: this.docTitle(),
+      exportTitle: mode === 'print' ? '인쇄용 PDF로 내보내기' : '화면 공유용 PDF로 내보내기',
+      intro: mode === 'print'
+        ? '인쇄소에 넘길 원고입니다. 재단 여백 3 mm · 크롭마크 · SKT Sans 서브셋이 파일 안에 들어갑니다.'
+        : '카톡 · 메일로 바로 보낼 수 있는 마감 크기 파일입니다. 인쇄 입고에는 인쇄소 입고용을 쓰세요.',
+      specs: mode === 'print' ? printSpecs : screenSpecs,
+
+      checks,
+      showChecks: !st.exported,
+      checkSummary: bad > 0
+        ? '출력 전 확인 ' + checks.length + '항목 · ' + bad + '건 확인 필요'
+        : (warn > 0
+            ? '출력 전 확인 ' + checks.length + '항목 · 통과 (참고 ' + warn + '건)'
+            : '출력 전 확인 ' + checks.length + '항목 · 모두 통과'),
+      sumColor: bad === 0 ? '#808288' : '#A63244',
+
+      showCta: !st.exported,
+      cta: mode === 'print' ? '인쇄 원고 복사하기' : '공유용 원고 복사하기',
+      ctaBg: bad === 0 ? '#3617CE' : '#CBCDD2',
+      ctaCursor: bad === 0 ? 'pointer' : 'not-allowed',
+      ctaNoteColor: bad === 0 ? '#808288' : '#A63244',
+      ctaNote: bad === 0
+        ? '지금 화면의 전단지를 한 장짜리 원고 파일로 만들어 클립보드에 넣습니다.\n편집 가능한 원본(.ai)은 제공하지 않습니다 — 내용을 바꾸려면 여기서 다시 만드세요.'
+        : '위 ' + bad + '건을 고쳐야 내보낼 수 있습니다.\n2단계 블록 담고 편집으로 돌아가 수정하세요.',
+      doExport: () => {
+        if (bad > 0) return;
+        const html = this.exportHtml(mode);
+        this.setState({ exported: true, copyOk: !!html && this.copyText(html) });
+      },
+
+      showDone: st.exported,
+      fileName: file,
+      doneHead: (st.copyOk
+        ? '원고를 클립보드에 복사했습니다 — 이 이름으로 저장하세요'
+        : '복사하지 못했습니다 — 아래 순서로 다시 시도하세요'),
+      doneNote: '1. 텍스트 편집기에 붙여넣고 위 이름에서 확장자만 .html 로 바꿔 저장합니다.\n'
+        + '2. 그 파일을 브라우저로 엽니다 — 지금 화면의 전단지가 그대로 나옵니다.\n'
+        + '3. 인쇄(⌘P) → 대상을 "PDF로 저장", 용지 ' + (mode === 'print' ? '154 × 216 mm' : '148 × 210 mm')
+        + ', 배율 100%, 여백 없음, 배경 그래픽 켜기.\n'
+        + '용지 크기는 원고에 @page 로 박혀 있어 보통은 그대로 잡힙니다.\n\n'
+        + '기본 문서 그대로라면 캔버스의 결과물 견본 아트보드를 내보내기 → PDF 해도 같은 규격이 나옵니다. '
+        + '다만 아트보드끼리는 상태를 주고받을 수 없어(각각 격리된 프레임) 이 화면의 편집 내용은 그쪽으로 넘어가지 않습니다.',
+      backToEdit: () => this.setState({ exported: false, step: 2, lastFlow: 2 }),
+
+      sheet: this.sheetViews(),
+      footLabel: Math.round(this.fixedPx().label * 280 / 400) + 'px',
+      footPhone: Math.round(this.fixedPx().phone * 280 / 400) + 'px',
+      sheetRoom: room > 0,
+      sheetFull: room <= 0,
+      sheetRoomLabel: st.chosen.length === 0
+        ? '담긴 블록이 없습니다'
+        : room + '칸 빈 채로 인쇄됩니다',
+      markColor: mode === 'print' ? '#CBCDD2' : 'transparent',
+      sheetCap: mode === 'print'
+        ? '재단선 포함 154 × 216 mm. 배경과 이미지는 재단선 끝까지 채워집니다.'
+        : '재단선 없이 마감 크기 148 × 210 mm 로 저장됩니다.',
+
+      barnote3: '마지막 단계입니다 — 작업 내용은 저장되지 않습니다. 내보내기 전에 창을 닫지 마세요'
+    };
+  }
+
+  vals4() {
+    const guards = [
+      {
+        name: '컬러',
+        can: [{ t: '가이드에 정의된 컬러만' }, { t: '배경별 허용 조합만' }, { t: '인쇄용 CMYK 값이 함께 따라옴' }],
+        cant: [{ t: '임의 HEX 입력란' }, { t: '컬러 피커 · 스포이드' }, { t: '장식용 그라디언트' }]
+      },
+      {
+        name: '서체',
+        can: [{ t: 'SKT Sans 제목체 · 본문체' }, { t: '사이즈별 규정 크기 범위' }, { t: '제목 3줄 · 본문 2줄까지' }],
+        cant: [{ t: '폰트 변경 UI' }, { t: '6pt 미만 본문' }, { t: '강조용 서체 · 색상 변경' }]
+      },
+      {
+        name: '로고',
+        can: [{ t: '국문 · 영문 × 풀컬러 · 블랙 · 화이트' }, { t: '배경 명도에 따른 자동 선택' }],
+        cant: [{ t: '로고 파일 업로드' }, { t: '위치 · 크기 · 회전 변경' }, { t: '최소 크기(5mm) 이하 축소' }]
+      },
+      {
+        name: '그래픽',
+        can: [{ t: '라인 아이콘 · 2D · 2.5D · 3D 아이콘' }, { t: '3D 일러스트레이션 세트' }, { t: '템플릿이 정한 슬롯에만' }],
+        cant: [{ t: '외부 이미지 업로드' }, { t: '스톡 이미지 · 이모지' }, { t: '슬롯 밖 자유 배치' }]
+      }
+    ];
+
+    const defs = [
+      { name: 'B Blue', hex: '#3617CE', rgb: '54, 23, 206', cmyk: '90, 85, 0, 0', pantone: '2126C' },
+      { name: 'B Navy 1', hex: '#000087', rgb: '0, 0, 135', cmyk: '100, 90, 0, 45', pantone: '—' },
+      { name: 'B Navy 2', hex: '#000028', rgb: '0, 0, 40', cmyk: '100, 90, 30, 77', pantone: '2766C' },
+      { name: 'Sub Blue 5', hex: '#D2DBFF', rgb: '210, 219, 255', cmyk: '15, 10, 0, 0', pantone: '—' },
+      { name: 'Sub Blue 6', hex: '#E9EEFF', rgb: '233, 238, 255', cmyk: '7, 3, 0, 0', pantone: '—' },
+      { name: 'B Gray', hex: '#E2E4E6', rgb: '226, 228, 230', cmyk: '11, 7, 6, 0', pantone: '5315C' },
+      { name: 'Sub Gray 7', hex: '#F5F5F6', rgb: '245, 245, 246', cmyk: '0, 0, 0, 5', pantone: '—' },
+      { name: 'B Orange', hex: '#EB7B44', rgb: '235, 123, 68', cmyk: '0, 64, 84, 0', pantone: '2024C' },
+      { name: 'B Pink', hex: '#EAA6C8', rgb: '234, 166, 200', cmyk: '0, 38, 0, 0', pantone: '210C' },
+      { name: 'B Yellow', hex: '#F1C661', rgb: '241, 198, 97', cmyk: '0, 27, 100, 0', pantone: '121C' },
+      { name: 'B Green', hex: '#54D189', rgb: '84, 209, 137', cmyk: '68, 0, 54, 0', pantone: '3385C' },
+      { name: 'B Cyan', hex: '#57B6FF', rgb: '87, 182, 255', cmyk: '68, 0, 0, 0', pantone: '298C' }
+    ];
+    const sel = this.state.guideSel;
+    const palette = defs.map((d, i) => ({
+      name: d.name, hex: d.hex,
+      border: i === sel ? '3px solid #1F2021' : '1px solid #E2E4E6',
+      pick: () => this.setState({ guideSel: i })
+    }));
+    const c = defs[sel];
+    return {
+      guards, guidePalette: palette,
+      gName: c.name, gHex: c.hex, gRgb: c.rgb, gCmyk: c.cmyk, gPantone: c.pantone
+    };
+  }
+
+  renderVals() {
+    const step = this.state.step;
+    const show = (n) => (n === step ? 'block' : 'none');
+    const inFlow = step === 1 || step === 2 || step === 3;
+    // 레일에서 현재 화면은 옅은 면 + 잉크 글자로 표시한다 (채도를 쓰지 않는다)
+    const on = (yes) => ({ c: yes ? '#1F2021' : '#808288', w: yes ? '600' : '400',
+                           bg: yes ? '#F5F5F6' : 'transparent' });
+    const a = on(inFlow), c = on(step === 'guide');
+    return {
+      d1: show(1), d2: show(2), d3: show(3), d4: show('guide'),
+      navStudioC: a.c, navStudioW: a.w, navStudioBg: a.bg,
+      navGuideC: c.c, navGuideW: c.w, navGuideBg: c.bg,
+      storeInitial: String(this.state.f.store || '').trim().slice(0, 1) || '·',
+      goStudio: () => this.setState({ step: this.state.lastFlow }),
+      goGuide: () => this.setState({ step: 'guide' }),
+      ...this.vals1(), ...this.vals2Lib(), ...this.vals2(), ...this.vals3(), ...this.vals4()
+    };
+  }
+}
+</script>
+</body>
+</html>

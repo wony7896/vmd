@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; }
+    .root {
+      width: 1440px; height: 900px; background: #ffffff; color: #1d1d1f;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { color: #0066cc; }
+    .gnav {
+      height: 44px; background: #000000; color: #ffffff; flex: none;
+      display: flex; align-items: center; gap: 28px; padding: 0 40px;
+      font-size: 12px; letter-spacing: -0.12px;
+    }
+    .gnav .brand { font-weight: 600; letter-spacing: 0.4px; }
+    .gnav .sp { flex-grow: 1; }
+    .gnav .dim { color: #cccccc; }
+    .subnav {
+      height: 52px; flex: none; background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; padding: 0 40px; gap: 24px;
+    }
+    .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .subnav .sp { flex-grow: 1; }
+    .navlink { font-size: 14px; letter-spacing: -0.224px; color: #1d1d1f; }
+    .pill {
+      background: #0066cc; color: #ffffff; border: none; border-radius: 9999px;
+      padding: 11px 22px; font-size: 17px; letter-spacing: -0.374px; font-family: inherit;
+      cursor: pointer;
+    }
+    .pill:active { transform: scale(0.95); }
+    .pill.sm { padding: 7px 16px; font-size: 14px; letter-spacing: -0.224px; }
+    .pill.ghost { background: transparent; color: #0066cc; border: 1px solid #0066cc; }
+    .hero { padding: 56px 40px 0; }
+    .stack { display: flex; flex-direction: column; gap: 24px; max-width: 900px; }
+    .ctas { display: flex; gap: 12px; }
+    .types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 40px 40px 0; }
+    .tcard {
+      background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px; padding: 24px;
+      display: flex; flex-direction: column; gap: 17px; cursor: pointer; text-align: left;
+      font-family: inherit; color: inherit;
+    }
+    .tcard:active { transform: scale(0.99); }
+    .diagram { height: 132px; background: #f5f5f7; border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+    .seg { flex-grow: 1; border-radius: 3px; }
+    .tname { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; }
+    .tdesc { font-size: 14px; line-height: 1.43; letter-spacing: -0.224px; color: #7a7a7a; }
+    .trow { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .dot { width: 20px; height: 20px; border-radius: 9999px; border: 1px solid #cbcdd2; flex: none; }
+    .stepbar { height: 64px; flex: none; background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px); border-top: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .steps { display: flex; align-items: center; gap: 10px; }
+    .stp { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px; color: #7a7a7a; }
+    .stp.on { color: #1d1d1f; font-weight: 600; }
+    .stp.done { color: #0066cc; }
+    .sep { color: #cbcdd2; font-size: 12px; }
+    .stpbtn { display: flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: -0.224px;
+      background: transparent; border: none; padding: 5px 3px; font-family: inherit; cursor: pointer; }
+    .stpbtn:active { transform: scale(0.97); }
+    .barnote { font-size: 12px; letter-spacing: -0.12px; color: #7a7a7a; }
+    .stepbar { margin-top: auto; }
+  </style>
+</helmet>
+
+<div class="root">
+
+  <div class="gnav">
+    <span class="brand">SK broadband</span>
+    <span class="dim">전단지 스튜디오</span>
+    <span class="dim">블록 라이브러리</span>
+    <span class="dim">브랜드 가이드</span>
+    <span class="sp"></span>
+    <span class="dim">우리정보통신점</span>
+  </div>
+
+  <div class="subnav">
+    <span class="title">새 전단지</span>
+    <span class="navlink">A5 · 148 × 210 mm</span>
+    <span class="sp"></span>
+    <span class="navlink">최근 작업</span>
+    <button class="pill sm">시작하기</button>
+  </div>
+
+  <div class="hero">
+    <div class="stack">
+      <h1 style="margin: 0; font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px; color: #1d1d1f;">요청하지 말고,<br>직접 만드세요.</h1>
+      <p style="margin: 0; font-size: 28px; font-weight: 400; line-height: 1.14; letter-spacing: 0.196px; color: #1d1d1f; max-width: 720px;">본사에 맡기던 전단지를 대리점이 직접 만듭니다. 고를 수 있는 건 전부 브랜드 가이드 안의 값뿐입니다.</p>
+      <div class="ctas">
+        <button class="pill">전단지 만들기</button>
+        <button class="pill ghost">내가 만든 전단지</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="types">
+    <sc-for list="{{types}}" as="t" hint-placeholder-count="3">
+      <button class="tcard" onClick="{{ t.pick }}" style="border: {{t.border}}">
+        <div class="diagram">
+          <sc-for list="{{t.segs}}" as="s" hint-placeholder-count="4">
+            <div class="seg" style="background: {{s.fill}}; flex-grow: {{s.grow}}; border-bottom: {{s.rule}}"></div>
+          </sc-for>
+        </div>
+        <div class="trow">
+          <span class="tname">{{t.name}}</span>
+          <span class="dot" style="border: {{t.dotBorder}}; background: {{t.dotFill}}"></span>
+        </div>
+        <span class="tdesc">{{t.desc}}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div class="stepbar">
+    <div class="steps">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <button class="stpbtn" onClick="{{ s.pick }}" style="color: {{s.color}}; font-weight: {{s.weight}}">
+          <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#0066cc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4l2.8 2.8 5.6-6.4"/></svg></sc-if>
+          {{s.label}}
+        </button>
+        <sc-if value="{{s.sep}}" hint-placeholder-val="{{true}}"><span class="sep">›</span></sc-if>
+      </sc-for>
+    </div>
+    <span class="sp"></span>
+    <span class="barnote">로고 · 지점명 · 연락처는 유형과 관계없이 고정으로 들어갑니다</span>
+    <button class="pill" onClick="{{ goNext }}">다음 — 블록 고르기</button>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900},"onGoto":{"editor":null,"tsType":"(step: number) => void"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: 'line' };
+  }
+
+  // 단계바 — Flow.dc.html 안에서는 onGoto 로 실제 전환, 낱장으로 볼 때는 동작 없음
+  stepItems(current, firstLabel) {
+    const labels = [firstLabel || '1 유형 선택', '2 블록 고르기', '3 내용 편집', '4 PDF 만들기'];
+    const goto = this.props.onGoto;
+    return labels.map((label, i) => {
+      const n = i + 1;
+      return {
+        label: label,
+        done: n < current,
+        sep: n < 4,
+        color: n === current ? '#1d1d1f' : (n < current ? '#0066cc' : '#7a7a7a'),
+        weight: n === current ? '600' : '400',
+        pick: goto ? () => goto(n) : () => {}
+      };
+    });
+  }
+  goTo(n) {
+    const goto = this.props.onGoto;
+    return goto ? () => goto(n) : () => {};
+  }
+
+  renderVals() {
+    const defs = [
+      {
+        id: 'line', name: '유형 1 — 선으로 영역분할', short: '선 분할',
+        desc: '얇은 구분선으로 블록 경계를 나눕니다. 정보량이 많은 요금 안내형에 적합합니다.',
+        segs: [
+          { fill: '#ffffff', grow: 1.4, rule: '1px solid #E2E4E6' },
+          { fill: '#ffffff', grow: 1, rule: '1px solid #E2E4E6' },
+          { fill: '#ffffff', grow: 1, rule: 'none' }
+        ]
+      },
+      {
+        id: 'color', name: '유형 2 — 컬러로 영역분할', short: '컬러 분할',
+        desc: '배경 컬러 블록으로 경계를 만듭니다. 시즈널·프로모션 전단지의 기본형입니다.',
+        segs: [
+          { fill: '#E2E4E6', grow: 1, rule: 'none' },
+          { fill: '#000028', grow: 1.6, rule: 'none' },
+          { fill: '#D2DBFF', grow: 0.8, rule: 'none' }
+        ]
+      },
+      {
+        id: 'title', name: '유형 3 — 타이틀로 영역분할', short: '타이틀 분할',
+        desc: '블록 상단 타이틀이 경계 역할을 합니다. 혜택을 나열하는 구성에 적합합니다.',
+        segs: [
+          { fill: '#3617CE', grow: 0.45, rule: 'none' },
+          { fill: '#F5F5F6', grow: 1, rule: 'none' },
+          { fill: '#3617CE', grow: 0.45, rule: 'none' },
+          { fill: '#F5F5F6', grow: 1, rule: 'none' }
+        ]
+      }
+    ];
+    const picked = this.state.picked;
+    const types = defs.map((d) => ({
+      ...d,
+      border: d.id === picked ? '2px solid #0071e3' : '1px solid #e0e0e0',
+      dotBorder: d.id === picked ? '6px solid #0066cc' : '1px solid #cbcdd2',
+      dotFill: d.id === picked ? '#ffffff' : '#ffffff',
+      pick: () => this.setState({ picked: d.id })
+    }));
+    const found = defs.filter((d) => d.id === picked)[0];
+    return {
+      steps: this.stepItems(1, found ? '1 유형 선택 · ' + found.short : '1 유형 선택'),
+      goNext: this.goTo(2),
+      types,
+      pickedName: found ? found.name : '',
+      pickedShort: found ? found.short : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

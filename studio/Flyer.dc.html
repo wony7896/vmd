@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    /* SKT Sans 서브셋 2종 — wiki/subset-font.py 가 만든다 (KS X 1001 2,350자)
+       웨이트 범위를 넓게 잡아 브라우저가 가짜 볼드를 만들지 않게 한다.
+       template.md 3 — 제목은 제목체(Display) Bold, 본문은 본문체(Text) SemiBold */
+    @font-face { font-family: "SKT Sans Display"; font-weight: 100 900; font-display: block;
+      src: url("font_display_bold.woff2") format("woff2"); }
+    @font-face { font-family: "SKT Sans Text"; font-weight: 100 900; font-display: block;
+      src: url("font_text_semibold.woff2") format("woff2"); }
+    body { margin: 0; }
+    /* 마감 A5 148 × 210 mm @ 96 px/inch = 559 × 794 px
+       + 재단 여백 3 mm (좌우 11.5 px · 상하 11 px) = 582 × 816 px = 154 × 216 mm 대지
+       67 머리 + 340 (1/2) + 170 (1/4) + 170 (1/4) + 69 발 = 816
+       머리 56 · 발 58 은 마감 기준 높이 그대로다. 늘어난 만큼이 위아래 재단 여백이다 */
+    :root { --bx: 11.5px; --by: 11px; --pad: 34px; }
+    .page {
+      width: 582px; height: 816px; background: #ffffff; color: #000000; overflow: hidden;
+      position: relative;
+      display: flex; flex-direction: column;
+      font-family: "SKT Sans Text", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    }
+    /* 제목만 제목체 */
+    .t { font-family: "SKT Sans Display", "SKT Sans Text", sans-serif; }
+    /* 크롭마크 — 마감선 위에 얹되 재단 영역 밖(여백 띠 안)에만 그린다 */
+    .cm { position: absolute; background: #000000; z-index: 2; }
+    a { color: #3617CE; text-decoration: none; }
+    a:hover { color: #3617CE; }
+    .head { height: calc(56px + var(--by)); flex: none; display: flex; align-items: center;
+      padding: var(--by) calc(var(--pad) + var(--bx)) 0; }
+    .chip { font-size: 11px; font-weight: 600; letter-spacing: -0.1px; color: #000028;
+      border: 1px solid #000028; border-radius: 9999px; padding: 4px 10px; }
+    .sp { flex-grow: 1; }
+    /* 글자 · 그래픽 크기는 스튜디오와 같은 규칙에서 나온다 (Main.dc.html typePx · flyerMetrics).
+       여기는 마감 559 px 폭이라 1 px = 0.7505 pt — 규정(template.md 3)을 그 배율로 옮긴 값이다.
+       1/2 제목 22pt=30px · 본문 10pt=14px | 1/4 제목 14pt=19px · 본문 7pt=10px
+       그래픽은 블록 안쪽 높이의 0.68 — 1/2 288x0.68=196 · 1/4 118x0.68=80 */
+    .blk { display: flex; padding: 26px calc(var(--pad) + var(--bx)); gap: 18px; overflow: hidden; }
+    .foot { height: calc(58px + var(--by)); flex: none; display: flex; align-items: center; gap: 10px;
+      padding: 0 calc(var(--pad) + var(--bx)) var(--by); border-top: 1px solid #E2E4E6; }
+  </style>
+</helmet>
+
+<div class="page">
+
+  <!-- 고정 영역 — 로고 13.5mm(51px) · 공식 인증 대리점. 로고는 상단에만 -->
+  <div class="head">
+    <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 51px;">
+    <span class="sp"></span>
+    <span class="chip">공식 인증 대리점</span>
+              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="height: 33px; margin-left: 10px;">
+  </div>
+
+  <!-- 블록 A — 1/2 사이즈 · 메세지 소구형(이사) · 배경 B Navy 2
+       §1.6 — B Navy 2 배경의 배지는 B Navy 1 · B Navy 2 · B Blue · Sub Blue 1 · White 만 -->
+  <div class="blk" style="height: 340px; flex: none; background: #000028; color: #ffffff;">
+    <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; min-width: 0;">
+      <div class="t" style="font-size: 30px; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: #ffffff;">입주 축하<br>통신 요금 할인 혜택</div>
+      <div style="font-size: 14px; line-height: 1.5; letter-spacing: -0.011em; color: #CBCDD2;">입주 박람회보다 더 좋은 상품과 가격으로<br>안내해 드립니다</div>
+      <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px;">
+        <span style="font-size: 14px; font-weight: 600; letter-spacing: -0.011em; white-space: nowrap; color: #000028; background: #FFFFFF; border-radius: 9999px; padding: 0.35em 0.8em;">기가 인터넷</span>
+        <span style="font-size: 14px; font-weight: 600; letter-spacing: -0.011em; white-space: nowrap; color: #000028; background: #FFFFFF; border-radius: 9999px; padding: 0.35em 0.8em;">B tv All+</span>
+        <span style="font-size: 14px; font-weight: 600; letter-spacing: -0.011em; white-space: nowrap; color: #000028; background: #FFFFFF; border-radius: 9999px; padding: 0.35em 0.8em;">기가 와이파이</span>
+      </div>
+    </div>
+    <div style="width: 196px; flex: none; display: flex; align-items: flex-end; justify-content: center;">
+      <img src="icon_apt.png" alt="APT" style="max-width: 100%; max-height: 196px;">
+    </div>
+  </div>
+
+  <!-- 블록 B — 1/4 사이즈 · 요금 안내(인터넷+IPTV 결합 1종) · 배경 Sub Blue 6
+       §1.6 — Sub Blue 6 배경에서 텍스트 강조는 B Blue만 -->
+  <div class="blk" style="height: 170px; flex: none; background: #E9EEFF; flex-direction: column; gap: 5px;">
+    <div style="display: flex; align-items: flex-end; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 5px; flex-grow: 1; min-width: 0;">
+        <div style="font-size: 10px; letter-spacing: -0.011em; color: #5B5D62;">기가 인터넷(1G) + B tv All+</div>
+        <div style="display: flex; align-items: baseline; gap: 5px;">
+          <span style="font-size: 10px; letter-spacing: -0.011em; color: #5B5D62; text-decoration: line-through;">월 69,850원</span>
+          <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.023em; color: #3617CE;">월 40,150원</span>
+          <span style="font-size: 10px; font-weight: 700; letter-spacing: -0.011em; color: #ffffff; background: #3617CE; border-radius: 9999px; padding: 0.25em 0.7em;">42% 할인</span>
+        </div>
+      </div>
+      <img src="icon_coin.png" alt="Coin" style="width: 80px; height: 80px; object-fit: contain; flex: none;">
+    </div>
+    <div style="font-size: 10px; letter-spacing: -0.011em; color: #808288;">*부가세 포함, 3년 약정, 요금가족결합 기준</div>
+  </div>
+
+  <!-- 블록 C — 1/4 사이즈 · 사은품 단독 강조(그래픽) · 배경 Sub Gray 7 -->
+  <div class="blk" style="height: 170px; flex: none; background: #F5F5F6; align-items: center;">
+    <div style="display: flex; flex-direction: column; gap: 5px; flex-grow: 1; min-width: 0;">
+      <div class="t" style="font-size: 19px; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: #000000;">사은품도 놓치지 마세요</div>
+      <div style="font-size: 10px; line-height: 1.5; letter-spacing: -0.011em; color: #5B5D62;">3년간 요금 할인 · 현금 지원 · 삼성 TV 또는 가전제품</div>
+      <div style="font-size: 10px; letter-spacing: -0.011em; color: #808288;">*상품 중 택 1 · 가입 상품에 따라 변동 가능</div>
+    </div>
+    <img src="icon_giftbox.png" alt="Gift Box" style="width: 80px; height: 80px; object-fit: contain; flex: none;">
+  </div>
+
+  <!-- 고정 영역 — 지점명 · 가입 상담 및 문의 -->
+  <div class="foot">
+    <span style="font-size: 11px; font-weight: 600; letter-spacing: -0.1px; color: #5B5D62;">우리정보통신점</span>
+    <span class="sp"></span>
+    <span style="font-size: 11px; font-weight: 600; letter-spacing: -0.1px; color: #5B5D62;">가입 상담 및 문의</span>
+    <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.35px; color: #000000;">010-1234-5678</span>
+  </div>
+  <!-- 크롭마크 8개 — 마감선(148 × 210 mm) 을 가리킨다. 재단 여백 안쪽에만 있어 잘려 나간다 -->
+  <div class="cm" style="left: 0; top: calc(var(--by) - 0.5px); width: 7px; height: 1px;"></div>
+  <div class="cm" style="left: calc(var(--bx) - 0.5px); top: 0; width: 1px; height: 7px;"></div>
+  <div class="cm" style="right: 0; top: calc(var(--by) - 0.5px); width: 7px; height: 1px;"></div>
+  <div class="cm" style="right: calc(var(--bx) - 0.5px); top: 0; width: 1px; height: 7px;"></div>
+  <div class="cm" style="left: 0; bottom: calc(var(--by) - 0.5px); width: 7px; height: 1px;"></div>
+  <div class="cm" style="left: calc(var(--bx) - 0.5px); bottom: 0; width: 1px; height: 7px;"></div>
+  <div class="cm" style="right: 0; bottom: calc(var(--by) - 0.5px); width: 7px; height: 1px;"></div>
+  <div class="cm" style="right: calc(var(--bx) - 0.5px); bottom: 0; width: 1px; height: 7px;"></div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":582,"height":816}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>
