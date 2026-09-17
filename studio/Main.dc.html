@@ -428,7 +428,7 @@
       font-family: "SKT Sans Text", -apple-system, BlinkMacSystemFont, system-ui,
         "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
     .flyer .t { font-family: "SKT Sans Display", "SKT Sans Text", sans-serif; }
-    .pane2 .fhead { height: 105px; flex: none; background: #ffffff; display: flex; align-items: center;
+    .pane2 .fhead { height: 40px; flex: none; background: #ffffff; display: flex; align-items: center;
       padding: 0 24px; gap: 8px; }
     .pane2 .fchip { font-size: 8px; letter-spacing: -0.08px; font-weight: 600; color: #000028;
       border: 1px solid #000028; border-radius: 9999px; padding: 3px 7px; }
@@ -496,8 +496,13 @@
       display: flex; align-items: center; padding: 0 40px; gap: 16px; }
     .pane3 .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
     .pane3 .meta { font-size: 14px; letter-spacing: -0.224px; color: #808288; }
-    .pane3 .wrap { flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 48px; padding: 0 40px; }
-    .pane3 .card { width: 680px; background: #ffffff; border: 1px solid #E2E4E6; border-radius: 10px;
+    /* 카드 내용(검사 목록·완료 안내)이 길어지면 wrap 이 콘텐츠 높이만큼 늘어나
+       900px 를 넘기고, 가운데 정렬된 왼쪽 전단지 샘플까지 같이 밀려 내려가 단계바에
+       가려진다 (overflow: hidden 은 .root 에만 있고 .wrap 자체엔 없어 못 막는다).
+       wrap 을 스스로 스크롤하게 해 높이를 784px 로 도로 묶는다 */
+    .pane3 .wrap { flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 48px;
+      padding: 0 40px; overflow-y: auto; overflow-x: hidden; }
+    .pane3 .card { order: 2; width: 680px; background: #ffffff; border: 1px solid #E2E4E6; border-radius: 10px;
       padding: 28px; display: flex; flex-direction: column; gap: 16px; }
     .pane3 .seg { display: flex; gap: 8px; }
     .pane3 .segbtn { flex-grow: 1; border-radius: 6px; padding: 11px 18px; font-size: 14px;
@@ -516,15 +521,15 @@
     .pane3 .pill { background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
       padding: 14px 28px; font-size: 18px; font-weight: 300; letter-spacing: 0; font-family: inherit; cursor: pointer; }
     .pane3 .pill:active { transform: scale(0.95); }
-    .pane3 .side { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-    .pane3 .sheet { position: relative; width: 292px; height: 412px; }
+    .pane3 .side { order: 1; display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    .pane3 .sheet { position: relative; width: 292px; height: 412px; zoom: 1.64; }
     .pane3 .mark { position: absolute; background: #CBCDD2; }
     .pane3 .flyer { position: absolute; left: 6px; top: 6px; width: 280px; height: 400px;
       font-family: "SKT Sans Text", -apple-system, BlinkMacSystemFont, system-ui,
         "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
       background: #ffffff; overflow: hidden; display: flex; flex-direction: column;
       box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.06); }
-    .pane3 .fhead { height: 74px; flex: none; display: flex; align-items: center; padding: 0 17px; }
+    .pane3 .fhead { height: 28px; flex: none; display: flex; align-items: center; padding: 0 17px; }
     .pane3 .fchip { font-size: 6px; letter-spacing: -0.06px; font-weight: 600; color: #000028;
       border: 1px solid #000028; border-radius: 9999px; padding: 2px 5px; }
     .pane3 .fblk { display: flex; padding: 13px 17px; gap: 9px; overflow: hidden; }
@@ -620,7 +625,7 @@
     <div class="hero">
       <div class="stack">
         <h1 style="margin: 0; font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px; color: #1F2021;">요청하지 말고,<br>직접 만드세요.</h1>
-        <p style="margin: 0; font-size: 28px; font-weight: 400; line-height: 1.14; letter-spacing: 0.196px; color: #1F2021; max-width: 720px;">본사에 맡기던 전단지를 대리점이 직접 만듭니다. 고를 수 있는 건 전부 브랜드 가이드 안의 값뿐입니다.</p>
+        <p style="margin: 0; font-size: 28px; font-weight: 400; line-height: 1.14; letter-spacing: 0.196px; color: #1F2021; max-width: 720px;">어떤 전단지를 만들어 볼까요?</p>
       </div>
     </div>
 
@@ -795,10 +800,9 @@
           <div class="flyer" style="zoom: {{flyerZoom}}">
 
             <div class="fhead">
-              <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 36px;">
+              <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 61px;">
               <span class="sp"></span>
-              <span class="fchip">공식 인증 대리점</span>
-              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="width: 86px;">
+              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="height: 24px;">
             </div>
 
             <sc-for list="{{blockViews}}" as="bk" hint-placeholder-count="3">
@@ -831,12 +835,12 @@
                          블록 폭을 쓰는 아래 별도 줄에. noteInline · noteBelow -->
                     <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.alignPrice}}; gap: {{bk.gap}};">
                       <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
-                        <sc-if value="{{bk.showProduct}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.product}}</div></sc-if>
                         <div style="display: flex; align-items: baseline; gap: {{bk.gap}};">
                           <span style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}}; text-decoration: line-through;">{{bk.list}}</span>
                           <span data-pt="head" style="font-size: {{bk.hSize}}; font-weight: 700; letter-spacing: -0.023em; color: {{bk.accent}};">{{bk.price}}</span>
                           <span style="font-size: {{bk.bSize}}; font-weight: 700; letter-spacing: -0.011em; color: {{bk.badgeOn}}; background: {{bk.accent}}; border-radius: 9999px; padding: 0.25em 0.7em;">{{bk.rate}}</span>
                         </div>
+                        <sc-if value="{{bk.showProduct}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.product}}</div></sc-if>
                         <sc-if value="{{bk.noteInline}}" hint-placeholder-val="{{false}}"><div data-pt="body" style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.note}}</div></sc-if>
                       </div>
                       <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
@@ -870,6 +874,7 @@
             </sc-if>
 
             <div class="ffoot" onClick="{{ pickF }}" style="cursor: pointer; outline: {{fOutline}}; outline-offset: -2px;">
+              <span class="fchip">공식 인증 대리점</span>
               <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">{{store}}</span>
               <span class="sp"></span>
               <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">가입 상담 및 문의</span>
@@ -1138,10 +1143,9 @@
 
           <div class="flyer">
             <div class="fhead">
-              <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 26px;">
+              <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 43px;">
               <span class="sp"></span>
-              <span class="fchip">공식 인증 대리점</span>
-              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="width: 61px; margin-left: 5px;">
+              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="height: 16px; margin-left: 5px;">
             </div>
 
             <sc-for list="{{sheet}}" as="bk" hint-placeholder-count="3">
@@ -1168,12 +1172,12 @@
                   <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; width: 100%; min-width: 0;">
                     <div style="display: flex; flex-direction: {{bk.dir}}; align-items: {{bk.alignPrice}}; gap: {{bk.gap}};">
                       <div style="display: flex; flex-direction: column; gap: {{bk.gap}}; flex-grow: 1; min-width: 0;">
-                        <sc-if value="{{bk.showProduct}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.product}}</div></sc-if>
                         <div style="display: flex; align-items: baseline; gap: {{bk.gap}};">
                           <span style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}}; text-decoration: line-through;">{{bk.list}}</span>
                           <span style="font-size: {{bk.hSize}}; font-weight: 700; letter-spacing: -0.023em; color: {{bk.accent}};">{{bk.price}}</span>
                           <span style="font-size: {{bk.bSize}}; font-weight: 700; letter-spacing: -0.011em; color: {{bk.badgeOn}}; background: {{bk.accent}}; border-radius: 9999px; padding: 0.25em 0.7em;">{{bk.rate}}</span>
                         </div>
+                        <sc-if value="{{bk.showProduct}}" hint-placeholder-val="{{true}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.product}}</div></sc-if>
                         <sc-if value="{{bk.noteInline}}" hint-placeholder-val="{{false}}"><div style="font-size: {{bk.bSize}}; letter-spacing: -0.011em; color: {{bk.muted}};">{{bk.note}}</div></sc-if>
                       </div>
                       <sc-if value="{{bk.hasGfx}}" hint-placeholder-val="{{true}}">
@@ -1207,6 +1211,7 @@
             </sc-if>
 
             <div class="ffoot">
+              <span class="fchip">공식 인증 대리점</span>
               <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">{{store}}</span>
               <span class="sp"></span>
               <span style="font-size: {{footLabel}}; font-weight: 600; letter-spacing: -0.011em; color: #5B5D62;">가입 상담 및 문의</span>
@@ -2508,7 +2513,11 @@ class Component extends DCLogic {
     const chosen = this.state.chosen;
     // 타이틀 바는 flex:none 이라 12칸이 나눠 갖는 높이를 그만큼 줄인다
     const bars = td.title ? chosen.reduce((a, b) => a + this.typePx(b.size).bar, 0) : 0;
-    const unit = Math.max(0, 421 - bars) / 12;      // 421 = 568 - 머리 105(BI 32mm 규정) - 발 42
+    const unit = Math.max(0, 486 - bars) / 12;      // 486 = 568 - 머리 40 - 발 42
+    // 2026-09-17: BI 32mm·CI 13.5mm(brand.md 2.5 단독 크기표)를 헤더 105px·유닛 421로
+    // 잠깐 올렸다가 같은 날 되돌렸다 — CI·BI를 한 헤더에 같이 쓰는 배치는 2.6 "BI–CI 병기"
+    // (CI 높이 0.3X~0.6X) 대상인데, 2.5 규정값 그대로면 비율이 0.055로 떨어진다. CI·BI 둘 다
+    // 납품본 실측(22.5mm/7.8mm)으로 맞추면 0.378로 2.6을 충족한다 — wiki/assets-logo.md 참고
     return chosen.map((b) => {
       const t = this.typePx(b.size);
       const h = this.units(b.size) * unit;
@@ -2633,8 +2642,8 @@ class Component extends DCLogic {
         : '가장 작은 글자 ' + minPt + ' pt — 사이즈별 규정 범위 안이고 본문 최소 6 pt 도 지켰습니다'
     });
 
-    // 4. 로고 — wiki/assets-logo.md 적용 크기표 (CI 13.5 mm / BI 8.7 mm)
-    out.push({ ok: true, t: '로고는 상단 한 곳 — CI 13.5 mm · BI 8.7 mm · 여백 1.1X · 최소 5 mm 충족' });
+    // 4. 로고 — wiki/assets-logo.md 적용 크기표 (CI 22.5 mm / BI 8.7 mm, 납품본 실측 비율)
+    out.push({ ok: true, t: '로고는 상단 한 곳 — CI 22.5 mm · BI 8.7 mm · 여백 1.1X · 최소 5 mm 충족' });
 
     // 5. 컬러 — brand.md 1.5 / 1.6
     const bgs = [];
@@ -2859,7 +2868,7 @@ class Component extends DCLogic {
         '.zoom { position: absolute; left: ' + px(BX) + '; top: ' + px(BY) + '; zoom: ' + Z + '; }',
         '.flyer { width: 400px; height: 568px; background: #ffffff; overflow: hidden;',
         '  display: flex; flex-direction: column; }',
-        '.fhead { height: 105px; flex: none; background: #ffffff; display: flex;',
+        '.fhead { height: 40px; flex: none; background: #ffffff; display: flex;',
         '  align-items: center; padding: 0 24px; gap: 8px; }',
         '.fchip { font-size: 8px; letter-spacing: -0.08px; font-weight: 600; color: #000028;',
         '  border: 1px solid #000028; border-radius: 9999px; padding: 3px 7px; }',
