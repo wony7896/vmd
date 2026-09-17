@@ -1745,8 +1745,11 @@ class Component extends DCLogic {
     const PAGE = 10;
     const pages = Math.max(1, Math.ceil(filtered.length / PAGE));
     const page = Math.min(Math.max(0, st.libPage), pages - 1);
+    // '담김' 표시는 페이지 구성에서 지금 선택된 블록 하나에만 건다 — 같은 폭의 다른
+    // 블록이 이미 담겨 있어도 그 카드는 표시하지 않는다 (여러 개가 동시에 켜져 있던 버그)
+    const selBlock = st.sel === 'F' ? null : st.chosen[st.sel];
     const items = filtered.slice(page * PAGE, page * PAGE + PAGE).map((i) => {
-      const picked = st.chosen.filter((b) => b.libId === i.id).length > 0;
+      const picked = !!selBlock && selBlock.libId === i.id;
       const blocked = !picked && !roomy;
       return {
         ...i,
@@ -1764,8 +1767,7 @@ class Component extends DCLogic {
             return;
           }
           if (picked) {
-            const n = st.chosen.map((b, x) => (b.libId === i.id ? x : -1)).filter((x) => x >= 0)[0];
-            this.removeBlock(n);
+            this.removeBlock(st.sel);
             return;
           }
           this.addBlock(i, badge);
