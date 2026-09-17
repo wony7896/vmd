@@ -26,8 +26,9 @@
 | Bold | `700` | ✅ | ✅ |
 | ExtraBold | `800` | ✅ | ✅ |
 
-> **제목체 SemiBold가 없다.** brand.md 3.1은 제목체 웨이트로 SemiBold를 규정하지만 파일이 없다.
-> 제목에 SemiBold가 필요하면 BX팀에 요청해야 한다. Regular(400)이나 Bold(700)로 대체한다.
+> **제목체 SemiBold가 없다 — BX 확인 완료(2026-09-17), 원본 자체가 없다.** brand.md 3.1은
+> 제목체 웨이트로 SemiBold를 규정하지만 대응하는 폰트 파일이 애초에 제작되지 않았다.
+> 더 요청할 원본이 없으므로 **영구히 Regular(400) 또는 Bold(700)로 대체한다.**
 
 > `Light`는 일반적인 300이 아니라 **350**이다(폰트 파일의 `usWeightClass` 값). `font-weight: 300`으로
 > 지정하면 ExtraLight가 잡힌다. 표의 값을 그대로 쓴다.

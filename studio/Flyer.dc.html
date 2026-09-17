@@ -18,8 +18,10 @@
     body { margin: 0; }
     /* 마감 A5 148 × 210 mm @ 96 px/inch = 559 × 794 px
        + 재단 여백 3 mm (좌우 11.5 px · 상하 11 px) = 582 × 816 px = 154 × 216 mm 대지
-       67 머리 + 340 (1/2) + 170 (1/4) + 170 (1/4) + 69 발 = 816
-       머리 56 · 발 58 은 마감 기준 높이 그대로다. 늘어난 만큼이 위아래 재단 여백이다 */
+       158 머리 + 295 (1/2) + 147 (1/4) + 147 (1/4) + 69 발 = 816
+       머리 147 · 발 58 은 마감 기준 높이 그대로다. 늘어난 만큼이 위아래 재단 여백이다.
+       머리가 커진 건 BI 32mm 규정(brand.md 2.5) 확정 적용 때문이다(2026-09-17) —
+       실측 8.7mm 대신 규정값을 쓰기로 하면서 헤더가 56→147, 본문이 680→589로 바뀌었다 */
     :root { --bx: 11.5px; --by: 11px; --pad: 34px; }
     .page {
       width: 582px; height: 816px; background: #ffffff; color: #000000; overflow: hidden;
@@ -33,7 +35,7 @@
     .cm { position: absolute; background: #000000; z-index: 2; }
     a { color: #3617CE; text-decoration: none; }
     a:hover { color: #3617CE; }
-    .head { height: calc(56px + var(--by)); flex: none; display: flex; align-items: center;
+    .head { height: calc(147px + var(--by)); flex: none; display: flex; align-items: center;
       padding: var(--by) calc(var(--pad) + var(--bx)) 0; }
     .chip { font-size: 11px; font-weight: 600; letter-spacing: -0.1px; color: #000028;
       border: 1px solid #000028; border-radius: 9999px; padding: 4px 10px; }
@@ -41,7 +43,8 @@
     /* 글자 · 그래픽 크기는 스튜디오와 같은 규칙에서 나온다 (Main.dc.html typePx · flyerMetrics).
        여기는 마감 559 px 폭이라 1 px = 0.7505 pt — 규정(template.md 3)을 그 배율로 옮긴 값이다.
        1/2 제목 22pt=30px · 본문 10pt=14px | 1/4 제목 14pt=19px · 본문 7pt=10px
-       그래픽은 블록 안쪽 높이의 0.68 — 1/2 288x0.68=196 · 1/4 118x0.68=80 */
+       그래픽은 블록 안쪽 높이의 0.68 — 1/2 243x0.68=165 · 1/4 95x0.68=65
+       (2026-09-17 BI 32mm 규정 적용으로 블록 높이가 340/170→295/147로 바뀌며 재계산) */
     .blk { display: flex; padding: 26px calc(var(--pad) + var(--bx)); gap: 18px; overflow: hidden; }
     .foot { height: calc(58px + var(--by)); flex: none; display: flex; align-items: center; gap: 10px;
       padding: 0 calc(var(--pad) + var(--bx)) var(--by); border-top: 1px solid #E2E4E6; }
@@ -50,17 +53,17 @@
 
 <div class="page">
 
-  <!-- 고정 영역 — 로고 13.5mm(51px) · 공식 인증 대리점. 로고는 상단에만 -->
+  <!-- 고정 영역 — CI 13.5mm(51px) · BI 32mm(121px, 규정값 2026-09-17 확정) · 공식 인증 대리점 -->
   <div class="head">
     <img src="../brand guide/logo/SK broadband_logo_black_영문_인쇄용.png" alt="SK broadband" style="width: 51px;">
     <span class="sp"></span>
     <span class="chip">공식 인증 대리점</span>
-              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="height: 33px; margin-left: 10px;">
+              <img src="../brand guide/logo/B_logo_black_인쇄용.png" alt="B" style="width: 121px; margin-left: 10px;">
   </div>
 
   <!-- 블록 A — 1/2 사이즈 · 메세지 소구형(이사) · 배경 B Navy 2
        §1.6 — B Navy 2 배경의 배지는 B Navy 1 · B Navy 2 · B Blue · Sub Blue 1 · White 만 -->
-  <div class="blk" style="height: 340px; flex: none; background: #000028; color: #ffffff;">
+  <div class="blk" style="height: 295px; flex: none; background: #000028; color: #ffffff;">
     <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; min-width: 0;">
       <div class="t" style="font-size: 30px; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: #ffffff;">입주 축하<br>통신 요금 할인 혜택</div>
       <div style="font-size: 14px; line-height: 1.5; letter-spacing: -0.011em; color: #CBCDD2;">입주 박람회보다 더 좋은 상품과 가격으로<br>안내해 드립니다</div>
@@ -70,14 +73,14 @@
         <span style="font-size: 14px; font-weight: 600; letter-spacing: -0.011em; white-space: nowrap; color: #000028; background: #FFFFFF; border-radius: 9999px; padding: 0.35em 0.8em;">기가 와이파이</span>
       </div>
     </div>
-    <div style="width: 196px; flex: none; display: flex; align-items: flex-end; justify-content: center;">
-      <img src="icon_apt.png" alt="APT" style="max-width: 100%; max-height: 196px;">
+    <div style="width: 165px; flex: none; display: flex; align-items: flex-end; justify-content: center;">
+      <img src="icon_apt.png" alt="APT" style="max-width: 100%; max-height: 165px;">
     </div>
   </div>
 
   <!-- 블록 B — 1/4 사이즈 · 요금 안내(인터넷+IPTV 결합 1종) · 배경 Sub Blue 6
        §1.6 — Sub Blue 6 배경에서 텍스트 강조는 B Blue만 -->
-  <div class="blk" style="height: 170px; flex: none; background: #E9EEFF; flex-direction: column; gap: 5px;">
+  <div class="blk" style="height: 147px; flex: none; background: #E9EEFF; flex-direction: column; gap: 5px;">
     <div style="display: flex; align-items: flex-end; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 5px; flex-grow: 1; min-width: 0;">
         <div style="font-size: 10px; letter-spacing: -0.011em; color: #5B5D62;">기가 인터넷(1G) + B tv All+</div>
@@ -87,19 +90,19 @@
           <span style="font-size: 10px; font-weight: 700; letter-spacing: -0.011em; color: #ffffff; background: #3617CE; border-radius: 9999px; padding: 0.25em 0.7em;">42% 할인</span>
         </div>
       </div>
-      <img src="icon_coin.png" alt="Coin" style="width: 80px; height: 80px; object-fit: contain; flex: none;">
+      <img src="icon_coin.png" alt="Coin" style="width: 65px; height: 65px; object-fit: contain; flex: none;">
     </div>
     <div style="font-size: 10px; letter-spacing: -0.011em; color: #808288;">*부가세 포함, 3년 약정, 요금가족결합 기준</div>
   </div>
 
   <!-- 블록 C — 1/4 사이즈 · 사은품 단독 강조(그래픽) · 배경 Sub Gray 7 -->
-  <div class="blk" style="height: 170px; flex: none; background: #F5F5F6; align-items: center;">
+  <div class="blk" style="height: 147px; flex: none; background: #F5F5F6; align-items: center;">
     <div style="display: flex; flex-direction: column; gap: 5px; flex-grow: 1; min-width: 0;">
       <div class="t" style="font-size: 19px; font-weight: 700; line-height: 1.22; letter-spacing: -0.023em; color: #000000;">사은품도 놓치지 마세요</div>
       <div style="font-size: 10px; line-height: 1.5; letter-spacing: -0.011em; color: #5B5D62;">3년간 요금 할인 · 현금 지원 · 삼성 TV 또는 가전제품</div>
       <div style="font-size: 10px; letter-spacing: -0.011em; color: #808288;">*상품 중 택 1 · 가입 상품에 따라 변동 가능</div>
     </div>
-    <img src="icon_giftbox.png" alt="Gift Box" style="width: 80px; height: 80px; object-fit: contain; flex: none;">
+    <img src="icon_giftbox.png" alt="Gift Box" style="width: 65px; height: 65px; object-fit: contain; flex: none;">
   </div>
 
   <!-- 고정 영역 — 지점명 · 가입 상담 및 문의 -->

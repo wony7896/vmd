@@ -234,6 +234,49 @@
    ]
   },
   {
+   "section": "Money",
+   "fields": {
+    "슬롯": "Card Stack",
+    "한글명": "카드 (여러 장)",
+    "검색어": "카드 신용카드 체크카드 결제 다중발급",
+    "정본": "`Card.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** `Credit Card.png`(1장)와 별개 — 카드 여러 장 겹친 형태"
+   },
+   "tags": [
+    "카드",
+    "신용카드",
+    "체크카드",
+    "결제",
+    "다중발급"
+   ],
+   "paths": [
+    "brand guide/3D Icon/Card.png",
+    "brand guide/3D Icon/Credit Card.png"
+   ]
+  },
+  {
+   "section": "Money",
+   "fields": {
+    "슬롯": "Paper Money 04",
+    "한글명": "만원 다발",
+    "검색어": "만원 지폐다발 현금 목돈 캐시백",
+    "정본": "`만원돈다발.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17)**"
+   },
+   "tags": [
+    "만원",
+    "지폐다발",
+    "현금",
+    "목돈",
+    "캐시백"
+   ],
+   "paths": [
+    "brand guide/3D Icon/만원돈다발.png"
+   ]
+  },
+  {
    "section": "Device",
    "fields": {
     "슬롯": "Phone 01",
@@ -478,6 +521,71 @@
    ]
   },
   {
+   "section": "Device",
+   "fields": {
+    "슬롯": "Set-top Box",
+    "한글명": "셋톱박스",
+    "검색어": "셋톱박스 셋탑 IPTV Btv 단말기",
+    "정본": "`icon_셋톱박스_STD.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** 6.4 목록엔 없음"
+   },
+   "tags": [
+    "셋톱박스",
+    "셋탑",
+    "IPTV",
+    "Btv",
+    "단말기"
+   ],
+   "paths": [
+    "brand guide/3D Icon/icon_셋톱박스_STD.png"
+   ]
+  },
+  {
+   "section": "Device",
+   "fields": {
+    "슬롯": "Set-top Box (정면)",
+    "한글명": "셋톱박스 정면",
+    "검색어": "셋톱박스 셋탑 정면 IPTV Btv 단말기",
+    "정본": "`icon_셋톱박스 정면_STD_new.png`",
+    "고해상": "`icon_셋톱박스 정면_HQ_new.png`",
+    "비고": "**BX 확인 후 등재 (2026-09-17)**"
+   },
+   "tags": [
+    "셋톱박스",
+    "셋탑",
+    "정면",
+    "IPTV",
+    "Btv",
+    "단말기"
+   ],
+   "paths": [
+    "brand guide/3D Icon/icon_셋톱박스 정면_STD_new.png",
+    "brand guide/3D Icon/icon_셋톱박스 정면_HQ_new.png"
+   ]
+  },
+  {
+   "section": "Device",
+   "fields": {
+    "슬롯": "Bundle",
+    "한글명": "유무선결합",
+    "검색어": "유무선결합 결합상품 인터넷 와이파이 노트북",
+    "정본": "`유무선결합.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17)**"
+   },
+   "tags": [
+    "유무선결합",
+    "결합상품",
+    "인터넷",
+    "와이파이",
+    "노트북"
+   ],
+   "paths": [
+    "brand guide/3D Icon/유무선결합.png"
+   ]
+  },
+  {
    "section": "Place",
    "fields": {
     "슬롯": "Store",
@@ -630,6 +738,27 @@
    ],
    "paths": [
     "brand guide/3D Icon/Wifi Speed.png"
+   ]
+  },
+  {
+   "section": "Place",
+   "fields": {
+    "슬롯": "Park",
+    "한글명": "공원",
+    "검색어": "공원 나무 조경 산책 동네",
+    "정본": "`공원.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17)**"
+   },
+   "tags": [
+    "공원",
+    "나무",
+    "조경",
+    "산책",
+    "동네"
+   ],
+   "paths": [
+    "brand guide/3D Icon/공원.png"
    ]
   },
   {
@@ -871,7 +1000,7 @@
     "검색어": "말풍선 상담 문의 대화",
     "정본": "`icon_말풍선_STD.png`",
     "고해상": "—",
-    "비고": "파란 말풍선. 흰 말풍선 변형은 `말풍선_STD.png` — 파란 배경에서 쓴다"
+    "비고": "파란 말풍선. 흰 배경용 짝은 아래 Speech Bubble 02W"
    },
    "tags": [
     "말풍선",
@@ -880,7 +1009,26 @@
     "대화"
    ],
    "paths": [
-    "brand guide/3D Icon/icon_말풍선_STD.png",
+    "brand guide/3D Icon/icon_말풍선_STD.png"
+   ]
+  },
+  {
+   "section": "Comm",
+   "fields": {
+    "슬롯": "Speech Bubble 02W",
+    "한글명": "말풍선 2 (화이트)",
+    "검색어": "말풍선 상담 문의 대화",
+    "정본": "`말풍선_STD.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** 흰 말풍선 — Speech Bubble 02(파란)의 파란 배경용 짝"
+   },
+   "tags": [
+    "말풍선",
+    "상담",
+    "문의",
+    "대화"
+   ],
+   "paths": [
     "brand guide/3D Icon/말풍선_STD.png"
    ]
   },
@@ -1048,6 +1196,26 @@
    ],
    "paths": [
     "brand guide/3D Icon/USIM.png"
+   ]
+  },
+  {
+   "section": "Comm",
+   "fields": {
+    "슬롯": "Service Guide",
+    "한글명": "이용 가이드",
+    "검색어": "이용가이드 안내서 매뉴얼 사용법",
+    "정본": "`서비스 이용 가이드.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17)**"
+   },
+   "tags": [
+    "이용가이드",
+    "안내서",
+    "매뉴얼",
+    "사용법"
+   ],
+   "paths": [
+    "brand guide/3D Icon/서비스 이용 가이드.png"
    ]
   },
   {
@@ -1530,6 +1698,46 @@
    ],
    "paths": [
     "brand guide/3D Icon/Ribbon_4.png"
+   ]
+  },
+  {
+   "section": "Deco",
+   "fields": {
+    "슬롯": "Ribbon Bow",
+    "한글명": "리본 보우",
+    "검색어": "리본 보우 매듭 장식",
+    "정본": "`리본.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** Ribbon 01~04(띠 형태)와 별개 — 매듭(보우) 형태"
+   },
+   "tags": [
+    "리본",
+    "보우",
+    "매듭",
+    "장식"
+   ],
+   "paths": [
+    "brand guide/3D Icon/리본.png"
+   ]
+  },
+  {
+   "section": "Deco",
+   "fields": {
+    "슬롯": "Ribbon Band",
+    "한글명": "리본 띠",
+    "검색어": "리본 띠 밴드 장식",
+    "정본": "`리본끈.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** 가로 밴드형"
+   },
+   "tags": [
+    "리본",
+    "띠",
+    "밴드",
+    "장식"
+   ],
+   "paths": [
+    "brand guide/3D Icon/리본끈.png"
    ]
   },
   {
@@ -2090,6 +2298,27 @@
    ]
   },
   {
+   "section": "Hand",
+   "fields": {
+    "슬롯": "OK Sign",
+    "한글명": "OK 사인",
+    "검색어": "OK 오케이 확인 승인 좋아요",
+    "정본": "`손_OK.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** Fist·Rock 결번의 대체 아님 — 별도 손동작"
+   },
+   "tags": [
+    "OK",
+    "오케이",
+    "확인",
+    "승인",
+    "좋아요"
+   ],
+   "paths": [
+    "brand guide/3D Icon/손_OK.png"
+   ]
+  },
+  {
    "section": "Season",
    "fields": {
     "슬롯": "Gift Box 01",
@@ -2267,12 +2496,34 @@
   {
    "section": "Season",
    "fields": {
+    "슬롯": "Ornament 04",
+    "한글명": "크리스마스 오너먼트 4",
+    "검색어": "크리스마스 성탄절 연말 겨울 오너먼트 장식",
+    "정본": "`icon_크리스마스오너먼트4_STD.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** 6.4 목록은 03까지"
+   },
+   "tags": [
+    "크리스마스",
+    "성탄절",
+    "연말",
+    "겨울",
+    "오너먼트",
+    "장식"
+   ],
+   "paths": [
+    "brand guide/3D Icon/icon_크리스마스오너먼트4_STD.png"
+   ]
+  },
+  {
+   "section": "Season",
+   "fields": {
     "슬롯": "Snowman",
     "한글명": "눈사람",
     "검색어": "눈사람 겨울 크리스마스 연말 한파",
     "정본": "`눈사람_STD.png`",
     "고해상": "`눈사람_02.png`",
-    "비고": "`눈사람.png`(파란 실크햇+팔)는 **별개 디자인** — 목록 외로 분리"
+    "비고": "빨간 산타모자. 파란 모자 변형은 아래 Snowman (변형)"
    },
    "tags": [
     "눈사람",
@@ -2283,7 +2534,27 @@
    ],
    "paths": [
     "brand guide/3D Icon/눈사람_STD.png",
-    "brand guide/3D Icon/눈사람_02.png",
+    "brand guide/3D Icon/눈사람_02.png"
+   ]
+  },
+  {
+   "section": "Season",
+   "fields": {
+    "슬롯": "Snowman (변형)",
+    "한글명": "눈사람 (파란모자)",
+    "검색어": "눈사람 겨울 크리스마스 연말 한파",
+    "정본": "`눈사람.png`",
+    "고해상": "—",
+    "비고": "**BX 확인 후 등재 (2026-09-17).** 파란 실크햇+팔 — Snowman(빨간 산타모자)과 별개 디자인"
+   },
+   "tags": [
+    "눈사람",
+    "겨울",
+    "크리스마스",
+    "연말",
+    "한파"
+   ],
+   "paths": [
     "brand guide/3D Icon/눈사람.png"
    ]
   },
@@ -2960,10 +3231,10 @@
    ]
   },
   {
-   "section": "목록 외 — 미등재 25개",
+   "section": "목록 외 — 미등재 4개",
    "fields": {
     "파일": "`240626_Btv+키비주얼이미지만.jpg`",
-    "내용": "**아이콘 아님** — B tv+ 키비주얼"
+    "내용": "**아이콘 아님** — B tv+ 키비주얼 사진. 인덱스 대상 아님 (2026-09-17 확정)"
    },
    "tags": [],
    "paths": [
@@ -2971,22 +3242,10 @@
    ]
   },
   {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`Card.png`",
-    "내용": "카드 여러 장 겹침 — `Credit Card.png`(1장)와 별개"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/Card.png",
-    "brand guide/3D Icon/Credit Card.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
+   "section": "목록 외 — 미등재 4개",
    "fields": {
     "파일": "`Coffee.png`",
-    "내용": "갈색 크라프트 컵 — **브랜드 컬러 아님**"
+    "내용": "갈색 크라프트 컵 — **브랜드 컬러 아님**. Hot/Iced 커피 슬롯은 이미 파란 계열로 등재됨 (2026-09-17 확정)"
    },
    "tags": [],
    "paths": [
@@ -2994,142 +3253,10 @@
    ]
   },
   {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`icon_셋톱박스 정면_HQ_new.png`",
-    "내용": "셋톱박스 정면 고해상 (new)"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/icon_셋톱박스 정면_HQ_new.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`icon_셋톱박스 정면_STD_new.png`",
-    "내용": "셋톱박스 정면 (new)"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/icon_셋톱박스 정면_STD_new.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`icon_셋톱박스_STD.png`",
-    "내용": "셋톱박스 — Device에 있어야 할 것으로 보이나 6.4에 없음"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/icon_셋톱박스_STD.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`icon_크리스마스오너먼트4_STD.png`",
-    "내용": "오너먼트 4번 — 목록은 03까지"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/icon_크리스마스오너먼트4_STD.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`가판대.png`",
-    "내용": "—"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/가판대.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`공원.png`",
-    "내용": "공원 지형 — Place 계열"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/공원.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`눈사람.png`",
-    "내용": "파란 실크햇+팔 눈사람 — Snowman(빨간 산타모자)과 **별개 디자인**"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/눈사람.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`리모컨.png`",
-    "내용": "—"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/리모컨.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`리본.png`",
-    "내용": "리본 보우 — Ribbon 01~04와 별개"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/리본.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`리본끈.png`",
-    "내용": "리본 띠(가로 밴드)"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/리본끈.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`만원돈다발.png`",
-    "내용": "만원권 다발"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/만원돈다발.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`말풍선_STD.png`",
-    "내용": "흰 말풍선 — Speech Bubble 02(파란)의 배경 대응 변형"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/말풍선_STD.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
+   "section": "목록 외 — 미등재 4개",
    "fields": {
     "파일": "`무빙스타일.jpeg`",
-    "내용": "**아이콘 아님** — 인테리어 배경 사진"
+    "내용": "**아이콘 아님** — 인테리어 배경 사진. BX 확인 후 **폐기** (2026-09-17)"
    },
    "tags": [],
    "paths": [
@@ -3137,103 +3264,15 @@
    ]
   },
   {
-   "section": "목록 외 — 미등재 25개",
+   "section": "목록 외 — 미등재 4개",
    "fields": {
     "파일": "`물놀이튜브 (1).png`",
-    "내용": "`물놀이튜브.png`와 **바이트 단위 동일 사본** — 삭제 권장"
+    "내용": "`물놀이튜브.png`와 **바이트 단위 동일 사본** — 새 정보 없음, 미등재 확정 (2026-09-17)"
    },
    "tags": [],
    "paths": [
     "brand guide/3D Icon/물놀이튜브 (1).png",
     "brand guide/3D Icon/물놀이튜브.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`사다리차.png`",
-    "내용": "—"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/사다리차.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`서비스 이용 가이드.png`",
-    "내용": "가이드북 + 돋보기"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/서비스 이용 가이드.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`서빙로봇.png`",
-    "내용": "—"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/서빙로봇.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`손_OK.png`",
-    "내용": "OK 사인 — Fist/Rock 어느 쪽도 아님"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/손_OK.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`유무선결합.png`",
-    "내용": "노트북 + WiFi — 유무선결합 소구"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/유무선결합.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`집.png`",
-    "내용": "—"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/집.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`핸드폰.png`",
-    "내용": "**회색 체커보드가 이미지에 박혀 있음 — 사용 불가**"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/핸드폰.png"
-   ]
-  },
-  {
-   "section": "목록 외 — 미등재 25개",
-   "fields": {
-    "파일": "`핸드폰2.png`",
-    "내용": "**회색 체커보드가 이미지에 박혀 있음 — 사용 불가**"
-   },
-   "tags": [],
-   "paths": [
-    "brand guide/3D Icon/핸드폰2.png"
    ]
   }
  ],
@@ -4490,104 +4529,45 @@
   {
    "section": "목록",
    "fields": {
-    "파일": "`26ef8da0-4175-4682-8b67-b09f6a127458.webp`",
+    "파일": "`A05s.webp`",
     "폼팩터": "바 형태",
-    "색상": "실버·그레이 2대 + S펜",
-    "기종": "**기종 미확인** — S펜 동반, Ultra 계열로 보임",
-    "검색어": "휴대폰 스마트폰 갤럭시 울트라 S펜 단말기"
+    "색상": "라이트 바이올렛(화이트→퍼플 그라데이션)",
+    "기종": "Galaxy A05s",
+    "검색어": "갤럭시A05s A05s 갤럭시 보급형 휴대폰 스마트폰 저가"
    },
    "tags": [
+    "갤럭시A05s",
+    "A05s",
+    "갤럭시",
+    "보급형",
     "휴대폰",
     "스마트폰",
-    "갤럭시",
-    "울트라",
-    "S펜",
-    "단말기"
+    "저가"
    ],
    "paths": [
-    "brand guide/Product Photography/26ef8da0-4175-4682-8b67-b09f6a127458.webp"
+    "brand guide/Product Photography/A05s.webp"
    ]
   },
   {
    "section": "목록",
    "fields": {
-    "파일": "`506937ce-3bc9-44ed-b2c7-8f76f66840b9.webp`",
+    "파일": "`A14.webp`",
     "폼팩터": "바 형태",
-    "색상": "버건디/블랙",
-    "기종": "**기종 미확인** — 후면 카메라 3구 세로",
-    "검색어": "휴대폰 스마트폰 갤럭시 버건디 단말기"
+    "색상": "다크 레드(버건디 계열)",
+    "기종": "Galaxy A14",
+    "검색어": "갤럭시A14 A14 갤럭시 보급형 휴대폰 스마트폰 저가"
    },
    "tags": [
+    "갤럭시A14",
+    "A14",
+    "갤럭시",
+    "보급형",
     "휴대폰",
     "스마트폰",
-    "갤럭시",
-    "버건디",
-    "단말기"
+    "저가"
    ],
    "paths": [
-    "brand guide/Product Photography/506937ce-3bc9-44ed-b2c7-8f76f66840b9.webp"
-   ]
-  },
-  {
-   "section": "목록",
-   "fields": {
-    "파일": "`5debe4be-60a1-4b46-9e0d-67ece7b7f78f.webp`",
-    "폼팩터": "폴더블 — 폴드형",
-    "색상": "그레이",
-    "기종": "**기종 미확인** — 접힘+펼침 2컷",
-    "검색어": "폴더블 폴드 갤럭시 접는폰 단말기"
-   },
-   "tags": [
-    "폴더블",
-    "폴드",
-    "갤럭시",
-    "접는폰",
-    "단말기"
-   ],
-   "paths": [
-    "brand guide/Product Photography/5debe4be-60a1-4b46-9e0d-67ece7b7f78f.webp"
-   ]
-  },
-  {
-   "section": "목록",
-   "fields": {
-    "파일": "`7bb25004-9c32-4550-8d2f-364d5d6615b6.webp`",
-    "폼팩터": "폴더블 — 플립형",
-    "색상": "민트",
-    "기종": "**기종 미확인** — 접힘",
-    "검색어": "폴더블 플립 갤럭시 접는폰 민트 단말기"
-   },
-   "tags": [
-    "폴더블",
-    "플립",
-    "갤럭시",
-    "접는폰",
-    "민트",
-    "단말기"
-   ],
-   "paths": [
-    "brand guide/Product Photography/7bb25004-9c32-4550-8d2f-364d5d6615b6.webp"
-   ]
-  },
-  {
-   "section": "목록",
-   "fields": {
-    "파일": "`9d882dc4-579c-48f1-a9eb-a92895dddd30.webp`",
-    "폼팩터": "폴더블 — 플립형",
-    "색상": "민트",
-    "기종": "**기종 미확인** — 반접힘",
-    "검색어": "폴더블 플립 갤럭시 접는폰 민트 단말기"
-   },
-   "tags": [
-    "폴더블",
-    "플립",
-    "갤럭시",
-    "접는폰",
-    "민트",
-    "단말기"
-   ],
-   "paths": [
-    "brand guide/Product Photography/9d882dc4-579c-48f1-a9eb-a92895dddd30.webp"
+    "brand guide/Product Photography/A14.webp"
    ]
   },
   {
@@ -4658,6 +4638,27 @@
   {
    "section": "목록",
    "fields": {
+    "파일": "`S23.avif`",
+    "폼팩터": "바 형태",
+    "색상": "그린(세이지 계열)",
+    "기종": "Galaxy S23",
+    "검색어": "갤럭시S23 S23 갤럭시 플래그십 휴대폰 스마트폰"
+   },
+   "tags": [
+    "갤럭시S23",
+    "S23",
+    "갤럭시",
+    "플래그십",
+    "휴대폰",
+    "스마트폰"
+   ],
+   "paths": [
+    "brand guide/Product Photography/S23.avif"
+   ]
+  },
+  {
+   "section": "목록",
+   "fields": {
     "파일": "`S23FE.avif`",
     "폼팩터": "바 형태",
     "색상": "—",
@@ -4678,61 +4679,109 @@
   {
    "section": "목록",
    "fields": {
-    "파일": "`b6690623-c120-454d-ade3-c1a2cc2f79fc.webp`",
-    "폼팩터": "폴더블 — 플립형",
-    "색상": "민트",
-    "기종": "**기종 미확인** — 펼침",
-    "검색어": "폴더블 플립 갤럭시 접는폰 민트 단말기"
+    "파일": "`폴더블(폴드6).webp`",
+    "폼팩터": "폴더블 — 폴드형",
+    "색상": "핑크·네이비·실버 섀도우 그룹샷",
+    "기종": "Galaxy Z Fold6",
+    "검색어": "갤럭시Z폴드6 폴드6 폴더블 폴드 접는폰 갤럭시"
    },
    "tags": [
+    "갤럭시Z폴드6",
+    "폴드6",
+    "폴더블",
+    "폴드",
+    "접는폰",
+    "갤럭시"
+   ],
+   "paths": [
+    "brand guide/Product Photography/폴더블(폴드6).webp"
+   ]
+  },
+  {
+   "section": "목록",
+   "fields": {
+    "파일": "`폴더블(플립6) 실버.webp`",
+    "폼팩터": "폴더블 — 플립형",
+    "색상": "실버 섀도우 — 접힘+펼침 2컷",
+    "기종": "Galaxy Z Flip6",
+    "검색어": "갤럭시Z플립6 플립6 폴더블 플립 접는폰 갤럭시"
+   },
+   "tags": [
+    "갤럭시Z플립6",
+    "플립6",
     "폴더블",
     "플립",
-    "갤럭시",
     "접는폰",
-    "민트",
-    "단말기"
+    "갤럭시"
    ],
    "paths": [
-    "brand guide/Product Photography/b6690623-c120-454d-ade3-c1a2cc2f79fc.webp"
+    "brand guide/Product Photography/폴더블(플립6) 실버.webp"
    ]
   },
   {
    "section": "목록",
    "fields": {
-    "파일": "`bd63d77f-bc7c-4aed-8c03-41224e197bf2.avif`",
-    "폼팩터": "바 형태",
-    "색상": "세이지 그린",
-    "기종": "**기종 미확인** — 전후면 2컷",
-    "검색어": "휴대폰 스마트폰 갤럭시 세이지그린 단말기"
+    "파일": "`폴더블(플립6) 민트.webp`",
+    "폼팩터": "폴더블 — 플립형",
+    "색상": "민트 — 접힘",
+    "기종": "Galaxy Z Flip6",
+    "검색어": "갤럭시Z플립6 플립6 폴더블 플립 접는폰 갤럭시 민트"
    },
    "tags": [
-    "휴대폰",
-    "스마트폰",
+    "갤럭시Z플립6",
+    "플립6",
+    "폴더블",
+    "플립",
+    "접는폰",
     "갤럭시",
-    "세이지그린",
-    "단말기"
+    "민트"
    ],
    "paths": [
-    "brand guide/Product Photography/bd63d77f-bc7c-4aed-8c03-41224e197bf2.avif"
+    "brand guide/Product Photography/폴더블(플립6) 민트.webp"
    ]
   },
   {
    "section": "목록",
    "fields": {
-    "파일": "`dccb206c-9f46-4418-ba24-626f8043b858.webp`",
-    "폼팩터": "바 형태",
-    "색상": "퍼플/화이트 그라데이션",
-    "기종": "**기종 미확인**",
-    "검색어": "휴대폰 스마트폰 퍼플 단말기"
+    "파일": "`폴더블(플립6) 민트 2.webp`",
+    "폼팩터": "폴더블 — 플립형",
+    "색상": "민트 — 반접힘",
+    "기종": "Galaxy Z Flip6",
+    "검색어": "갤럭시Z플립6 플립6 폴더블 플립 접는폰 갤럭시 민트"
    },
    "tags": [
-    "휴대폰",
-    "스마트폰",
-    "퍼플",
-    "단말기"
+    "갤럭시Z플립6",
+    "플립6",
+    "폴더블",
+    "플립",
+    "접는폰",
+    "갤럭시",
+    "민트"
    ],
    "paths": [
-    "brand guide/Product Photography/dccb206c-9f46-4418-ba24-626f8043b858.webp"
+    "brand guide/Product Photography/폴더블(플립6) 민트 2.webp"
+   ]
+  },
+  {
+   "section": "목록",
+   "fields": {
+    "파일": "`폴더블(플립6) 민트 3.webp`",
+    "폼팩터": "폴더블 — 플립형",
+    "색상": "민트 — 펼침",
+    "기종": "Galaxy Z Flip6",
+    "검색어": "갤럭시Z플립6 플립6 폴더블 플립 접는폰 갤럭시 민트"
+   },
+   "tags": [
+    "갤럭시Z플립6",
+    "플립6",
+    "폴더블",
+    "플립",
+    "접는폰",
+    "갤럭시",
+    "민트"
+   ],
+   "paths": [
+    "brand guide/Product Photography/폴더블(플립6) 민트 3.webp"
    ]
   },
   {
@@ -4951,6 +5000,84 @@
    ],
    "paths": [
     "brand guide/Product Photography/폴더블7(플립7).png"
+   ]
+  },
+  {
+   "section": "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)",
+   "fields": {
+    "원본 UUID(앞 8자)": "`26ef8da0`…",
+    "바뀐 파일명": "`폴더블(폴드6).webp`",
+    "확정 기종": "Galaxy Z Fold6",
+    "근거": "핑크·네이비는 Fold6의 표준 색상(Fold7은 단종)"
+   },
+   "tags": [],
+   "paths": [
+    "brand guide/Product Photography/폴더블(폴드6).webp"
+   ]
+  },
+  {
+   "section": "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)",
+   "fields": {
+    "원본 UUID(앞 8자)": "`506937ce`…",
+    "바뀐 파일명": "`A14.webp`",
+    "확정 기종": "Galaxy A14",
+    "근거": "다크 레드 + 세로 개별 카메라 3구 배치가 A14 특징과 일치"
+   },
+   "tags": [],
+   "paths": [
+    "brand guide/Product Photography/A14.webp"
+   ]
+  },
+  {
+   "section": "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)",
+   "fields": {
+    "원본 UUID(앞 8자)": "`5debe4be`…",
+    "바뀐 파일명": "`폴더블(플립6) 실버.webp`",
+    "확정 기종": "Galaxy Z Flip6",
+    "근거": "커버 스크린 크기·카메라 2구 배치가 Flip6 세대. 실버 섀도우는 Flip7엔 없는 Flip6 색상"
+   },
+   "tags": [],
+   "paths": [
+    "brand guide/Product Photography/폴더블(플립6) 실버.webp"
+   ]
+  },
+  {
+   "section": "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)",
+   "fields": {
+    "원본 UUID(앞 8자)": "`7bb25004`…·`9d882dc4`…·`b6690623`…",
+    "바뀐 파일명": "`폴더블(플립6) 민트.webp` 등 3컷",
+    "확정 기종": "Galaxy Z Flip6",
+    "근거": "위와 동일 근거, 민트는 Flip6·Flip7 공통색이나 실버와 같은 촬영 세트로 판단"
+   },
+   "tags": [],
+   "paths": [
+    "brand guide/Product Photography/폴더블(플립6) 민트.webp"
+   ]
+  },
+  {
+   "section": "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)",
+   "fields": {
+    "원본 UUID(앞 8자)": "`bd63d77f`…",
+    "바뀐 파일명": "`S23.avif`",
+    "확정 기종": "Galaxy S23",
+    "근거": "개별 링 카메라(범퍼 없음) + 그레이시 그린이 S23 \"그린\"과 일치. S23FE \"민트\"와 유사해 완전히 단정하기는 어렵다"
+   },
+   "tags": [],
+   "paths": [
+    "brand guide/Product Photography/S23.avif"
+   ]
+  },
+  {
+   "section": "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)",
+   "fields": {
+    "원본 UUID(앞 8자)": "`dccb206c`…",
+    "바뀐 파일명": "`A05s.webp`",
+    "확정 기종": "Galaxy A05s",
+    "근거": "화이트→퍼플 대각 그라데이션이 A05s의 \"라이트 바이올렛\"과 일치"
+   },
+   "tags": [],
+   "paths": [
+    "brand guide/Product Photography/A05s.webp"
    ]
   }
  ],
@@ -7566,11 +7693,13 @@
     "색상": "`#000000`",
     "픽셀": "684×770",
     "종횡비": "0.8883",
+    "벡터": "`../brand guide/logo/B_logo_black_인쇄용.ai`",
     "비고": "기본. 밝은 배경"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/B_logo_black_인쇄용.png"
+    "brand guide/logo/B_logo_black_인쇄용.png",
+    "brand guide/logo/B_logo_black_인쇄용.ai"
    ]
   },
   {
@@ -7580,25 +7709,29 @@
     "색상": "`#FFFFFF`",
     "픽셀": "684×770",
     "종횡비": "0.8883",
+    "벡터": "`../brand guide/logo/B_logo_white_인쇄용.ai`",
     "비고": "B Blue·Navy 배경"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/B_logo_white_인쇄용.png"
+    "brand guide/logo/B_logo_white_인쇄용.png",
+    "brand guide/logo/B_logo_white_인쇄용.ai"
    ]
   },
   {
    "section": "보유 현황 — BI 3종 (B 로고)",
    "fields": {
     "파일": "`../brand guide/logo/B_logo_fullcolor_인쇄용.png`",
-    "색상": "`#274395`",
+    "색상": "`#3617CE` (B Blue)",
     "픽셀": "684×770",
     "종횡비": "0.8883",
-    "비고": "**색상 확인 필요 — 아래 참조**"
+    "벡터": "`../brand guide/logo/B_logo_fullcolor_인쇄용.ai`",
+    "비고": "**2026-09-17 색상 수정** — 아래 참조"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/B_logo_fullcolor_인쇄용.png"
+    "brand guide/logo/B_logo_fullcolor_인쇄용.png",
+    "brand guide/logo/B_logo_fullcolor_인쇄용.ai"
    ]
   },
   {
@@ -7608,11 +7741,13 @@
     "표기": "국문",
     "색상": "풀컬러",
     "픽셀": "1000×163",
-    "종횡비": "6.13 : 1"
+    "종횡비": "6.13 : 1",
+    "벡터": "`../brand guide/logo/SK broadband_logo_fullcolor_국문_인쇄용.ai`"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/SK broadband_logo_fullcolor_국문_인쇄용.png"
+    "brand guide/logo/SK broadband_logo_fullcolor_국문_인쇄용.png",
+    "brand guide/logo/SK broadband_logo_fullcolor_국문_인쇄용.ai"
    ]
   },
   {
@@ -7622,11 +7757,13 @@
     "표기": "영문",
     "색상": "풀컬러",
     "픽셀": "1000×147",
-    "종횡비": "6.80 : 1"
+    "종횡비": "6.80 : 1",
+    "벡터": "`../brand guide/logo/SK broadband_logo_fullcolor_영문_인쇄용.ai`"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/SK broadband_logo_fullcolor_영문_인쇄용.png"
+    "brand guide/logo/SK broadband_logo_fullcolor_영문_인쇄용.png",
+    "brand guide/logo/SK broadband_logo_fullcolor_영문_인쇄용.ai"
    ]
   },
   {
@@ -7636,11 +7773,13 @@
     "표기": "국문",
     "색상": "블랙",
     "픽셀": "1000×163",
-    "종횡비": "6.13 : 1"
+    "종횡비": "6.13 : 1",
+    "벡터": "`../brand guide/logo/SK broadband_logo_black_국문_인쇄용.ai`"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/SK broadband_logo_black_국문_인쇄용.png"
+    "brand guide/logo/SK broadband_logo_black_국문_인쇄용.png",
+    "brand guide/logo/SK broadband_logo_black_국문_인쇄용.ai"
    ]
   },
   {
@@ -7650,11 +7789,13 @@
     "표기": "영문",
     "색상": "블랙",
     "픽셀": "1000×147",
-    "종횡비": "6.80 : 1"
+    "종횡비": "6.80 : 1",
+    "벡터": "`../brand guide/logo/SK broadband_logo_black_영문_인쇄용.ai`"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/SK broadband_logo_black_영문_인쇄용.png"
+    "brand guide/logo/SK broadband_logo_black_영문_인쇄용.png",
+    "brand guide/logo/SK broadband_logo_black_영문_인쇄용.ai"
    ]
   },
   {
@@ -7664,11 +7805,13 @@
     "표기": "국문",
     "색상": "화이트",
     "픽셀": "1000×163",
-    "종횡비": "6.13 : 1"
+    "종횡비": "6.13 : 1",
+    "벡터": "`../brand guide/logo/SK broadband_logo_white_국문_인쇄용.ai`"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/SK broadband_logo_white_국문_인쇄용.png"
+    "brand guide/logo/SK broadband_logo_white_국문_인쇄용.png",
+    "brand guide/logo/SK broadband_logo_white_국문_인쇄용.ai"
    ]
   },
   {
@@ -7678,11 +7821,13 @@
     "표기": "영문",
     "색상": "화이트",
     "픽셀": "1000×147",
-    "종횡비": "6.80 : 1"
+    "종횡비": "6.80 : 1",
+    "벡터": "`../brand guide/logo/SK broadband_logo_white_영문_인쇄용.ai`"
    },
    "tags": [],
    "paths": [
-    "brand guide/logo/SK broadband_logo_white_영문_인쇄용.png"
+    "brand guide/logo/SK broadband_logo_white_영문_인쇄용.png",
+    "brand guide/logo/SK broadband_logo_white_영문_인쇄용.ai"
    ]
   },
   {
@@ -7705,7 +7850,7 @@
    ],
    "illust": [],
    "product": [],
-   "n": 21
+   "n": 23
   },
   "2. 사은품": {
    "icon": [
@@ -7715,7 +7860,7 @@
    ],
    "illust": [],
    "product": [],
-   "n": 36
+   "n": 38
   },
   "3. 요금 안내 + 상품": {
    "icon": [
@@ -7724,9 +7869,10 @@
    ],
    "illust": [],
    "product": [
-    "목록"
+    "목록",
+    "UUID 파일 8개 — 기종 확인 완료 (2026-09-17)"
    ],
-   "n": 43
+   "n": 52
   },
   "4. 메세지 소구형": {
    "icon": [
@@ -7748,7 +7894,7 @@
     "기타 — 상황·관계"
    ],
    "product": [],
-   "n": 89
+   "n": 92
   },
   "5. 시즈널": {
    "icon": [
@@ -7770,7 +7916,7 @@
     "기타 — 상황·관계"
    ],
    "product": [],
-   "n": 98
+   "n": 100
   },
   "6. 서부 본부 전단": {
    "icon": [
@@ -7782,7 +7928,7 @@
     "B매니저(여)"
    ],
    "product": [],
-   "n": 28
+   "n": 30
   },
   "7. 유통망 요청 추가 유형 2": {
    "icon": [
@@ -7804,7 +7950,7 @@
     "기타 — 상황·관계"
    ],
    "product": [],
-   "n": 94
+   "n": 97
   }
  }
 }
