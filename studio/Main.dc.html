@@ -1307,10 +1307,17 @@
 </x-dc>
 
 <script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+// 관리자 대시보드 집계용 — 내보내기(복사) 성공 시에만 1건 기록한다. 실패해도 제작 흐름을 막지 않는다.
+const LOG_URL = 'https://amoysregnxglrjlsxzvr.supabase.co/rest/v1/flyer_exports';
+const LOG_KEY = 'sb_publishable_8aPQtzeRptdI8wflI4Pfxg_X4pVlfX0';
+
 class Component extends DCLogic {
 
   constructor(props) {
     super(props);
+    this.sessionId = (crypto.randomUUID ? crypto.randomUUID()
+      : 'sess-' + Date.now() + '-' + Math.random().toString(36).slice(2));
+    this.sessionStartedAt = new Date();   // 이 화면을 연 시각 — '1건 제작 시간'의 시작점
     this.state = {
       step: 1,
 
@@ -2271,6 +2278,35 @@ class Component extends DCLogic {
     return g ? g.n : '없음';
   }
 
+  // 관리자 대시보드 집계용 — 내보내기 복사가 성공했을 때만 호출한다.
+  // 네트워크 실패해도 제작 흐름(클립보드 복사)을 막지 않도록 fire-and-forget.
+  logExport(mode, ok) {
+    if (!ok) return;
+    const blocks = this.state.chosen
+      .filter((b) => b.asset)
+      .map((b) => {
+        const g = this.gfxAt(b.asset);
+        return { category: b.cat, graphic_id: b.asset, graphic_name: g ? g.n : null, kind: g ? g.k : null };
+      });
+    const payload = {
+      session_id: this.sessionId,
+      store_name: this.state.f.store || null,
+      flyer_type: this.state.picked,
+      export_kind: mode === 'print' ? 'print' : 'screen',
+      blocks,
+      started_at: this.sessionStartedAt.toISOString(),
+      exported_at: new Date().toISOString()
+    };
+    try {
+      fetch(LOG_URL, {
+        method: 'POST',
+        headers: { apikey: LOG_KEY, Authorization: 'Bearer ' + LOG_KEY,
+          'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch (e) {}
+  }
+
   // 블록의 후보를 순위대로. template.md 2.5 —
   //   1) 원고 문구에 검색어 낱말이 몇 개 들어 있는지  2) 후보 풀의 섹션 순서  3) 인덱스 행 순서
   // 문구에는 블록 이름(‘이사’·‘추석’)도 넣는다. 아직 한 글자도 안 쳤을 때
@@ -2961,7 +2997,9 @@ class Component extends DCLogic {
       doExport: () => {
         if (bad > 0) return;
         const html = this.exportHtml(mode);
-        this.setState({ exported: true, copyOk: !!html && this.copyText(html) });
+        const copyOk = !!html && this.copyText(html);
+        this.setState({ exported: true, copyOk });
+        this.logExport(mode, copyOk);
       },
 
       showDone: st.exported,

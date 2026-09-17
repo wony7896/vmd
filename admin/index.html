@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전단지 스튜디오 — 관리자</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root {
+    --navy: #000028; --blue: #3617CE; --gray: #E2E4E6; --sgray: #F5F5F6;
+    --dim: #808288; --bad: #A63244;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #FAFAF8; color: var(--navy);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  header {
+    display: flex; align-items: center; gap: 12px; padding: 16px 24px;
+    border-bottom: 1px solid var(--gray); background: #fff;
+  }
+  header .title { font-weight: 700; font-size: 15px; }
+  header .sp { flex-grow: 1; }
+  header .who { font-size: 12px; color: var(--dim); }
+  header button {
+    border: 1px solid var(--gray); background: #fff; border-radius: 6px;
+    padding: 6px 12px; font-size: 12px; cursor: pointer; color: var(--navy);
+  }
+  header button:hover { background: var(--sgray); }
+
+  main { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* 로그인 */
+  #login {
+    max-width: 360px; margin: 120px auto 0; text-align: center;
+  }
+  #login h1 { font-size: 18px; margin-bottom: 8px; }
+  #login p { font-size: 13px; color: var(--dim); margin-bottom: 24px; line-height: 1.6; }
+  #login input {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--gray); border-radius: 8px;
+    font-size: 14px; margin-bottom: 10px;
+  }
+  #login button {
+    width: 100%; padding: 10px 12px; border: none; border-radius: 8px;
+    background: var(--blue); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  #login button:disabled { background: #CBCDD2; cursor: not-allowed; }
+  #login .msg { font-size: 12px; margin-top: 12px; color: var(--dim); min-height: 16px; }
+  #login .msg.err { color: var(--bad); }
+
+  /* 대시보드 */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .card {
+    background: #fff; border: 1px solid var(--gray); border-radius: 12px; padding: 20px;
+  }
+  .card h2 { font-size: 13px; font-weight: 600; color: var(--dim); margin: 0 0 12px; }
+  .stat-big { font-size: 32px; font-weight: 700; line-height: 1.2; }
+  .stat-sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+  .bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; margin: 6px 0; }
+  .bar-row .lbl { width: 78px; flex: none; color: var(--dim); }
+  .bar-row .bar-wrap { flex-grow: 1; background: var(--sgray); border-radius: 4px; overflow: hidden; height: 16px; }
+  .bar-row .bar { background: var(--blue); height: 100%; border-radius: 4px; }
+  .bar-row .n { width: 32px; flex: none; text-align: right; font-weight: 600; }
+
+  .rank-row {
+    display: flex; align-items: center; gap: 10px; padding: 7px 0;
+    border-bottom: 1px solid var(--sgray); font-size: 13px;
+  }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row .idx {
+    width: 20px; flex: none; text-align: center; font-size: 11px; color: var(--dim); font-weight: 600;
+  }
+  .rank-row .name { flex-grow: 1; }
+  .rank-row .kind { font-size: 11px; color: var(--dim); }
+  .rank-row .cnt { font-weight: 700; width: 40px; text-align: right; }
+
+  table.list { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.list th {
+    text-align: left; font-size: 11px; color: var(--dim); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--gray);
+  }
+  table.list td { padding: 9px 10px; border-bottom: 1px solid var(--sgray); vertical-align: top; }
+  table.list td.mono { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .chip {
+    display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 9999px;
+    border: 1px solid var(--gray); color: var(--dim); margin-right: 4px;
+  }
+  .chip.print { border-color: var(--blue); color: var(--blue); }
+  .empty { color: var(--dim); font-size: 13px; padding: 20px 0; text-align: center; }
+  .loadmore {
+    display: block; margin: 14px auto 0; border: 1px solid var(--gray); background: #fff;
+    border-radius: 6px; padding: 7px 16px; font-size: 12px; cursor: pointer; color: var(--navy);
+  }
+  .loadmore:hover { background: var(--sgray); }
+  .loadmore:disabled { opacity: 0.5; cursor: default; }
+
+  #dashboard { display: none; }
+  .err-banner {
+    background: #FDEEEF; border: 1px solid var(--bad); color: var(--bad);
+    border-radius: 8px; padding: 10px 14px; font-size: 12px; margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="title">전단지 스튜디오 · 관리자</span>
+  <span class="sp"></span>
+  <span class="who" id="who"></span>
+  <button id="logout" style="display:none">로그아웃</button>
+</header>
+
+<main>
+
+  <div id="login">
+    <h1>관리자 로그인</h1>
+    <p>BX팀 이메일로 매직 링크를 보내드립니다.<br>메일함에서 링크를 클릭하면 이 화면으로 돌아옵니다.</p>
+    <input id="email" type="email" placeholder="you@company.com" autocomplete="email">
+    <button id="sendLink">매직 링크 보내기</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+
+  <div id="dashboard">
+    <div id="errBanner"></div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>평균 제작 소요시간</h2>
+        <div class="stat-big" id="avgDur">—</div>
+        <div class="stat-sub" id="avgDurSub">인쇄소 입고용 기준 · 스튜디오를 연 시각 → 복사 성공 시각</div>
+      </div>
+      <div class="card">
+        <h2>누적 제작 건수</h2>
+        <div class="stat-big" id="totalCnt">—</div>
+        <div class="stat-sub">인쇄소 입고용 다운로드(복사) 기준</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h2>일별 제작 건수 — 최근 30일 (인쇄소 입고용)</h2>
+      <div id="dailyChart"><div class="empty">불러오는 중…</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h2>가장 많이 사용한 그래픽 Top 10</h2>
+      <div id="topGfx"><div class="empty">불러오는 중…</div></div>
+    </div>
+
+    <div class="card">
+      <h2>작업한 전단지 전체 — 최신순</h2>
+      <table class="list">
+        <thead>
+          <tr><th>제작 시각</th><th>지점명</th><th>유형</th><th>구분</th><th>그래픽</th><th>소요</th></tr>
+        </thead>
+        <tbody id="listBody"></tbody>
+      </table>
+      <div id="listEmpty" class="empty" style="display:none">기록이 없습니다</div>
+      <button class="loadmore" id="loadMore">더 보기</button>
+    </div>
+
+  </div>
+
+</main>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://amoysregnxglrjlsxzvr.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_8aPQtzeRptdI8wflI4Pfxg_X4pVlfX0';
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const TYPE_LABEL = { line: '유형1·선분할', color: '유형2·컬러분할', title: '유형3·타이틀분할' };
+const KIND_LABEL = { icon: '아이콘', illust: '일러스트', product: '제품컷', lineicon: '라인아이콘' };
+
+const $ = (id) => document.getElementById(id);
+
+// ── 로그인 ──────────────────────────────────────────
+$('sendLink').addEventListener('click', async () => {
+  const email = $('email').value.trim();
+  const msg = $('loginMsg');
+  if (!email) { msg.textContent = '이메일을 입력하세요'; msg.className = 'msg err'; return; }
+  $('sendLink').disabled = true;
+  msg.className = 'msg';
+  msg.textContent = '보내는 중…';
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.origin + window.location.pathname }
+  });
+  $('sendLink').disabled = false;
+  if (error) { msg.textContent = '전송 실패: ' + error.message; msg.className = 'msg err'; return; }
+  msg.textContent = '메일함을 확인하세요 — 링크가 이 화면으로 돌아옵니다.';
+});
+
+$('logout').addEventListener('click', async () => {
+  await sb.auth.signOut();
+  location.reload();
+});
+
+sb.auth.onAuthStateChange((_event, session) => {
+  if (session) showDashboard(session);
+  else showLogin();
+});
+
+async function boot() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) showDashboard(session);
+  else showLogin();
+}
+
+function showLogin() {
+  $('login').style.display = 'block';
+  $('dashboard').style.display = 'none';
+  $('logout').style.display = 'none';
+  $('who').textContent = '';
+}
+
+let loaded = false;
+function showDashboard(session) {
+  $('login').style.display = 'none';
+  $('dashboard').style.display = 'block';
+  $('logout').style.display = 'inline-block';
+  $('who').textContent = session.user.email;
+  if (!loaded) { loaded = true; loadAll(); }
+}
+
+// ── 데이터 로딩 ──────────────────────────────────────
+function fmtDuration(intervalText) {
+  // postgres interval 텍스트: "00:05:00" 또는 "1 day 02:03:04"
+  if (!intervalText) return '—';
+  let days = 0;
+  const dayMatch = intervalText.match(/(-?\d+)\s+day/);
+  if (dayMatch) days = parseInt(dayMatch[1], 10);
+  const timeMatch = intervalText.match(/(-?\d+):(\d+):(\d+(\.\d+)?)/);
+  let h = 0, m = 0;
+  if (timeMatch) { h = parseInt(timeMatch[1], 10); m = parseInt(timeMatch[2], 10); }
+  const totalH = days * 24 + h;
+  if (totalH > 0) return totalH + '시간 ' + m + '분';
+  if (m > 0) return m + '분';
+  return '1분 미만';
+}
+
+function fmtDurationMs(ms) {
+  if (!(ms >= 0)) return '—';
+  const totalMin = Math.round(ms / 60000);
+  const h = Math.floor(totalMin / 60), m = totalMin % 60;
+  if (h > 0) return h + '시간 ' + m + '분';
+  if (m > 0) return m + '분';
+  return '1분 미만';
+}
+
+function fmtWhen(iso) {
+  const d = new Date(iso);
+  return d.toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+}
+
+function showErr(where, e) {
+  console.error(where, e);
+  $('errBanner').innerHTML =
+    '<div class="err-banner">' + where + ' 실패 — ' + (e?.message || e) + '</div>';
+}
+
+async function loadAvgAndTotal() {
+  const { data, error } = await sb.from('v_avg_duration').select('*').single();
+  if (error) return showErr('평균 소요시간 조회', error);
+  $('avgDur').textContent = fmtDuration(data.avg_duration);
+  $('totalCnt').textContent = (data.total_n ?? 0).toLocaleString('ko-KR') + '건';
+  if (data.sample_n < data.total_n) {
+    $('avgDurSub').textContent =
+      '인쇄소 입고용 기준 · 24시간 넘게 걸린 ' + (data.total_n - data.sample_n) + '건은 이상치로 제외';
+  }
+}
+
+async function loadDaily() {
+  const { data, error } = await sb.from('v_daily_print_counts').select('*').limit(30);
+  const el = $('dailyChart');
+  if (error) return showErr('일별 제작 건수 조회', error);
+  if (!data.length) { el.innerHTML = '<div class="empty">아직 기록이 없습니다</div>'; return; }
+  const max = Math.max(...data.map((r) => r.cnt));
+  el.innerHTML = data.map((r) => {
+    const day = new Date(r.day).toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' });
+    const pct = Math.max(4, Math.round((r.cnt / max) * 100));
+    return '<div class="bar-row"><span class="lbl">' + day + '</span>'
+      + '<span class="bar-wrap"><span class="bar" style="width:' + pct + '%"></span></span>'
+      + '<span class="n">' + r.cnt + '</span></div>';
+  }).join('');
+}
+
+async function loadTopGfx() {
+  const { data, error } = await sb.from('v_graphic_usage').select('*').limit(10);
+  const el = $('topGfx');
+  if (error) return showErr('그래픽 사용 순위 조회', error);
+  const rows = data.filter((r) => r.graphic_name);
+  if (!rows.length) { el.innerHTML = '<div class="empty">아직 기록이 없습니다</div>'; return; }
+  el.innerHTML = rows.map((r, i) =>
+    '<div class="rank-row"><span class="idx">' + (i + 1) + '</span>'
+    + '<span class="name">' + r.graphic_name + ' <span class="kind">' + (KIND_LABEL[r.kind] || r.kind) + '</span></span>'
+    + '<span class="cnt">' + r.uses + '</span></div>'
+  ).join('');
+}
+
+const PAGE_SIZE = 30;
+let listOffset = 0;
+let listDone = false;
+
+function renderRow(r) {
+  const blocks = (r.blocks || []).filter((b) => b.graphic_name);
+  const gfxChips = blocks.length
+    ? blocks.map((b) => '<span class="chip">' + b.graphic_name + '</span>').join('')
+    : '<span style="color:var(--dim)">—</span>';
+  const dur = fmtDurationMs(new Date(r.exported_at) - new Date(r.started_at));
+  return '<tr>'
+    + '<td class="mono">' + fmtWhen(r.exported_at) + '</td>'
+    + '<td>' + (r.store_name || '—') + '</td>'
+    + '<td>' + (TYPE_LABEL[r.flyer_type] || r.flyer_type) + '</td>'
+    + '<td><span class="chip ' + (r.export_kind === 'print' ? 'print' : '') + '">'
+      + (r.export_kind === 'print' ? '인쇄소 입고용' : '화면 공유용') + '</span></td>'
+    + '<td>' + gfxChips + '</td>'
+    + '<td class="mono">' + dur + '</td>'
+    + '</tr>';
+}
+
+async function loadMoreList() {
+  const btn = $('loadMore');
+  btn.disabled = true;
+  const { data, error } = await sb.from('flyer_exports')
+    .select('*')
+    .order('exported_at', { ascending: false })
+    .range(listOffset, listOffset + PAGE_SIZE - 1);
+  if (error) { showErr('전단지 목록 조회', error); btn.disabled = false; return; }
+  if (listOffset === 0 && !data.length) {
+    $('listEmpty').style.display = 'block';
+    btn.style.display = 'none';
+    return;
+  }
+  $('listBody').insertAdjacentHTML('beforeend', data.map(renderRow).join(''));
+  listOffset += data.length;
+  if (data.length < PAGE_SIZE) { listDone = true; btn.style.display = 'none'; }
+  btn.disabled = false;
+}
+$('loadMore').addEventListener('click', loadMoreList);
+
+function loadAll() {
+  loadAvgAndTotal();
+  loadDaily();
+  loadTopGfx();
+  loadMoreList();
+}
+
+boot();
+</script>
+</body>
+</html>
