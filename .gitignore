@@ -3,6 +3,9 @@
 brand guide/
 template/
 
+# 위 폴더들의 수동 백업 zip — 하나가 1.5GB라 같은 이유로 뺀다.
+*.zip
+
 # 생성물 · 시스템 파일
 __pycache__/
 *.pyc
