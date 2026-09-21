@@ -592,6 +592,60 @@
     .pane4 .pill { background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
       padding: 7px 18px; font-size: 14px; letter-spacing: -0.224px; font-family: inherit; cursor: pointer; }
     .pane4 .pill:active { transform: scale(0.95); }
+
+    /* ---- 검수 — 스튜디오 밖 이미지를 brand-review 엣지 함수로 대조 ---- */
+    .pane5 .root { width: 1352px; height: 900px; background: #FAFAFA; color: #1F2021;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      display: flex; flex-direction: column; overflow: hidden; }
+    .pane5 .sp { flex-grow: 1; }
+    .pane5 .subnav { height: 52px; flex: none; background: #FFFFFF; border-bottom: 1px solid #E2E4E6;
+      display: flex; align-items: center; padding: 0 40px; gap: 16px; }
+    .pane5 .subnav .title { font-size: 21px; font-weight: 600; letter-spacing: 0.231px; }
+    .pane5 .meta { font-size: 14px; letter-spacing: -0.224px; color: #808288; }
+    .pane5 .wrap { flex-grow: 1; display: flex; gap: 24px; padding: 32px 40px;
+      overflow-y: auto; overflow-x: hidden; align-items: flex-start; }
+    .pane5 .upcard { width: 340px; flex: none; background: #ffffff; border: 1px solid #E2E4E6;
+      border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+    .pane5 .rescard { flex-grow: 1; min-width: 0; min-height: 480px; background: #ffffff;
+      border: 1px solid #E2E4E6; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .pane5 label.drop { border: 1.5px dashed #CBCDD2; border-radius: 8px; padding: 26px 14px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; cursor: pointer; }
+    .pane5 label.drop:hover { background: #FAFAFA; }
+    .pane5 .drop .dt { font-size: 14px; font-weight: 600; letter-spacing: -0.224px; color: #1F2021; }
+    .pane5 .drop .ds { font-size: 12px; letter-spacing: -0.12px; color: #808288; line-height: 1.5; }
+    .pane5 .preview { border-radius: 8px; overflow: hidden; border: 1px solid #E2E4E6; background: #F5F5F6; }
+    .pane5 .preview img { display: block; width: 100%; max-height: 320px; object-fit: contain; background: #F5F5F6; }
+    .pane5 .fname { font-size: 12px; letter-spacing: -0.12px; color: #808288; word-break: break-all; }
+    .pane5 .fileinput { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .pane5 .pill { background: #3617CE; color: #ffffff; border: none; border-radius: 6px;
+      padding: 11px 18px; font-size: 14px; font-weight: 600; letter-spacing: -0.224px;
+      font-family: inherit; cursor: pointer; text-align: center; }
+    .pane5 .pill:active { transform: scale(0.97); }
+    .pane5 label.pill { display: block; }
+    .pane5 .pill.ghost { background: transparent; color: #1F2021; border: 1px solid #CBCDD2; font-weight: 400; }
+    .pane5 .note { font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #A0A3A8; }
+    .pane5 .hint { flex-grow: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 8px; color: #A0A3A8; font-size: 14px; letter-spacing: -0.224px;
+      text-align: center; padding: 40px 20px; }
+    .pane5 .errbox { background: #FDEEEF; border: 1px solid #A63244; color: #A63244; border-radius: 8px;
+      padding: 12px 14px; font-size: 13px; line-height: 1.5; }
+    .pane5 .overall { display: flex; align-items: baseline; gap: 12px; padding-bottom: 16px;
+      border-bottom: 1px solid #E2E4E6; }
+    .pane5 .ovlabel { font-size: 19px; font-weight: 700; letter-spacing: -0.374px; }
+    .pane5 .ovnote { font-size: 13px; line-height: 1.5; letter-spacing: -0.13px; color: #808288; }
+    .pane5 .ritems { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+    .pane5 .ritem { display: flex; flex-direction: column; gap: 6px; background: #FAFAFA;
+      border-radius: 8px; padding: 14px 16px; }
+    .pane5 .rihead { display: flex; align-items: center; gap: 8px; }
+    .pane5 .rilabel { font-size: 14px; font-weight: 600; letter-spacing: -0.224px; color: #1F2021; }
+    .pane5 .ribadge { font-size: 11px; font-weight: 600; letter-spacing: -0.11px; color: #ffffff;
+      padding: 2px 9px; border-radius: 9999px; }
+    .pane5 .rifound { font-size: 13px; line-height: 1.5; letter-spacing: -0.13px; color: #37393B; }
+    .pane5 .rifix { font-size: 12px; line-height: 1.5; letter-spacing: -0.12px; color: #5B5D62; }
+    .pane5 .rifix b { color: #1F2021; font-weight: 600; }
+    .pane5 .stepbar { height: 64px; flex: none; background: #FFFFFF; border-top: 1px solid #E2E4E6;
+      display: flex; align-items: center; gap: 12px; padding: 0 32px; }
+    .pane5 .barnote { font-size: 12px; letter-spacing: -0.12px; color: #808288; }
   </style>
 </helmet>
 
@@ -607,6 +661,10 @@
     <button class="rnav" onClick="{{ goGuide }}" style="background: {{navGuideBg}}; color: {{navGuideC}}; font-weight: {{navGuideW}}">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.6C8.6 4.2 6.6 3.5 4 3.5v11c2.6 0 4.6 .7 6 2.1 1.4-1.4 3.4-2.1 6-2.1v-11c-2.6 0-4.6 .7-6 2.1z"/><path d="M10 5.6v11"/></svg>
       가이드
+    </button>
+    <button class="rnav" onClick="{{ goReview }}" style="background: {{navReviewBg}}; color: {{navReviewC}}; font-weight: {{navReviewW}}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5h-4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4"/><path d="M15.6 3.4a1.4 1.4 0 0 1 2 2L10.5 12.5l-2.7.7.7-2.7z"/></svg>
+      검수
     </button>
     <span class="sp"></span>
     <div class="who">{{storeInitial}}</div>
@@ -1303,6 +1361,88 @@
 
   </div>
   </div>
+  <div class="pane pane5" style="display: {{d5}}">
+  <div class="root">
+
+    <div class="subnav">
+      <span class="title">이미지 검수</span>
+      <span class="meta">대리점에서 만든 이미지를 올리면 브랜드 가이드 위반 여부를 확인합니다 — 스튜디오로 만든 전단지는 대상이 아닙니다</span>
+      <span class="sp"></span>
+    </div>
+
+    <div class="wrap">
+
+      <div class="upcard">
+        <input class="fileinput" id="reviewFileInput" type="file" accept="image/*" onChange="{{ onReviewFile }}">
+
+        <sc-if value="{{reviewNoImage}}" hint-placeholder-val="{{true}}">
+          <label class="drop" for="reviewFileInput">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#808288" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6M14 6l-5 5M14 6l5 5"/><path d="M5 18v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/></svg>
+            <span class="dt">이미지 올리기</span>
+            <span class="ds">SNS 게시물 · 배너 · PT 슬라이드 등<br>jpg · png · webp</span>
+          </label>
+        </sc-if>
+
+        <sc-if value="{{reviewHasImage}}" hint-placeholder-val="{{false}}">
+          <div class="preview"><img src="{{reviewDataUrl}}" alt="업로드한 이미지"></div>
+          <span class="fname">{{reviewFileName}}</span>
+          <label class="pill ghost" for="reviewFileInput">다른 이미지 선택</label>
+        </sc-if>
+
+        <sc-if value="{{showReviewCta}}" hint-placeholder-val="{{false}}">
+          <button class="pill" onClick="{{ runReview }}">{{reviewCtaLabel}}</button>
+        </sc-if>
+
+        <span class="note">이미지는 검수에만 쓰이고 저장하지 않습니다. 판정은 참고용이며 최종 게시는 BX팀 확인을 권장합니다.</span>
+      </div>
+
+      <div class="rescard">
+        <sc-if value="{{reviewBusy}}" hint-placeholder-val="{{false}}">
+          <div class="hint">검수 중입니다 — 최대 30초 정도 걸릴 수 있습니다</div>
+        </sc-if>
+
+        <sc-if value="{{reviewIdleHint}}" hint-placeholder-val="{{true}}">
+          <div class="hint">{{reviewIdleHintText}}</div>
+        </sc-if>
+
+        <sc-if value="{{reviewHasError}}" hint-placeholder-val="{{false}}">
+          <div class="errbox">{{reviewErrorText}}</div>
+        </sc-if>
+
+        <sc-if value="{{reviewHasResult}}" hint-placeholder-val="{{false}}">
+          <div class="overall">
+            <span class="ovlabel" style="color: {{reviewOverallColor}}">{{reviewOverallLabel}}</span>
+            <span class="ovnote">{{reviewOverallNote}}</span>
+          </div>
+          <div class="ritems">
+            <sc-for list="{{reviewItems}}" as="it" hint-placeholder-count="6">
+              <div class="ritem">
+                <div class="rihead">
+                  <span class="rilabel">{{it.label}}</span>
+                  <span class="ribadge" style="background: {{it.color}}">{{it.badge}}</span>
+                </div>
+                <sc-if value="{{it.hasFound}}" hint-placeholder-val="{{true}}">
+                  <span class="rifound">{{it.found}}</span>
+                </sc-if>
+                <sc-if value="{{it.hasFix}}" hint-placeholder-val="{{false}}">
+                  <span class="rifix"><b>규정</b> {{it.rule}}<sc-if value="{{it.hasFixVal}}" hint-placeholder-val="{{true}}"> · <b>수정</b> {{it.fix}}</sc-if></span>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+
+    </div>
+
+    <div class="stepbar">
+      <span class="barnote">이미지 자체는 서버에 저장되지 않습니다 — 판정 결과만 집계됩니다.</span>
+      <span class="sp"></span>
+      <button class="pill ghost" onClick="{{ goStudio }}">전단지 편집으로 돌아가기</button>
+    </div>
+
+  </div>
+  </div>
 </div>
 </x-dc>
 
@@ -1310,6 +1450,11 @@
 // 관리자 대시보드 집계용 — 내보내기(복사) 성공 시에만 1건 기록한다. 실패해도 제작 흐름을 막지 않는다.
 const LOG_URL = 'https://amoysregnxglrjlsxzvr.supabase.co/rest/v1/flyer_exports';
 const LOG_KEY = 'sb_publishable_8aPQtzeRptdI8wflI4Pfxg_X4pVlfX0';
+
+// 검수 — studio/edge-functions/brand-review 가 처리한다. 로그인 없이 공개로 부른다
+// (verify_jwt: false) — 키가 아니라 엣지 함수 안의 이미지 크기·일일 호출량 상한이 오남용을 막는다.
+const REVIEW_URL = 'https://amoysregnxglrjlsxzvr.supabase.co/functions/v1/brand-review';
+const REVIEW_MAX_SIDE = 1600;    // 업로드 이미지를 이 픽셀(긴 변)로 줄여 보낸다 — 비용·전송량 방어
 
 class Component extends DCLogic {
 
@@ -1379,7 +1524,17 @@ class Component extends DCLogic {
       confirmFull: null,
 
       // 3단계 — 내보내기 확정 여부. 단계를 옮기면 풀린다
-      exported: false
+      exported: false,
+
+      // 검수 — 스튜디오 밖에서 만든 이미지를 브랜드 가이드와 대조. 흐름 1~3단계와 무관한
+      // 독립 화면이라 'guide'처럼 step 에 문자열로 들어간다 (goReview/goStudio)
+      reviewDataUrl: null,     // 미리보기용 data URL (재인코딩된 JPEG)
+      reviewImage: null,       // 엣지 함수로 보낼 base64 (data: 접두어 제외)
+      reviewMediaType: null,
+      reviewFileName: null,
+      reviewBusy: false,
+      reviewResult: null,      // brand-review 엣지 함수 응답
+      reviewError: null
     };
   }
 
@@ -2307,6 +2462,72 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
+  // 검수 — 대리점이 스튜디오 밖에서 만든 이미지를 올리면 브랜드 가이드 위반 여부를 확인한다.
+  // 원본 그대로 보내지 않는다 — 캔버스로 긴 변 REVIEW_MAX_SIDE px 까지 줄이고 JPEG 로 다시
+  // 인코딩해 전송량과 엣지 함수 쪽 AI 호출 비용을 같이 줄인다.
+  handleReviewFile(file) {
+    if (!file) return;
+    if (!/^image\//.test(file.type)) {
+      this.setState({ reviewError: '이미지 파일만 올릴 수 있습니다', reviewResult: null });
+      return;
+    }
+    this.setState({ reviewBusy: true, reviewError: null, reviewResult: null });
+    const reader = new FileReader();
+    reader.onerror = () => this.setState({ reviewBusy: false, reviewError: '파일을 읽지 못했습니다' });
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = () => this.setState({ reviewBusy: false, reviewError: '이미지를 열지 못했습니다 — 다른 파일로 시도해 주세요' });
+      img.onload = () => {
+        const scale = Math.min(1, REVIEW_MAX_SIDE / Math.max(img.width, img.height));
+        const w = Math.max(1, Math.round(img.width * scale));
+        const h = Math.max(1, Math.round(img.height * scale));
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        this.setState({
+          reviewDataUrl: dataUrl,
+          reviewImage: dataUrl.split(',')[1],
+          reviewMediaType: 'image/jpeg',
+          reviewFileName: file.name,
+          reviewBusy: false,
+          reviewError: null,
+          reviewResult: null
+        });
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  clearReviewImage() {
+    this.setState({
+      reviewDataUrl: null, reviewImage: null, reviewMediaType: null, reviewFileName: null,
+      reviewBusy: false, reviewError: null, reviewResult: null
+    });
+  }
+
+  submitReview() {
+    const { reviewImage, reviewMediaType } = this.state;
+    if (!reviewImage) return;
+    this.setState({ reviewBusy: true, reviewError: null, reviewResult: null });
+    fetch(REVIEW_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: reviewImage, mediaType: reviewMediaType })
+    })
+      .then((res) => res.json().catch(() => null).then((body) => ({ res, body })))
+      .then(({ res, body }) => {
+        if (!res.ok || !body || body.error) {
+          this.setState({ reviewBusy: false, reviewError: (body && body.error) || '검수에 실패했습니다 — 다시 시도해 주세요' });
+          return;
+        }
+        this.setState({ reviewBusy: false, reviewResult: body });
+      })
+      .catch(() => this.setState({ reviewBusy: false, reviewError: '네트워크 오류 — 잠시 후 다시 시도해 주세요' }));
+  }
+
   // 블록의 후보를 순위대로. template.md 2.5 —
   //   1) 원고 문구에 검색어 낱말이 몇 개 들어 있는지  2) 후보 풀의 섹션 순서  3) 인덱스 행 순서
   // 문구에는 블록 이름(‘이사’·‘추석’)도 넣는다. 아직 한 글자도 안 쳤을 때
@@ -3084,6 +3305,83 @@ class Component extends DCLogic {
     };
   }
 
+  // 검수 — wiki/review-checklist.md 를 시스템 프롬프트로 쓰는 brand-review 엣지 함수 호출 화면.
+  // 1~3단계(전단지 제작)와 무관해 결과를 자체 상태(reviewResult)로만 들고, checks4() 처럼
+  // 제작 흐름을 막지 않는다 — 여기 판정은 참고용이고 스튜디오 밖 이미지에만 적용된다.
+  vals5() {
+    const st = this.state;
+    const r = st.reviewResult;
+
+    const LABELS = { color: '컬러', logo: '로고', typo: '타이포그래피',
+      graphic: '그래픽·비주얼 에셋', tone: '톤앤매너', grid: '그리드' };
+    const VERDICT = {
+      pass: { badge: '통과', tone: 'ok' }, fail: { badge: '위반', tone: 'bad' },
+      warn: { badge: '확인 필요', tone: 'warn' }, na: { badge: '대상 아님', tone: 'na' },
+      tone_ok: { badge: '부합', tone: 'ok' }, tone_soft: { badge: '다소 어긋남', tone: 'warn' },
+      tone_off: { badge: '명확히 이질적', tone: 'bad' }
+    };
+    const TONE_COLOR = { ok: '#1F2021', warn: '#C08A2E', bad: '#A63244', na: '#A0A3A8' };
+
+    const items = (r && Array.isArray(r.items) ? r.items : []).map((it) => {
+      const v = VERDICT[it.verdict] || { badge: String(it.verdict || '?'), tone: 'na' };
+      return {
+        label: LABELS[it.key] || it.key,
+        badge: v.badge,
+        color: TONE_COLOR[v.tone],
+        found: it.found || '',
+        hasFound: !!it.found,
+        rule: it.rule || '',
+        fix: it.fix || '',
+        hasFix: !!(it.rule || it.fix),
+        hasRule: !!it.rule,
+        hasFixVal: !!it.fix
+      };
+    });
+
+    const OVERALL = {
+      publishable: { label: '게시 가능', color: '#1F2021' },
+      bx_review: { label: 'BX팀 확인 후 게시', color: '#C08A2E' },
+      fix_needed: { label: '수정 필요', color: '#A63244' }
+    };
+    const overall = r ? (OVERALL[r.overall] || { label: r.overallLabel || r.overall, color: '#1F2021' }) : null;
+
+    const hasImage = !!st.reviewDataUrl;
+    const busy = !!st.reviewBusy;
+    const hasError = !busy && !!st.reviewError;
+    const hasResult = !busy && !hasError && !!r;
+    const idleHint = !busy && !hasError && !hasResult;
+
+    return {
+      reviewHasImage: hasImage,
+      reviewNoImage: !hasImage,
+      reviewDataUrl: st.reviewDataUrl,
+      reviewFileName: st.reviewFileName || '',
+      reviewBusy: busy,
+      reviewHasError: hasError,
+      reviewErrorText: st.reviewError || '',
+      reviewIdleHint: idleHint,
+      reviewIdleHintText: hasImage
+        ? '왼쪽의 검수하기를 눌러 시작하세요'
+        : '왼쪽에 이미지를 올리면 여기에 결과가 나옵니다',
+      reviewHasResult: hasResult,
+      reviewItems: items,
+      reviewOverallLabel: overall ? overall.label : '',
+      reviewOverallColor: overall ? overall.color : '#1F2021',
+      reviewOverallNote: r ? (r.overall_note || '') : '',
+
+      showReviewCta: hasImage && !busy,
+      reviewCtaLabel: r ? '다시 검수하기' : '이 이미지 검수하기',
+
+      onReviewFile: (e) => {
+        const file = e.target.files && e.target.files[0];
+        this.handleReviewFile(file);
+        e.target.value = '';   // 같은 파일을 다시 골라도 onChange 가 또 뜨도록
+      },
+      clearReviewImage: () => this.clearReviewImage(),
+      runReview: () => this.submitReview()
+    };
+  }
+
   renderVals() {
     const step = this.state.step;
     const show = (n) => (n === step ? 'block' : 'none');
@@ -3091,15 +3389,17 @@ class Component extends DCLogic {
     // 레일에서 현재 화면은 옅은 면 + 잉크 글자로 표시한다 (채도를 쓰지 않는다)
     const on = (yes) => ({ c: yes ? '#1F2021' : '#808288', w: yes ? '600' : '400',
                            bg: yes ? '#F5F5F6' : 'transparent' });
-    const a = on(inFlow), c = on(step === 'guide');
+    const a = on(inFlow), c = on(step === 'guide'), rv = on(step === 'review');
     return {
-      d1: show(1), d2: show(2), d3: show(3), d4: show('guide'),
+      d1: show(1), d2: show(2), d3: show(3), d4: show('guide'), d5: show('review'),
+      navReviewC: rv.c, navReviewW: rv.w, navReviewBg: rv.bg,
+      goReview: () => this.setState({ step: 'review' }),
       navStudioC: a.c, navStudioW: a.w, navStudioBg: a.bg,
       navGuideC: c.c, navGuideW: c.w, navGuideBg: c.bg,
       storeInitial: String(this.state.f.store || '').trim().slice(0, 1) || '·',
       goStudio: () => this.setState({ step: this.state.lastFlow }),
       goGuide: () => this.setState({ step: 'guide' }),
-      ...this.vals1(), ...this.vals2Lib(), ...this.vals2(), ...this.vals3(), ...this.vals4()
+      ...this.vals1(), ...this.vals2Lib(), ...this.vals2(), ...this.vals3(), ...this.vals4(), ...this.vals5()
     };
   }
 }

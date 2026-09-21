@@ -18,6 +18,7 @@ A5(148×210mm) 전단지를 브랜드 규정에 맞게 제작한다.
 | 라인 아이콘 · 2D 아이콘 | [wiki/assets-line-icon.md](wiki/assets-line-icon.md) |
 | 서체 · `@font-face` · 웹폰트 · 서브셋 | [wiki/typography.md](wiki/typography.md) |
 | 코드에서 에셋 목록이 필요할 때 | `wiki/assets.json` |
+| 대리점이 스튜디오 밖에서 만든 이미지 검수 기준 | [wiki/review-checklist.md](wiki/review-checklist.md) |
 
 **색·로고·서체는 한 문서(brand.md)에 함께 있다.** 배경색 하나가 배지 색·로고 버전·
 텍스트 하이라이트를 연쇄로 결정하기 때문이다. 색만 읽고 로고를 고르지 않는다.
@@ -99,6 +100,27 @@ python3 wiki/sync-studio.py
 `--check`를 붙이면 쓰지 않고 어긋난 파일만 알려준다.
 참조되지 않는 번들 에셋은 빼 준다 — 그래픽이 190개라 유령 하나가 곧 용량이다.
 
+## 검수 체크리스트를 고쳤을 때
+
+```bash
+python3 wiki/build-review-prompt.py
+```
+
+스튜디오의 **검수** 탭(대리점이 스튜디오 밖에서 만든 이미지를 올려 브랜드 가이드 위반 여부를
+확인하는 화면)은 `studio/edge-functions/brand-review/index.ts` 라는 Supabase 엣지 함수가
+처리한다. 이 스크립트가 [wiki/review-checklist.md](wiki/review-checklist.md)로 그 함수의
+시스템 프롬프트(`CHECKLIST_PROMPT`, 생성 구간)를 다시 만든다 — 7절(마크다운 표 출력 지시)만
+JSON 스키마 지시로 바꿔치기하고 나머지는 그대로 가져온다. `--check`를 붙이면 어긋난 것만 알려준다.
+**review-checklist.md가 원본이고 index.ts 안의 CHECKLIST_PROMPT는 생성물이다.**
+
+돌린 뒤에는 Supabase MCP(`deploy_edge_function`, project: flyer / `amoysregnxglrjlsxzvr`,
+`verify_jwt: false`)로 **직접 재배포해야 반영된다** — 이 스크립트는 로컬 파일만 고친다.
+엣지 함수는 `ANTHROPIC_API_KEY` 시크릿이 있어야 동작한다. 이 값은 에이전트가 대신 넣지
+않는다(보안 규칙) — Supabase 대시보드나
+`supabase secrets set ANTHROPIC_API_KEY=... --project-ref amoysregnxglrjlsxzvr`로 직접 설정한다.
+로그인 없이 공개로 쓰는 도구라 이미지 크기 상한·하루 호출량 상한(`brand_review_log` 테이블
+집계)으로 오남용을 막는다 — 상한값은 `index.ts` 머리의 `DAILY_CAP`.
+
 ## 서체 서브셋을 다시 만들 때
 
 ```bash
@@ -135,6 +157,8 @@ brand guide/
 template/                      원본 가이드 PDF
 studio/  flyer-studio.html     제작 도구
 studio/asset/            190  후보 그래픽 160px 축소본 — build-graphics.py 생성물
+studio/edge-functions/brand-review/   검수 탭이 쓰는 Supabase 엣지 함수 — Anthropic API 호출
+wiki/review-checklist.md       검수 기준(스튜디오 밖 이미지용) — brand-review 프롬프트 원본
 대조결과.md                     공식 목록 대조 기록 · 미결 항목
 이어받기.md                     진행 상황 · 남은 일 · 되짚을 판단
 ```
