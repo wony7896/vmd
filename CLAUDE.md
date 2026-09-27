@@ -133,6 +133,16 @@ fonttools가 있어야 하고, 없으면 설치 방법을 알려주고 멈춘다
 **brand guide/가 원본이고 studio/의 woff2는 생성물이다.**
 만든 뒤에는 `sync-studio.py`를 돌려 번들에 반영한다.
 
+## 채널표 스튜디오를 수정했을 때
+
+```bash
+python3 channel/build.py
+```
+
+`channel/src.html` · `channel/channels.csv` 를 서체·로고와 함께 루트의 `channel-studio.html` 한 파일로 묶는다.
+B tv 방송 채널 안내(A4 양면)를 채널 데이터에서 자동으로 짜는 별도 도구다 — 전단지 스튜디오와 코드를 나누지 않는다.
+**`channel/` 이 원본이고 `channel-studio.html` 은 생성물이다.** 자세한 것은 [channel/README.md](channel/README.md).
+
 ## 주의 — 한글 파일명 인코딩
 
 macOS는 한글 파일명을 **NFD(자모 분리)** 로 저장하는데 위키 문서는 NFC로 적혀 있다.
@@ -156,6 +166,7 @@ brand guide/
 └── font/                  12  OTF 원본 + web/ WOFF2 12 — typography.md
 template/                      원본 가이드 PDF
 studio/  flyer-studio.html     제작 도구
+channel/ channel-studio.html   채널표 도구 — channel/README.md
 studio/asset/            190  후보 그래픽 160px 축소본 — build-graphics.py 생성물
 studio/edge-functions/brand-review/   검수 탭이 쓰는 Supabase 엣지 함수 — Anthropic API 호출
 wiki/review-checklist.md       검수 기준(스튜디오 밖 이미지용) — brand-review 프롬프트 원본
