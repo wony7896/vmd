@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>채널표 스튜디오</title>
+<style>
+/* 서체 — studio/ 의 KS X 1001 서브셋 2종을 build.py 가 base64로 박아 넣는다 */
+@font-face { font-family:"SKT Sans Display"; font-weight:700; src:url(data:font/woff2;base64,{{FONT_DISPLAY}}) format("woff2"); }
+@font-face { font-family:"SKT Sans Text"; font-weight:600; src:url(data:font/woff2;base64,{{FONT_TEXT}}) format("woff2"); }
+
+/* 색은 wiki/brand.md 에 있는 값만 쓴다 */
+:root{
+  --b-blue:#3617CE; --b-navy2:#000028; --black:#000; --white:#fff;
+  --gray6:#CBCDD2; --gray4:#808288; --gray3:#5B5D62; --gray7:#F5F5F6; --b-gray:#E2E4E6;
+  --sub-blue6:#E9EEFF; --orange:#EB7B44;
+  --disp:"SKT Sans Display", sans-serif; --text:"SKT Sans Text", sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:var(--text);background:var(--gray7);color:var(--b-navy2);font-size:13px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:1px solid var(--gray6);background:var(--white);border-radius:6px;padding:6px 10px}
+button.primary{background:var(--b-blue);border-color:var(--b-blue);color:var(--white)}
+button:disabled{opacity:.4;cursor:default}
+
+/* ---------- 작업 화면 ---------- */
+.app{display:grid;grid-template-columns:430px 1fr;height:100vh}
+.side{background:var(--white);border-right:1px solid var(--b-gray);display:flex;flex-direction:column;min-height:0}
+.side header{padding:14px 16px 10px;border-bottom:1px solid var(--b-gray)}
+.side h1{font-family:var(--disp);font-size:17px;margin:0 0 10px}
+.row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.row+.row{margin-top:6px}
+select,input[type=text],input[type=number],textarea{border:1px solid var(--gray6);border-radius:6px;padding:5px 7px;background:var(--white)}
+.tabs{display:flex;border-bottom:1px solid var(--b-gray)}
+.tabs button{border:0;border-radius:0;background:none;padding:9px 12px;border-bottom:2px solid transparent;color:var(--gray3)}
+.tabs button.on{border-bottom-color:var(--b-blue);color:var(--b-blue)}
+.pane{flex:1;overflow:auto;padding:10px 16px 16px;min-height:0}
+.pane[hidden]{display:none}
+table.ed{width:100%;border-collapse:collapse}
+table.ed th{position:sticky;top:-10px;background:var(--white);text-align:left;font-weight:600;color:var(--gray3);font-size:11px;padding:4px 2px;border-bottom:1px solid var(--b-gray)}
+table.ed td{padding:2px}
+table.ed input,table.ed select{width:100%;padding:3px 5px;font-size:12px}
+table.ed td.no input{width:52px}
+table.ed tr.dup input.no{border-color:var(--orange);background:#FDEBE3}
+table.ed tr.sec td{padding-top:10px;font-family:var(--disp);color:var(--b-blue)}
+.x{border:0;background:none;color:var(--gray4);padding:2px 6px}
+.muted{color:var(--gray4);font-size:12px}
+.chk li{margin:4px 0}
+.chk .bad{color:var(--orange)}
+.diff li{margin:3px 0;font-size:12px}
+.diff b{font-family:var(--disp)}
+label.f{display:block;margin:10px 0 3px;font-size:12px;color:var(--gray3)}
+textarea{width:100%;min-height:70px}
+.stage{overflow:auto;padding:24px;display:flex;flex-direction:column;align-items:center;gap:20px}
+.pagewrap{box-shadow:0 1px 6px rgba(0,0,40,.15);background:var(--white)}
+
+/* ---------- 인쇄 지면 (A4 · mm 단위) ---------- */
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--white);color:var(--black);
+  --row:3.8mm; --fs:9pt; --pad:13mm}
+.page .body{position:absolute;left:var(--pad);right:var(--pad)}
+.band{background:var(--b-blue);color:var(--white);height:21mm;display:flex;align-items:center;padding:0 var(--pad);gap:4mm}
+.band .t{font-family:var(--disp);font-size:25pt;letter-spacing:-.02em;white-space:nowrap}
+.band .d{font-family:var(--text);font-size:7.5pt;align-self:flex-end;margin-bottom:5.2mm;white-space:nowrap}
+.band img{margin-left:auto;height:5.4mm}
+.sec{border-top:.25mm solid var(--gray6)}
+.sec:first-child{border-top:0}
+.sec .h{display:flex;align-items:center;gap:2.4mm;height:calc(var(--row)*2.2);white-space:nowrap}
+.front .sec .h .tn{font-family:var(--disp);font-size:calc(var(--fs)*1.75);color:var(--b-blue);letter-spacing:-.02em}
+.front .sec .h .pr{font-family:var(--disp);font-size:calc(var(--fs)*1.02);border:.3mm solid var(--b-blue);color:var(--b-blue);padding:.3mm 1.2mm;line-height:1.15}
+.front .sec .h .cn{font-family:var(--disp);font-size:calc(var(--fs)*1.15);color:var(--gray3)}
+.back .sec .h{height:calc(var(--row)*1.9)}
+.back .sec .h .gn{font-family:var(--disp);font-size:calc(var(--fs)*1.05);color:var(--b-blue)}
+.back .sec .h .gn i{font-style:normal;color:var(--gray6);margin:0 .8mm;font-family:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);grid-auto-flow:column;column-gap:2mm;padding-bottom:calc(var(--row)*.45)}
+.cell{height:var(--row);display:flex;align-items:center;font-size:var(--fs);line-height:1;white-space:nowrap;min-width:0}
+.cell .n{font-family:var(--disp);width:calc(var(--fs)*2.75);flex:none;letter-spacing:-.02em}
+.cell .m{font-family:var(--text);flex:1;min-width:0;transform-origin:left center;letter-spacing:-.01em}
+.foot{position:absolute;left:var(--pad);right:var(--pad);bottom:7mm;display:flex;align-items:flex-end;gap:6mm}
+.foot .notes{flex:1;font-size:5.8pt;line-height:1.6;color:var(--gray3);columns:2;column-gap:6mm}
+.foot .notes div{break-inside:avoid}
+.foot .tel{font-family:var(--disp);font-size:10pt;white-space:nowrap}
+.foot .tel b{font-size:18pt;margin-left:1.5mm;color:var(--b-blue)}
+.banner{position:absolute;left:0;right:0;bottom:0;height:14mm;background:var(--b-blue);color:var(--white);display:flex;align-items:center;padding:0 var(--pad);font-family:var(--disp);font-size:12pt;white-space:nowrap;overflow:hidden}
+
+@media print{
+  @page{size:A4;margin:0}
+  body{background:none}
+  .side{display:none}
+  .app{display:block;height:auto}
+  .stage{padding:0;gap:0;display:block;overflow:visible}
+  .pagewrap{box-shadow:none;transform:none!important;width:auto!important;height:auto!important}
+  .pagewrap>.page{transform:none!important}
+  .page{break-after:page}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <header>
+      <h1>채널표 스튜디오</h1>
+      <div class="row">
+        <select id="prod"></select>
+        <select id="ver"></select>
+        <button id="newver" title="지금 판을 복사해 다음 달 판을 만든다">새 판</button>
+      </div>
+      <div class="row">
+        <button class="primary" id="print">PDF 저장 (인쇄)</button>
+        <button id="csvout">CSV 내보내기</button>
+        <label class="muted"><input type="file" id="csvin" accept=".csv" hidden><u style="cursor:pointer">CSV 불러오기</u></label>
+        <button id="reset" title="이 판에서 고친 내용을 버린다">원래대로</button>
+      </div>
+    </header>
+    <nav class="tabs">
+      <button data-p="edit" class="on">채널</button>
+      <button data-p="check">점검</button>
+      <button data-p="diff">지난 판과 비교</button>
+      <button data-p="meta">문구</button>
+    </nav>
+    <div class="pane" id="p-edit">
+      <div class="row" style="margin-bottom:6px">
+        <input type="text" id="q" placeholder="번호·채널명 찾기" style="flex:1">
+        <button id="add">+ 채널</button>
+      </div>
+      <table class="ed"><thead><tr><th>번호</th><th>채널명</th><th>티어</th><th>장르 (뒷면)</th><th></th></tr></thead><tbody id="rows"></tbody></table>
+    </div>
+    <div class="pane" id="p-check" hidden></div>
+    <div class="pane" id="p-diff" hidden></div>
+    <div class="pane" id="p-meta" hidden>
+      <label class="f">기준 (머리띠 날짜)</label><input type="text" id="m-date" style="width:100%">
+      <div id="m-prices"></div>
+      <label class="f">앞면 아래 안내문 (한 줄에 하나)</label><textarea id="m-notes"></textarea>
+      <label class="f">뒷면 아래 띠 문구 (비우면 띠 없음)</label><input type="text" id="m-banner" style="width:100%">
+      <p class="muted">고친 내용은 이 브라우저에 판별로 저장된다. 다른 사람과 나누려면 CSV로 내보낸다.</p>
+    </div>
+  </aside>
+  <main class="stage" id="stage"></main>
+</div>
+
+<script>
+const SEED = {{DATA}};
+const LOGO = "data:image/png;base64,{{LOGO}}";
+
+/* 상품 설정 — 티어 순서, 가격, 앞면 나열 규칙 */
+const PRODUCTS = {
+  'B tv':       { tiers:['미니','이코노미','스탠다드','All'], nineFirst:true },
+  'B tv pop':   { tiers:['pop 100','pop 180','pop 230'], nineFirst:false },
+  'B tv cable': { tiers:['cable 100','cable 190','cable 200'], nineFirst:false },
+};
+const GENRES = ['스포츠','드라마 | 예능','드라마','영화 | 시리즈','예능','뉴스 | 경제 | 공공 | 교육','애니 | 키즈','음악 | 취미 | 레저','교양 | 정보','종교','유료채널'];
+const PAID = '유료(별도)';
+
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem('chsheet:'+k)) }catch(e){ return null } },
+  set(k,v){ try{ localStorage.setItem('chsheet:'+k, JSON.stringify(v)) }catch(e){} },
+  del(k){ try{ localStorage.removeItem('chsheet:'+k) }catch(e){} },
+  keys(){ const r=[]; try{ for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i); if(k.startsWith('chsheet:')) r.push(k.slice(8))} }catch(e){} return r },
+};
+
+/* 판 목록: 원본(SEED) + 이 브라우저에서 새로 만든 판 */
+function allVersions(){
+  const v = {...SEED};
+  for(const k of store.keys()){ if(!v[k]){ const d=store.get(k); if(d&&d.product) v[k]=d } }
+  return v;
+}
+function load(key){ return store.get(key) || structuredClone(allVersions()[key]) }
+function save(){ store.set(cur.key, doc) }
+
+let cur = {key:null}, doc = null;
+
+/* ---------- 정렬·집계 ---------- */
+const nineKey = (P,n) => P.nineFirst ? [n>=900?0:1, n] : [0,n];
+const cmp = (P) => (a,b) => { const x=nineKey(P,a.no), y=nineKey(P,b.no); return x[0]-y[0] || x[1]-y[1] };
+function tierLists(d){
+  const P = PRODUCTS[d.product];
+  return P.tiers.map(t => ({ tier:t, items:d.channels.filter(c=>c.tier===t).sort(cmp(P)) }));
+}
+function genreLists(d){
+  const P = PRODUCTS[d.product];
+  const gs = [...new Set(d.channels.map(c=>c.genre).filter(Boolean))].sort((a,b)=>GENRES.indexOf(a)-GENRES.indexOf(b));
+  return gs.map(g => ({ genre:g, items:d.channels.filter(c=>c.genre===g).sort(cmp(P)) }));
+}
+function cumulative(d){ let a=0; return tierLists(d).map(t => a += t.items.length) }
+function dupNos(d){ const m={}; d.channels.forEach(c=>{ m[c.no]=(m[c.no]||0)+1 }); return new Set(Object.keys(m).filter(k=>m[k]>1).map(Number)) }
+
+/* ---------- 지면 그리기 ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function gridHTML(items, nameKey){
+  const rows = Math.max(1, Math.ceil(items.length/5));
+  return `<div class="grid" style="grid-template-rows:repeat(${rows},var(--row))">` +
+    items.map(c=>`<div class="cell"><span class="n">${c.no}</span><span class="m">${esc(nameKey(c))}</span></div>`).join('') + '</div>';
+}
+function frontHTML(d){
+  const P = PRODUCTS[d.product], cum = cumulative(d);
+  const secs = tierLists(d).map((t,i)=>`<section class="sec"><div class="h">
+      <span class="tn">${esc(d.product+' '+t.tier.replace(/^(pop|cable) /,''))}</span>
+      ${d.prices&&d.prices[t.tier] ? `<span class="pr">${esc(d.prices[t.tier])}</span>`:''}
+      <span class="cn">${cum[i]}개 전 채널 HD화질 제공</span></div>${gridHTML(t.items, c=>c.name)}</section>`).join('');
+  return `<div class="page front">
+    <div class="band"><span class="t">${esc(d.product)} 방송 채널 안내</span><span class="d">${esc(d.date)}</span><img src="${LOGO}" alt="SK broadband"></div>
+    <div class="body" style="top:25mm;bottom:22mm">${secs}</div>
+    <div class="foot"><div class="notes">${(d.notes||[]).map(n=>`<div>※ ${esc(n)}</div>`).join('')}</div><div class="tel">이용문의<b>☎ 106</b></div></div>
+  </div>`;
+}
+function backHTML(d){
+  const secs = genreLists(d).map(g=>`<section class="sec"><div class="h"><span class="gn">${g.genre.split(' | ').map(esc).join('<i>|</i>')}</span></div>${gridHTML(g.items, c=>c.backName||c.name)}</section>`).join('');
+  return `<div class="page back">
+    <div class="body" style="top:9mm;bottom:${d.banner?20:9}mm">${secs}</div>
+    ${d.banner?`<div class="banner">${esc(d.banner)}</div>`:''}
+  </div>`;
+}
+
+/* 쪽에 맞추기: 줄 높이를 줄여 가며 본문이 칸 안에 들어가게 하고, 넘치는 채널명은 가로로만 좁힌다 */
+function fit(page){
+  const body = page.querySelector('.body');
+  let row = 4.6;
+  const apply = () => { page.style.setProperty('--row', row+'mm'); page.style.setProperty('--fs', Math.min(9.6, row*2.45)+'pt') };
+  apply();
+  while(body.scrollHeight > body.clientHeight + 1 && row > 2.2){ row = +(row-0.05).toFixed(2); apply() }
+  page.dataset.row = row;
+  page.querySelectorAll('.cell .m').forEach(m => {
+    m.style.transform=''; const over = m.scrollWidth / m.clientWidth;
+    if(over > 1.001) m.style.transform = `scaleX(${(1/over).toFixed(3)})`;
+  });
+}
+
+function renderPages(){
+  const st = document.getElementById('stage');
+  st.innerHTML = [frontHTML(doc), backHTML(doc)].map(h=>`<div class="pagewrap">${h}</div>`).join('');
+  st.querySelectorAll('.page').forEach(fit);
+  scalePreview();
+}
+function scalePreview(){
+  const st = document.getElementById('stage');
+  const avail = st.clientWidth - 48;
+  st.querySelectorAll('.pagewrap').forEach(w=>{
+    const p = w.firstElementChild, pw = p.offsetWidth, ph = p.offsetHeight;
+    const s = Math.min(1, avail/pw);
+    p.style.transform = `scale(${s})`; p.style.transformOrigin='0 0';
+    w.style.width = pw*s+'px'; w.style.height = ph*s+'px';
+  });
+}
+addEventListener('resize', scalePreview);
+
+/* ---------- 편집 표 ---------- */
+function renderRows(){
+  const P = PRODUCTS[doc.product], q = document.getElementById('q').value.trim().toLowerCase();
+  const dups = dupNos(doc);
+  const tierOpts = [...P.tiers, PAID, ''].map(t=>`<option value="${esc(t)}">${t||'(앞면 없음)'}</option>`).join('');
+  const genreOpts = ['', ...GENRES].map(g=>`<option value="${esc(g)}">${g||'(뒷면 없음)'}</option>`).join('');
+  const groups = [...P.tiers, PAID, ''].map(t=>({t, items: doc.channels.map((c,i)=>({c,i})).filter(x=>x.c.tier===t).sort((a,b)=>cmp(P)(a.c,b.c))}));
+  let h = '';
+  for(const g of groups){
+    const items = g.items.filter(({c}) => !q || String(c.no).includes(q) || c.name.toLowerCase().includes(q));
+    if(!items.length) continue;
+    h += `<tr class="sec"><td colspan="5">${esc(g.t||'앞면 없음')} · ${g.items.length}</td></tr>`;
+    for(const {c,i} of items){
+      h += `<tr data-i="${i}" class="${dups.has(c.no)?'dup':''}">
+        <td class="no"><input class="no" type="number" data-k="no" value="${c.no}"></td>
+        <td><input type="text" data-k="name" value="${esc(c.name)}"></td>
+        <td><select data-k="tier">${tierOpts}</select></td>
+        <td><select data-k="genre">${genreOpts}</select></td>
+        <td><button class="x" title="삭제">✕</button></td></tr>`;
+    }
+  }
+  const tb = document.getElementById('rows'); tb.innerHTML = h;
+  tb.querySelectorAll('tr[data-i]').forEach(tr=>{
+    const c = doc.channels[+tr.dataset.i];
+    tr.querySelector('[data-k=tier]').value = c.tier;
+    tr.querySelector('[data-k=genre]').value = c.genre;
+  });
+}
+document.getElementById('rows').addEventListener('change', e=>{
+  const tr = e.target.closest('tr[data-i]'); if(!tr) return;
+  const c = doc.channels[+tr.dataset.i], k = e.target.dataset.k;
+  c[k] = k==='no' ? parseInt(e.target.value,10) : e.target.value;
+  if(k==='name') c.backName = '';
+  commit(k!=='name');
+});
+document.getElementById('rows').addEventListener('click', e=>{
+  if(!e.target.classList.contains('x')) return;
+  const i = +e.target.closest('tr').dataset.i;
+  doc.channels.splice(i,1); commit(true);
+});
+document.getElementById('add').onclick = ()=>{
+  const P = PRODUCTS[doc.product];
+  doc.channels.push({no: Math.max(0,...doc.channels.filter(c=>c.no<900).map(c=>c.no))+1, name:'새 채널', tier:P.tiers[P.tiers.length-1], genre:'', backName:''});
+  commit(true);
+  const last = [...document.querySelectorAll('#rows tr[data-i]')].find(tr=>+tr.dataset.i===doc.channels.length-1);
+  if(last){ last.scrollIntoView({block:'center'}); last.querySelector('[data-k=name]').select() }
+};
+document.getElementById('q').oninput = renderRows;
+
+function commit(rerows){ save(); if(rerows) renderRows(); renderPages(); renderChecks(); renderDiff() }
+
+/* ---------- 점검 ---------- */
+function renderChecks(){
+  const P = PRODUCTS[doc.product], dups = dupNos(doc), cum = cumulative(doc);
+  const out = [];
+  out.push(`<p><b>티어별 누적 채널 수</b> — 지면 머리 숫자는 이 값으로 자동으로 채워진다.</p><ul class="chk">` +
+    P.tiers.map((t,i)=>`<li>${esc(t)} · <b>${cum[i]}</b>개 (이 티어에만 ${tierLists(doc)[i].items.length})</li>`).join('') + '</ul>');
+  const probs = [];
+  dups.forEach(n => probs.push(`${n}번이 ${doc.channels.filter(c=>c.no===n).map(c=>esc(c.name)).join(', ')}에 겹쳐 있다`));
+  doc.channels.filter(c=>!c.tier && !c.genre).forEach(c=>probs.push(`${c.no} ${esc(c.name)}: 앞면에도 뒷면에도 안 나온다`));
+  doc.channels.filter(c=>c.tier===PAID && c.genre!=='유료채널').forEach(c=>probs.push(`${c.no} ${esc(c.name)}: 유료(별도)인데 뒷면 유료채널 칸에 없다`));
+  doc.channels.filter(c=>isNaN(c.no)).forEach(c=>probs.push(`${esc(c.name)}: 번호가 비어 있다`));
+  document.querySelectorAll('.page').forEach((p,i)=>{
+    if(+p.dataset.row < 3.0) probs.push(`${i?'뒷':'앞'}면 줄 높이가 ${p.dataset.row}mm까지 줄었다 — 글자가 작아 읽기 어려울 수 있다`);
+  });
+  out.push(`<p><b>문제</b></p>` + (probs.length ? `<ul class="chk">${probs.map(p=>`<li class="bad">${p}</li>`).join('')}</ul>` : `<p class="muted">찾은 문제 없음.</p>`));
+  const fr = document.querySelector('.page.front'), bk = document.querySelector('.page.back');
+  if(fr) out.push(`<p class="muted">줄 높이: 앞면 ${fr.dataset.row}mm · 뒷면 ${bk.dataset.row}mm</p>`);
+  document.getElementById('p-check').innerHTML = out.join('');
+}
+
+/* ---------- 지난 판과 비교 ---------- */
+function prevKey(){
+  const vs = allVersions(), keys = Object.keys(vs).filter(k=>vs[k].product===doc.product).sort((a,b)=>vs[a].month.localeCompare(vs[b].month));
+  const i = keys.indexOf(cur.key); return i>0 ? keys[i-1] : null;
+}
+function renderDiff(){
+  const el = document.getElementById('p-diff'), pk = prevKey();
+  if(!pk){ el.innerHTML = '<p class="muted">이 상품의 첫 판이라 비교할 지난 판이 없다.</p>'; return }
+  const a = load(pk), b = doc;
+  const norm = s => s.replace(/\s+/g,'').toLowerCase();
+  const byNameA = new Map(a.channels.map(c=>[norm(c.name),c])), byNameB = new Map(b.channels.map(c=>[norm(c.name),c]));
+  const byNoA = new Map(a.channels.map(c=>[c.no,c])), byNoB = new Map(b.channels.map(c=>[c.no,c]));
+  const L = {renum:[], tier:[], genre:[], rename:[], add:[], del:[]};
+  const seenA = new Set();
+  for(const c of b.channels){
+    const n = norm(c.name);
+    let o = byNameA.get(n);
+    if(!o){ const s = byNoA.get(c.no); if(s && !byNameB.has(norm(s.name))){ o = s; L.rename.push(`${c.no} ${esc(s.name)} → <b>${esc(c.name)}</b>`) } }
+    if(!o){ L.add.push(`<b>${c.no} ${esc(c.name)}</b> (${esc(c.tier||'앞면 없음')})`); continue }
+    seenA.add(o);
+    if(o.no!==c.no) L.renum.push(`${esc(c.name)} ${o.no} → <b>${c.no}</b>`);
+    if(o.tier!==c.tier) L.tier.push(`${esc(c.name)} ${esc(o.tier||'없음')} → <b>${esc(c.tier||'없음')}</b>`);
+    if(o.genre!==c.genre) L.genre.push(`${esc(c.name)} ${esc(o.genre||'없음')} → <b>${esc(c.genre||'없음')}</b>`);
+  }
+  for(const o of a.channels) if(!seenA.has(o)) L.del.push(`${o.no} ${esc(o.name)}`);
+  const T = {add:'추가',del:'종료',renum:'번호 변경',tier:'티어 변경',genre:'장르 변경',rename:'채널명 변경'};
+  const ca = cumulative(a), cb = cumulative(b);
+  el.innerHTML = `<p><b>${esc(a.month)}</b> 판 → <b>${esc(b.month)}</b> 판</p>
+    <p class="muted">누적 채널 수 ${ca.join(' / ')} → ${cb.join(' / ')}</p>` +
+    Object.keys(T).map(k=>L[k].length?`<p><b>${T[k]} ${L[k].length}건</b></p><ul class="diff">${L[k].map(x=>`<li>${x}</li>`).join('')}</ul>`:'').join('') +
+    (Object.values(L).every(x=>!x.length)?'<p class="muted">바뀐 것 없음.</p>':'');
+}
+
+/* ---------- 문구 ---------- */
+function renderMeta(){
+  document.getElementById('m-date').value = doc.date||'';
+  document.getElementById('m-notes').value = (doc.notes||[]).join('\n');
+  document.getElementById('m-banner').value = doc.banner||'';
+  const P = PRODUCTS[doc.product];
+  document.getElementById('m-prices').innerHTML = `<label class="f">티어 가격 (비우면 표시 안 함)</label>` +
+    P.tiers.map(t=>`<div class="row"><span style="width:80px">${esc(t)}</span><input type="text" data-t="${esc(t)}" value="${esc((doc.prices||{})[t]||'')}" style="flex:1"></div>`).join('');
+}
+document.getElementById('p-meta').addEventListener('input', e=>{
+  const t = e.target;
+  if(t.id==='m-date') doc.date = t.value;
+  else if(t.id==='m-notes') doc.notes = t.value.split('\n').map(s=>s.trim()).filter(Boolean);
+  else if(t.id==='m-banner') doc.banner = t.value.trim();
+  else if(t.dataset.t){ doc.prices = doc.prices||{}; doc.prices[t.dataset.t] = t.value.trim() }
+  save(); renderPages();
+});
+
+/* ---------- 판 고르기 ---------- */
+function fillSelectors(prod, key){
+  const vs = allVersions();
+  const ps = document.getElementById('prod'), vr = document.getElementById('ver');
+  ps.innerHTML = Object.keys(PRODUCTS).map(p=>`<option>${esc(p)}</option>`).join(''); ps.value = prod;
+  const keys = Object.keys(vs).filter(k=>vs[k].product===prod).sort((a,b)=>vs[a].month.localeCompare(vs[b].month));
+  vr.innerHTML = keys.map(k=>`<option value="${esc(k)}">${esc(vs[k].month)}${vs[k].label?' · '+esc(vs[k].label):''}${store.get(k)&&SEED[k]?' (고침)':''}</option>`).join('');
+  vr.value = key || keys[keys.length-1];
+}
+function open(key){
+  cur.key = key; doc = load(key);
+  try{ localStorage.setItem('chsheet-last', key) }catch(e){}
+  fillSelectors(doc.product, key);
+  renderRows(); renderMeta(); renderPages(); renderChecks(); renderDiff();
+}
+document.getElementById('prod').onchange = e=>{
+  const vs = allVersions(), keys = Object.keys(vs).filter(k=>vs[k].product===e.target.value).sort((a,b)=>vs[a].month.localeCompare(vs[b].month));
+  open(keys[keys.length-1]);
+};
+document.getElementById('ver').onchange = e=>open(e.target.value);
+document.getElementById('newver').onclick = ()=>{
+  const m = prompt('새 판의 기준월 (예: 2024-01)', nextMonth(doc.month)); if(!m) return;
+  const key = `${doc.product}|${m}`;
+  if(allVersions()[key] && !confirm('같은 기준월 판이 이미 있다. 덮어쓸까?')) return;
+  const [y,mm] = m.split('-');
+  const d = {...structuredClone(doc), month:m, label:'새 판', date:`${y}년 ${+mm}월 기준`};
+  store.set(key, d); open(key);
+};
+function nextMonth(m){ const [y,mm]=m.split('-').map(Number); return mm===12?`${y+1}-01`:`${y}-${String(mm+1).padStart(2,'0')}` }
+document.getElementById('reset').onclick = ()=>{
+  if(!SEED[cur.key]){ if(confirm('이 브라우저에서 만든 판이다. 지울까?')){ store.del(cur.key); open(Object.keys(SEED).find(k=>SEED[k].product===doc.product)) } return }
+  if(confirm('이 판에서 고친 내용을 모두 버리고 원래 데이터로 돌릴까?')){ store.del(cur.key); open(cur.key) }
+};
+document.getElementById('print').onclick = ()=>{
+  const st = document.getElementById('stage');
+  st.querySelectorAll('.pagewrap>.page').forEach(p=>p.style.transform='none');
+  document.title = `${doc.product} 채널표 ${doc.month}`;
+  print();
+  document.title = '채널표 스튜디오'; scalePreview();
+};
+
+/* ---------- CSV ---------- */
+const HEAD = ['상품','기준','티어','번호','채널명','장르','뒷면표기'];
+function toCSV(rows){ return '﻿'+[HEAD, ...rows].map(r=>r.map(v=>/[",\n]/.test(v)?`"${String(v).replace(/"/g,'""')}"`:v).join(',')).join('\r\n') }
+document.getElementById('csvout').onclick = ()=>{
+  const P = PRODUCTS[doc.product];
+  const rows = [...doc.channels].sort((a,b)=>([...P.tiers,PAID,''].indexOf(a.tier)-[...P.tiers,PAID,''].indexOf(b.tier)) || cmp(P)(a,b))
+    .map(c=>[doc.product, doc.month, c.tier, c.no, c.name, c.genre, c.backName||'']);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([toCSV(rows)],{type:'text/csv'}));
+  a.download = `${doc.product}_${doc.month}_채널표.csv`; a.click();
+};
+function parseCSV(t){
+  t = t.replace(/^﻿/,''); const rows=[]; let r=[''], q=false;
+  for(let i=0;i<t.length;i++){ const ch=t[i];
+    if(q){ if(ch==='"'){ if(t[i+1]==='"'){ r[r.length-1]+='"'; i++ } else q=false } else r[r.length-1]+=ch }
+    else if(ch==='"') q=true; else if(ch===',') r.push(''); else if(ch==='\n'){ rows.push(r); r=[''] } else if(ch!=='\r') r[r.length-1]+=ch }
+  if(r.length>1||r[0]) rows.push(r); return rows;
+}
+document.getElementById('csvin').onchange = async e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const rows = parseCSV(await f.text()), h = rows.shift(), ix = k=>h.indexOf(k);
+  if(HEAD.slice(0,6).some(k=>ix(k)<0)){ alert('머리줄이 '+HEAD.join(',')+' 이어야 한다'); return }
+  const groups = {};
+  for(const r of rows){ if(!r[ix('번호')]) continue;
+    const key = `${r[ix('상품')]}|${r[ix('기준')]}`;
+    if(!PRODUCTS[r[ix('상품')]]){ alert('모르는 상품: '+r[ix('상품')]); return }
+    (groups[key] ||= {product:r[ix('상품')], month:r[ix('기준')], channels:[]}).channels.push(
+      {no:parseInt(r[ix('번호')],10), name:r[ix('채널명')], tier:r[ix('티어')], genre:r[ix('장르')], backName:ix('뒷면표기')>=0?r[ix('뒷면표기')]:''});
+  }
+  let last;
+  for(const [key,g] of Object.entries(groups)){
+    const base = allVersions()[key] || doc;
+    store.set(key, {...structuredClone(base), ...g, label: SEED[key]?'':'불러옴'}); last = key;
+  }
+  e.target.value=''; if(last) open(last);
+};
+
+/* ---------- 탭 ---------- */
+document.querySelector('.tabs').onclick = e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on', x===b));
+  document.querySelectorAll('.pane').forEach(p=>p.hidden = p.id!=='p-'+b.dataset.p);
+};
+
+let last = null; try{ last = localStorage.getItem('chsheet-last') }catch(e){}
+document.fonts.ready.then(()=> open(last && allVersions()[last] ? last : 'B tv|2023-12'));
+</script>
+</body>
+</html>
